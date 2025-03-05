@@ -1,0 +1,360 @@
+[
+  [
+    {
+      "name": "A - Day 1: Push legs / Pull upper body & Cardio",
+      "exercises": [
+        {
+          "id": "legpress",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "weightedpullup",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": "Or failure"
+        },
+        {
+          "id": "legextension",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "humblerow",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "cablecrunch",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "run3miles",
+          "warmupSets": 0,
+          "workingSets": 1,
+          "repsOrDuration": "3 miles",
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "name": "A - Day 2: Pull legs / Push upper body & Cardio",
+      "exercises": [
+        {
+          "id": "deadlift",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 3,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "barbellbenchpress",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "lyinglegcurl",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "lowtohighcableflye",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "cablecrunch",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "run3miles",
+          "warmupSets": 0,
+          "workingSets": 1,
+          "repsOrDuration": "3 miles",
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "name": "A - Day 3: Gam Bam / Athletic Training & Cardio",
+      "exercises": [
+        {
+          "id": "cleansquatpress",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "inclinedumbbellcurl",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "triceppressdown",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "egyptianlateralraise",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": "Deltoid Flies"
+        },
+        {
+          "id": "cablecrunch",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "run3miles",
+          "warmupSets": 0,
+          "workingSets": 1,
+          "repsOrDuration": "3 miles",
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "B - Day 1: Push legs / Pull upper body & Cardio",
+      "exercises": [
+        {
+          "id": "legpress",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "weightedpullup",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": "Or failure"
+        },
+        {
+          "id": "legextension",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "humblerow",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "cablecrunch",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "run3miles",
+          "warmupSets": 0,
+          "workingSets": 1,
+          "repsOrDuration": "3 miles",
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "name": "B - Day 2: Pull legs / Push upper body & Cardio",
+      "exercises": [
+        {
+          "id": "deadlift",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 5,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "barbellbenchpress",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "lyinglegcurl",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "lowtohighcableflye",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "cablecrunch",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "run3miles",
+          "warmupSets": 0,
+          "workingSets": 1,
+          "repsOrDuration": "3 miles",
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "name": "B - Day 3: Gam Bam / Athletic Training & Cardio",
+      "exercises": [
+        {
+          "id": "cleansquatpress",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "inclinedumbbellcurl",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "triceppressdown",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "egyptianlateralraise",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": "Deltoid Flies"
+        },
+        {
+          "id": "cablecrunch",
+          "warmupSets": 0,
+          "workingSets": 5,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        },
+        {
+          "id": "run3miles",
+          "warmupSets": 0,
+          "workingSets": 1,
+          "repsOrDuration": "3 miles",
+          "rpeOrPercent": "",
+          "rest": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+]

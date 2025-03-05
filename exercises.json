@@ -1,0 +1,380 @@
+[
+  {
+    "name": "AB WHEEL ROLLOUT",
+    "id": "abwheelrollout",
+    "link": "https://youtu.be/1G0y8D5rFDc?t=308",
+    "subs": "Long-lever plank, plank, hollow body hold"
+  },
+  {
+    "name": "ARNOLD PRESS",
+    "id": "arnoldpress",
+    "link": "https://www.youtube.com/watch?v=zOpA1Op0zvc",
+    "subs": "Dumbbell seated shoulder press, machine shoulder press"
+  },
+  {
+    "name": "BACK SQUAT",
+    "id": "backsquat",
+    "link": "https://youtu.be/bEv6CCg2BC8?t=147",
+    "subs": "Hack squat, smith machine squat, leg press + 15 reps of back extensions"
+  },
+  {
+    "name": "BACK SQUAT [TOPSET]",
+    "id": "backsquattopset",
+    "link": "https://youtu.be/bEv6CCg2BC8?t=147",
+    "subs": "Hack squat, smith machine squat, leg press + 15 reps of back extensions"
+  },
+  {
+    "name": "BACK SQUAT [BACKOFF]",
+    "id": "backsquatbackoff",
+    "link": "https://youtu.be/bEv6CCg2BC8?t=147",
+    "subs": "Hack squat, smith machine squat, leg press + 15 reps of back extensions"
+  },
+  {
+    "name": "BANDED CHEST-SUPPORTED T-BAR ROW",
+    "id": "bandedchest-supportedt-barrow",
+    "link": "https://youtu.be/9B-5irFdB3c?t=174",
+    "subs": "Cable seated row w/ band, eccentric-accentuated chest-supported T-bar row"
+  },
+  {
+    "name": "BARBELL BENCH PRESS",
+    "id": "barbellbenchpress",
+    "link": "https://youtu.be/vcBig73ojpE?t=134",
+    "subs": "Dumbbell press, machine chest press, smith machine bench press"
+  },
+  {
+    "name": "BARBELL BENCH PRESS [TOPSET]",
+    "id": "barbellbenchpresstopset",
+    "link": "https://youtu.be/vcBig73ojpE?t=134",
+    "subs": "Dumbbell press, machine chest press, smith machine bench press"
+  },
+  {
+    "name": "BARBELL HIP THRUST",
+    "id": "barbellhipthrust",
+    "link": "https://youtu.be/xDmFkJxPzeM?t=97",
+    "subs": "Glute bridge, dumbbell 45\u00b0 hyperextension"
+  },
+  {
+    "name": "BARBELL HIP THRUST or RDL",
+    "id": "barbellhipthrustorrdl",
+    "link": "https://youtu.be/xDmFkJxPzeM?t=97",
+    "subs": "Glute bridge, dumbbell 45\u00b0 hyperextension"
+  },
+  {
+    "name": "BICYCLE CRUNCH",
+    "id": "bicyclecrunch",
+    "link": "https://youtu.be/2RrGnjxSsiA?t=371",
+    "subs": "Cable crunch, bodyweight crunch, V sit-up"
+  },
+  {
+    "name": "CABLE CRUNCH",
+    "id": "cablecrunch",
+    "link": "https://youtu.be/2RrGnjxSsiA?t=124",
+    "subs": "Bodyweight crunch, V sit-up, bicycle crunch"
+  },
+  {
+    "name": "CABLE LATERAL RAISE",
+    "id": "cablelateralraise",
+    "link": "https://youtu.be/f_OGBg2KxgY?si=dP3JIxFgUCeVAfAN&t=20",
+    "subs": "Machine lateral raise, face pull"
+  },
+  {
+    "name": "CABLE PULL-OVER",
+    "id": "cablepull-over",
+    "link": "https://youtu.be/9B-5irFdB3c?t=320",
+    "subs": "Lying dumbbell pullover"
+  },
+  {
+    "name": "CABLE ROPE UPRIGHT ROW",
+    "id": "cableropeuprightrow",
+    "link": "https://youtu.be/nwkLwMRHMQo?t=230",
+    "subs": "Machine lateral raise, face pull"
+  },
+  {
+    "name": "CABLE SEATED ROW",
+    "id": "cableseatedrow",
+    "link": "https://youtu.be/FbWfA_s0XL8?t=273",
+    "subs": "Dumbbell row"
+  },
+  {
+    "name": "CABLE SINGLE-ARM CURL",
+    "id": "cablesingle-armcurl",
+    "link": "https://youtu.be/Qbk5A7lWVOE?si=caxbUhEt2lwZ-Kc0&t=99",
+    "subs": "Dumbbell curl, cable curl"
+  },
+  {
+    "name": "CHEST-SUPPORTED T-BAR ROW",
+    "id": "chest-supportedt-barrow",
+    "link": "https://www.youtube.com/watch?v=160n9FBX84s",
+    "subs": "Chest-supported row, cable single-arm row"
+  },
+  {
+    "name": "CHINUP",
+    "id": "chinup",
+    "link": "https://www.youtube.com/watch?v=Hdc7Mw6BIEE",
+    "subs": "Dumbbell row, cable single-arm row"
+  },
+  {
+    "name": "CLEAN SQUAT PRESS",
+    "id": "cleansquatpress",
+    "link": "https://www.youtube.com/watch?v=91zwsKeNvYo",
+    "subs": "Overhead press, front squat"
+  },
+  {
+    "name": "DEADLIFT",
+    "id": "deadlift",
+    "link": "https://youtu.be/VL5Ab0T07e4?t=175",
+    "subs": "Sumo deadlift"
+  },
+  {
+    "name": "DEADLIFT [TOPSET]",
+    "id": "deadlifttopset",
+    "link": "https://youtu.be/VL5Ab0T07e4?t=175",
+    "subs": "Sumo deadlift"
+  },
+  {
+    "name": "DECLINE BENCH PRESS",
+    "id": "declinebenchpress",
+    "link": "https://www.youtube.com/watch?v=iVh4B5bJ5OI",
+    "subs": "Weighted Dip"
+  },
+  {
+    "name": "DIP",
+    "id": "dip",
+    "link": "https://youtu.be/yN6Q1UI_xkE?t=75",
+    "subs": "Assisted dip, machine dip, close-grip bench press"
+  },
+  {
+    "name": "DUMBBELL INCLINE PRESS",
+    "id": "dumbbellinclinepress",
+    "link": "https://www.youtube.com/watch?v=p2t9daxLpB8",
+    "subs": "Barbell incline press, deficit push-up"
+  },
+  {
+    "name": "DUMBBELL LATERAL RAISE",
+    "id": "dumbbelllateralraise",
+    "link": "https://youtu.be/v_ZkxWzYnMc?t=215",
+    "subs": "Machine lateral raise, Egyptian lateral raise"
+  },
+  {
+    "name": "DUMBBELL ROW",
+    "id": "dumbbellrow",
+    "link": "https://youtu.be/djKXLt7kv7Q?t=116",
+    "subs": "Cable single-arm row, dumbbell chest-supported row"
+  },
+  {
+    "name": "ECCENTRIC-ACCENTUATED STANDING CALF RAISE",
+    "id": "eccentric-accentuatedstandingcalfraise",
+    "link": "https://youtu.be/-qsRtp_PbVM?t=310",
+    "subs": "Slow-Eccentric Leg Press Toe Press"
+  },
+  {
+    "name": "EGYPTIAN LATERAL RAISE",
+    "id": "egyptianlateralraise",
+    "link": "https://youtu.be/SJqInYJcg5k?t=653",
+    "subs": "Dumbbell lateral raise, machine lateral raise"
+  },
+  {
+    "name": "EZ BAR CURL 21s",
+    "id": "ezbarcurl21s",
+    "link": "https://www.youtube.com/watch?v=Dd0t5UOCEUc",
+    "subs": "EZ bar curl, dumbbell curl 21s, cable curl 21s"
+  },
+  {
+    "name": "EZ BAR SKULL CRUSHER",
+    "id": "ezbarskullcrusher",
+    "link": "https://youtu.be/popGXI-qs98?t=123",
+    "subs": "Floor press, pin press, JM press"
+  },
+  {
+    "name": "GLUTE HAM RAISE",
+    "id": "glutehamraise",
+    "link": "https://youtu.be/psdbgvbdd_M",
+    "subs": "Glute bridge, reverse hyper, cable pull-through"
+  },
+  {
+    "name": "HAMMER CURL",
+    "id": "hammercurl",
+    "link": "https://youtu.be/Kd3tbUnbueU",
+    "subs": "EZ bar pronated curl, rope hammer curl"
+  },
+  {
+    "name": "HANGING LEG RAISE",
+    "id": "hanginglegraise",
+    "link": "https://youtu.be/2RrGnjxSsiA?t=247",
+    "subs": "Captain\u2019s chair crunch, reverse crunch"
+  },
+  {
+    "name": "HEX BAR OR SMITH MACHINE SHRUG",
+    "id": "hexbarorsmithmachineshrug",
+    "link": "https://youtu.be/dAg1Kaevqj0?si=DGFRXyOLrOnWcfjY",
+    "subs": "Dumbbell shrug"
+  },
+  {
+    "name": "HUMBLE ROW",
+    "id": "humblerow",
+    "link": "https://youtu.be/didU4ZwAkPI?t=142",
+    "subs": "Chest-supported T-Bar Row (pronated grip), Seal Row/Helms Row"
+  },
+  {
+    "name": "INCLINE DUMBBELL CURL",
+    "id": "inclinedumbbellcurl",
+    "link": "https://youtu.be/3FAvFJ0Vtag",
+    "subs": "Behind the back cable curl"
+  },
+  {
+    "name": "WIDE GRIP LAT PULLDOWN",
+    "id": "widegriplatpulldown",
+    "link": "https://youtu.be/O94yEoGXtBY?t=150",
+    "subs": "Wide grip pull-up, supinated pulldown"
+  },
+  {
+    "name": "LEG EXTENSION",
+    "id": "legextension",
+    "link": "https://youtu.be/ljO4jkwv8wQ?t=202",
+    "subs": "Sissy squat, goblet squat"
+  },
+  {
+    "name": "LEG PRESS",
+    "id": "legpress",
+    "link": "https://youtu.be/didU4ZwAkPI?t=241",
+    "subs": "Goblet squat, walking lunge"
+  },
+  {
+    "name": "LOW INCLINE DUMBBELL PRESS",
+    "id": "lowinclinedumbbellpress",
+    "link": "https://youtu.be/p2t9daxLpB8",
+    "subs": "Low Incline Machine Press, low incline barbell press"
+  },
+  {
+    "name": "LOW TO HIGH CABLE FLYE",
+    "id": "lowtohighcableflye",
+    "link": "https://youtu.be/-EIhKMDSjBY?t=171",
+    "subs": "Pec deck, dumbbell flye"
+  },
+  {
+    "name": "LYING LEG CURL",
+    "id": "lyinglegcurl",
+    "link": "https://www.youtube.com/watch?v=e_48W0vlU58",
+    "subs": "Seated leg curl, sliding leg curl"
+  },
+  {
+    "name": "OVERHEAD PRESS",
+    "id": "overheadpress",
+    "link": "https://youtu.be/_RlRDWO2jfg?t=121",
+    "subs": "Seated barbell overhead press"
+  },
+  {
+    "name": "OVERHEAD TRICEP EXTENSION",
+    "id": "overheadtricepextension",
+    "link": "https://youtu.be/qIW3z-ydg-M",
+    "subs": "Dumbbell overhead triceps extension"
+  },
+  {
+    "name": "PENDLAY ROW",
+    "id": "pendlayrow",
+    "link": "https://youtu.be/axoeDmW0oAY?si=eU37SKgvRhdZKguO&t=264",
+    "subs": "Chest-supported T-Bar Row (pronated grip), Seal Row/Helms Row"
+  },
+  {
+    "name": "PRONATED PULLDOWN",
+    "id": "pronatedpulldown",
+    "link": "https://youtu.be/O94yEoGXtBY?t=150",
+    "subs": "Pull-up, supinated pulldown"
+  },
+  {
+    "name": "PUSH UP",
+    "id": "pushup",
+    "link": "https://youtu.be/-MRNjTr6xrE?t=715",
+    "subs": "Dumbbell floor press, machine chest press"
+  },
+  {
+    "name": "RDL or HIP THRUST",
+    "id": "rdlorhipthrust",
+    "link": "https://youtu.be/_oyxCn2iSjU?t=95",
+    "subs": "Stiff leg deadlift, block pull (4\u201d)"
+  },
+  {
+    "name": "ROMANIAN DEADLIFT (RDL)",
+    "id": "romaniandeadliftrdl",
+    "link": "https://youtu.be/_oyxCn2iSjU?t=95",
+    "subs": "Stiff leg deadlift, block pull (4\u201d)"
+  },
+  {
+    "name": "RESET DEADLIFT",
+    "id": "resetdeadlift",
+    "link": "https://youtu.be/VL5Ab0T07e4?t=175",
+    "subs": "Sumo deadlift"
+  },
+  {
+    "name": "RESET DEADLIFT [BACKOFF]",
+    "id": "resetdeadliftbackoff",
+    "link": "https://youtu.be/VL5Ab0T07e4?t=175",
+    "subs": "Sumo deadlift"
+  },
+  {
+    "name": "REVERSE PEC DECK",
+    "id": "reversepecdeck",
+    "link": "https://youtu.be/qfc70k40318?t=259",
+    "subs": "Reverse cable flye"
+  },
+  {
+    "name": "ROPE FACE PULL",
+    "id": "ropefacepull",
+    "link": "https://youtu.be/qfc70k40318?t=84",
+    "subs": "Reverse dumbbell flye, reverse cable crossover"
+  },
+  {
+    "name": "3 MILE RUN",
+    "id": "run3miles",
+    "link": "https://www.youtube.com/watch?v=brFHyOtTwH4",
+    "subs": "Running"
+  },  
+  {
+    "name": "SEATED HIP ABDUCTION",
+    "id": "seatedhipabduction",
+    "link": "https://youtu.be/zfUWbpdjczg",
+    "subs": "Lateral band walk"
+  },
+  {
+    "name": "SINGLE-LEG LEG PRESS",
+    "id": "single-leglegpress",
+    "link": "https://youtu.be/07U0jrOxvgU",
+    "subs": "Assisted pistol squat, dumbbell step-up"
+  },
+  {
+    "name": "STANDING CALF RAISE",
+    "id": "standingcalfraise",
+    "link": "https://youtu.be/-qsRtp_PbVM?t=185",
+    "subs": "Seated calf raise, leg press calf press"
+  },
+  {
+    "name": "SUPINATED EZ BAR CURL",
+    "id": "supinatedezbarcurl",
+    "link": "https://youtu.be/i1YgFZB6alI?t=139",
+    "subs": "Dumbbell curl, cable curl"
+  },
+  {
+    "name": "SWISS BALL LEG CURL",
+    "id": "swissballlegcurl",
+    "link": "https://www.youtube.com/watch?v=WNB90xXLEOg",
+    "subs": "Sliding leg curl, seated leg curl, lying leg curl"
+  },
+  {
+    "name": "T BAR OR SMITH MACHINE SHRUG",
+    "id": "tbarorsmithmachineshrug",
+    "link": "https://youtu.be/C6sYjDFuq9I?t=132",
+    "subs": "Dumbbell shrug"
+  },
+  {
+    "name": "TRICEP PRESSDOWN",
+    "id": "triceppressdown",
+    "link": "https://youtu.be/94DXwlcX8Po?t=106",
+    "subs": "Rope overhead triceps extension, dumbbell kickback"
+  },
+  {
+    "name": "WEIGHTED PULLUP",
+    "id": "weightedpullup",
+    "link": "https://youtu.be/Hdc7Mw6BIEE?t=99",
+    "subs": "Lat pulldown, neutral-grip pull-up"
+  }
+]
