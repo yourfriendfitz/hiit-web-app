@@ -34,13 +34,16 @@ class Header extends HTMLElement {
       <link rel="stylesheet" href="styles.css" />
   
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="d-flex justify-content-center align-items-center">
-          <a href="#/" class="btn btn-secondary ${
+        <div class="d-flex justify-content-center align-items-center flex-column">
+          <a href="#/" class="mt-2 btn btn-secondary ${
             homeDisabled ? "disabled" : ""
           }" 
             data-link aria-disabled="${homeDisabled}">
             <i class="fas fa-home"></i>
           </a>
+          <button id="update-cache" class="btn btn-secondary mt-2">
+            <i class="fas fa-sync-alt"></i>
+          </button>
         </div>
   
         ${
@@ -69,6 +72,7 @@ class Header extends HTMLElement {
     `;
 
     this.addLinkHandlers();
+    this.addUpdateCacheHandler();
   }
 
   addLinkHandlers() {
@@ -80,6 +84,18 @@ class Header extends HTMLElement {
         console.log(`Navigating to: ${hashPath}`); // Debug log
         window.location.hash = hashPath; // Update the hash
       });
+    });
+  }
+
+  addUpdateCacheHandler() {
+    const updateCacheButton = this.shadowRoot.querySelector("#update-cache");
+    updateCacheButton.addEventListener("click", () => {
+      if (typeof window.updateCacheFresh === "function") {
+        window.updateCacheFresh();
+        window.location.reload();
+      } else {
+        console.error("updateCacheFresh function is not defined on the window object.");
+      }
     });
   }
 }

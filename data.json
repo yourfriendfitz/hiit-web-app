@@ -4,21 +4,21 @@
       "name": "A - Day 1: Push legs / Pull upper body & Cardio",
       "exercises": [
         {
-          "id": "legpress",
+          "id": "backsquat",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
-          "id": "weightedpullup",
+          "id": "pullup",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": "Or failure"
         },
         {
@@ -26,17 +26,17 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
-          "id": "humblerow",
+          "id": "pendlayrow",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -44,8 +44,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -67,8 +67,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 3,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 9,
+          "rest": "2-4 min",
           "notes": ""
         },
         {
@@ -76,8 +76,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 8,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -85,8 +85,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -94,8 +94,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -103,8 +103,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -126,17 +126,17 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 8,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
-          "id": "inclinedumbbellcurl",
+          "id": "hammercurl",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -144,8 +144,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -153,8 +153,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": "Deltoid Flies"
         },
         {
@@ -162,8 +162,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
@@ -187,17 +187,17 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
           "id": "weightedpullup",
           "warmupSets": 0,
           "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "repsOrDuration": 6,
+          "rpeOrPercent": 9,
+          "rest": "2-4 min",
           "notes": "Or failure"
         },
         {
@@ -205,17 +205,17 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
-          "id": "humblerow",
+          "id": "cableseatedrow",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
@@ -223,8 +223,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
@@ -246,8 +246,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 5,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 9,
+          "rest": "2-4 min",
           "notes": ""
         },
         {
@@ -255,26 +255,26 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
-          "id": "lyinglegcurl",
+          "id": "legcurl",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
-          "id": "lowtohighcableflye",
+          "id": "dumbbellfly",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
@@ -282,8 +282,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
@@ -305,35 +305,35 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 8,
+          "rest": "2 min",
           "notes": ""
         },
         {
-          "id": "inclinedumbbellcurl",
+          "id": "ezbarcurl",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
-          "id": "triceppressdown",
+          "id": "overheadtricepextension",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {
-          "id": "egyptianlateralraise",
+          "id": "dumbbelllateralraise",
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": "Deltoid Flies"
         },
         {
@@ -341,8 +341,8 @@
           "warmupSets": 0,
           "workingSets": 5,
           "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
+          "rpeOrPercent": 7,
+          "rest": "1-2 min",
           "notes": ""
         },
         {

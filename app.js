@@ -352,18 +352,31 @@ function exerciseTemplate(exercise, exerciseDetails) {
     exerciseDetails.link || ""
   );
 
+  const numberOfSets = parseInt(exercise.workingSets, 10);
+  const workingSetsCheckboxes = Array.from({ length: numberOfSets }, (_, index) => `
+    <div class="form-check">
+      <input class="form-check-input m-1" type="checkbox" id="set-${exercise.id}-${index}">
+      <label class="form-check-label m-1" for="set-${exercise.id}-${index}">
+        Set ${index + 1}
+      </label>
+    </div>`
+  ).join("");
+
   return `
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Warmup Sets: ${exercise.warmupSets}</li>
-      <li id="sets-${exercise.id}" class="list-group-item" data-info="${
-    exercise.workingSets
-  }">Working Sets: ${exercise.workingSets}</li>
-      <li id="reps-${exercise.id}" class="list-group-item" data-info="${
-    exercise.repsOrDuration
-  }">Reps/Duration: ${exercise.repsOrDuration}</li>
-      <li id="rpe-${exercise.id}" class="list-group-item" data-info="${
-    exercise.rpeOrPercent
-  }">RPE/Percent: ${exercise.rpeOrPercent}</li>
+      <li id="sets-${exercise.id}" class="list-group-item" data-info="${exercise.workingSets}">
+        Working Sets: ${exercise.workingSets}
+        <div class="d-flex flex-column">
+          ${workingSetsCheckboxes}
+        </div>
+      </li>
+      <li id="reps-${exercise.id}" class="list-group-item" data-info="${exercise.repsOrDuration}">
+        Reps/Duration: ${exercise.repsOrDuration}
+      </li>
+      <li id="rpe-${exercise.id}" class="list-group-item" data-info="${exercise.rpeOrPercent}">
+        RPE/Percent: ${exercise.rpeOrPercent}
+      </li>
       <li class="list-group-item">Rest: ${exercise.rest}</li>
       <li class="list-group-item">Notes: ${exercise.notes}</li>
       ${
@@ -372,9 +385,7 @@ function exerciseTemplate(exercise, exerciseDetails) {
               <iframe 
                 width="100%" 
                 height="200" 
-                src="https://www.youtube-nocookie.com/embed/${videoId}?start=${
-              timestamp || 0
-            }" 
+                src="https://www.youtube-nocookie.com/embed/${videoId}?start=${timestamp || 0}" 
                 frameborder="0" 
                 allowfullscreen 
                 sandbox="allow-scripts allow-same-origin allow-presentation"
@@ -383,17 +394,11 @@ function exerciseTemplate(exercise, exerciseDetails) {
             </li>`
           : ""
       }
-      <li class="list-group-item">Substitutions: ${
-        exerciseDetails.subs || "None"
-      }</li>
+      <li class="list-group-item">Substitutions: ${exerciseDetails.subs || "None"}</li>
       <li class="list-group-item">
         <last-weight exercise-id="${exercise.id}"></last-weight>
-        <input type="text" class="form-control mt-2" id="weight-${
-          exercise.id
-        }" placeholder="Enter weight" />
-        <button class="btn btn-primary mt-2" onclick="saveWeight('${
-          exercise.id
-        }')">Save</button>
+        <input type="text" class="form-control mt-2" id="weight-${exercise.id}" placeholder="Enter weight" />
+        <button class="btn btn-primary mt-2" onclick="saveWeight('${exercise.id}')">Save</button>
       </li>
     </ul>
   `;

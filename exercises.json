@@ -144,6 +144,12 @@
     "subs": "Assisted dip, machine dip, close-grip bench press"
   },
   {
+    "name": "DUMBBELL FLY",
+    "id": "dumbbellfly",
+    "link": "https://youtu.be/-EIhKMDSjBY?t=171",
+    "subs": "Pec deck, dumbbell flye"
+  },
+  {
     "name": "DUMBBELL INCLINE PRESS",
     "id": "dumbbellinclinepress",
     "link": "https://www.youtube.com/watch?v=p2t9daxLpB8",
@@ -172,6 +178,12 @@
     "id": "egyptianlateralraise",
     "link": "https://youtu.be/SJqInYJcg5k?t=653",
     "subs": "Dumbbell lateral raise, machine lateral raise"
+  },
+  {
+    "name": "EZ BAR CURL",
+    "id": "ezbarcurl",
+    "link": "https://www.youtube.com/watch?v=Dd0t5UOCEUc",
+    "subs": "EZ bar curl, dumbbell curl, cable curl"
   },
   {
     "name": "EZ BAR CURL 21s",
@@ -226,6 +238,12 @@
     "id": "widegriplatpulldown",
     "link": "https://youtu.be/O94yEoGXtBY?t=150",
     "subs": "Wide grip pull-up, supinated pulldown"
+  },
+  {
+    "name": "LEG CURL",
+    "id": "legcurl",
+    "link": "https://www.youtube.com/watch?v=WNB90xXLEOg",
+    "subs": "Sliding leg curl, seated leg curl, lying leg curl"
   },
   {
     "name": "LEG EXTENSION",
@@ -286,6 +304,12 @@
     "id": "pushup",
     "link": "https://youtu.be/-MRNjTr6xrE?t=715",
     "subs": "Dumbbell floor press, machine chest press"
+  },
+  {
+    "name": "PULLUP",
+    "id": "pullup",
+    "link": "https://youtu.be/Hdc7Mw6BIEE?t=99",
+    "subs": "Lat pulldown, neutral-grip pull-up"
   },
   {
     "name": "RDL or HIP THRUST",
