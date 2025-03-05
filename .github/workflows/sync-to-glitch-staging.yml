@@ -14,17 +14,10 @@ jobs:
         with:
           fetch-depth: 0  # Ensure full clone to avoid shallow update error
 
-      - name: Setup GIT_ASKPASS script
-        run: |
-          echo '#!/bin/sh' > /tmp/git-askpass.sh
-          echo 'echo "x-oauth-basic"' >> /tmp/git-askpass.sh
-          chmod +x /tmp/git-askpass.sh
 
       - name: Push to Glitch
         env:
           GLITCH_STAGING_URL: ${{ secrets.GLITCH_STAGING_URL }}
-          GIT_TERMINAL_PROMPT: 0
-          GIT_ASKPASS: /tmp/git-askpass.sh
         run: |
           git remote add glitch $GLITCH_STAGING_URL
           git push glitch staging:main --force
