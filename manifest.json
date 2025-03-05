@@ -3,8 +3,8 @@
   "short_name": "PPLG",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#2D3540",
-  "theme_color": "#BFAA84",
+  "background_color": "#333333",
+  "theme_color": "#202020",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
