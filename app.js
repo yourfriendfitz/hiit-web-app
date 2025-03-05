@@ -327,23 +327,22 @@ async function fetchData() {
 
 function getWorkoutForToday(data, currentWeek) {
   const today = new Date();
-  const dayIndex = today.getDay(); // 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
-  let scheduleDay = null;
-  
-  if (dayIndex === 1) {          // Monday
-    scheduleDay = 1;
-  } else if (dayIndex === 3) {   // Wednesday
-    scheduleDay = 2;
+  const dayIndex = today.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
+  let workoutDay = null;
+  if (dayIndex === 3) {          // Wednesday
+    workoutDay = 1;
   } else if (dayIndex === 5) {   // Friday
-    scheduleDay = 3;
+    workoutDay = 2;
+  } else if (dayIndex === 6) {   // Saturday
+    workoutDay = 3;
   } else {
     return null; // Off day for all other days
   }
-  
-  // Each week (A or B) now has 3 workouts, so we use scheduleDay - 1 as the index
+
+  // In our new schedule, each week (A or B) has 3 workouts, so use workoutDay - 1 as index
   return {
-    workout: data[currentWeek][scheduleDay - 1],
-    workoutDay: scheduleDay
+    workout: data[currentWeek][workoutDay - 1],
+    workoutDay: workoutDay
   };
 }
 

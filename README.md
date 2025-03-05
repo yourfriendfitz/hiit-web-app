@@ -1,11 +1,11 @@
-# Nippard Web App
+# HIIT Web App
 
-This is a web app meant to display Jeff Nippard's workout program
+This is a web app meant to display HIIT workout program
 
 ## Links
 
-- [Staging](https://shelled-everlasting-terrier.glitch.me/)
-- [Prod](https://wobbly-atom-periodical.glitch.me/)
+- [Staging](https://stellar-brash-raja.glitch.me/)
+- [Prod](https://quickest-tortoiseshell-cupboard.glitch.me/)
 
 ## Code Merge Standard
 
