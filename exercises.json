@@ -1,5 +1,29 @@
 [
   {
+    "name": "3 MILE RUN",
+    "id": "run3miles",
+    "link": "https://www.youtube.com/watch?v=brFHyOtTwH4",
+    "subs": "Running"
+  },
+  {
+    "name": "45\u00b0 Hyperextension",
+    "id": "45hyperextension",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "45\u00b0 Incline Barbell Press",
+    "id": "45inclinebarbellpress",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "45\u00b0 Incline DB Press",
+    "id": "45inclinedbpress",
+    "link": "",
+    "subs": ""
+  },
+  {
     "name": "AB WHEEL ROLLOUT",
     "id": "abwheelrollout",
     "link": "https://youtu.be/1G0y8D5rFDc?t=308",
@@ -18,14 +42,14 @@
     "subs": "Hack squat, smith machine squat, leg press + 15 reps of back extensions"
   },
   {
-    "name": "BACK SQUAT [TOPSET]",
-    "id": "backsquattopset",
+    "name": "BACK SQUAT [BACKOFF]",
+    "id": "backsquatbackoff",
     "link": "https://youtu.be/bEv6CCg2BC8?t=147",
     "subs": "Hack squat, smith machine squat, leg press + 15 reps of back extensions"
   },
   {
-    "name": "BACK SQUAT [BACKOFF]",
-    "id": "backsquatbackoff",
+    "name": "BACK SQUAT [TOPSET]",
+    "id": "backsquattopset",
     "link": "https://youtu.be/bEv6CCg2BC8?t=147",
     "subs": "Hack squat, smith machine squat, leg press + 15 reps of back extensions"
   },
@@ -64,6 +88,18 @@
     "id": "bicyclecrunch",
     "link": "https://youtu.be/2RrGnjxSsiA?t=371",
     "subs": "Cable crunch, bodyweight crunch, V sit-up"
+  },
+  {
+    "name": "Barbell RDL",
+    "id": "barbellrdl",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "Bayesian Cable Curl",
+    "id": "bayesiancablecurl",
+    "link": "",
+    "subs": ""
   },
   {
     "name": "CABLE CRUNCH",
@@ -120,6 +156,12 @@
     "subs": "Overhead press, front squat"
   },
   {
+    "name": "Cable Crossover Ladder",
+    "id": "cablecrossoverladder",
+    "link": "",
+    "subs": ""
+  },
+  {
     "name": "DEADLIFT",
     "id": "deadlift",
     "link": "https://youtu.be/VL5Ab0T07e4?t=175",
@@ -166,6 +208,12 @@
     "id": "dumbbellrow",
     "link": "https://youtu.be/djKXLt7kv7Q?t=116",
     "subs": "Cable single-arm row, dumbbell chest-supported row"
+  },
+  {
+    "name": "Dual-Handle Lat Pulldown",
+    "id": "dualhandlelatpulldown",
+    "link": "",
+    "subs": ""
   },
   {
     "name": "ECCENTRIC-ACCENTUATED STANDING CALF RAISE",
@@ -228,16 +276,16 @@
     "subs": "Chest-supported T-Bar Row (pronated grip), Seal Row/Helms Row"
   },
   {
+    "name": "High-Cable Lateral Raise",
+    "id": "highcablelateralraise",
+    "link": "",
+    "subs": ""
+  },
+  {
     "name": "INCLINE DUMBBELL CURL",
     "id": "inclinedumbbellcurl",
     "link": "https://youtu.be/3FAvFJ0Vtag",
     "subs": "Behind the back cable curl"
-  },
-  {
-    "name": "WIDE GRIP LAT PULLDOWN",
-    "id": "widegriplatpulldown",
-    "link": "https://youtu.be/O94yEoGXtBY?t=150",
-    "subs": "Wide grip pull-up, supinated pulldown"
   },
   {
     "name": "LEG CURL",
@@ -276,6 +324,18 @@
     "subs": "Seated leg curl, sliding leg curl"
   },
   {
+    "name": "Leg Press Calf Press",
+    "id": "legpresscalfpress",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "Machine Crunch",
+    "id": "machinecrunch",
+    "link": "",
+    "subs": ""
+  },
+  {
     "name": "OVERHEAD PRESS",
     "id": "overheadpress",
     "link": "https://youtu.be/_RlRDWO2jfg?t=121",
@@ -286,6 +346,12 @@
     "id": "overheadtricepextension",
     "link": "https://youtu.be/qIW3z-ydg-M",
     "subs": "Dumbbell overhead triceps extension"
+  },
+  {
+    "name": "Overhead Cable Triceps Extension (Bar)",
+    "id": "overheadcabletricepsextensionbar",
+    "link": "",
+    "subs": ""
   },
   {
     "name": "PENDLAY ROW",
@@ -300,26 +366,32 @@
     "subs": "Pull-up, supinated pulldown"
   },
   {
-    "name": "PUSH UP",
-    "id": "pushup",
-    "link": "https://youtu.be/-MRNjTr6xrE?t=715",
-    "subs": "Dumbbell floor press, machine chest press"
-  },
-  {
     "name": "PULLUP",
     "id": "pullup",
     "link": "https://youtu.be/Hdc7Mw6BIEE?t=99",
     "subs": "Lat pulldown, neutral-grip pull-up"
   },
   {
-    "name": "RDL or HIP THRUST",
-    "id": "rdlorhipthrust",
-    "link": "https://youtu.be/_oyxCn2iSjU?t=95",
-    "subs": "Stiff leg deadlift, block pull (4\u201d)"
+    "name": "PUSH UP",
+    "id": "pushup",
+    "link": "https://youtu.be/-MRNjTr6xrE?t=715",
+    "subs": "Dumbbell floor press, machine chest press"
   },
   {
-    "name": "ROMANIAN DEADLIFT (RDL)",
-    "id": "romaniandeadliftrdl",
+    "name": "Pec Deck",
+    "id": "pecdeck",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "Pendlay Deficit Row",
+    "id": "pendlaydeficitrow",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "RDL or HIP THRUST",
+    "id": "rdlorhipthrust",
     "link": "https://youtu.be/_oyxCn2iSjU?t=95",
     "subs": "Stiff leg deadlift, block pull (4\u201d)"
   },
@@ -342,17 +414,17 @@
     "subs": "Reverse cable flye"
   },
   {
+    "name": "ROMANIAN DEADLIFT (RDL)",
+    "id": "romaniandeadliftrdl",
+    "link": "https://youtu.be/_oyxCn2iSjU?t=95",
+    "subs": "Stiff leg deadlift, block pull (4\u201d)"
+  },
+  {
     "name": "ROPE FACE PULL",
     "id": "ropefacepull",
     "link": "https://youtu.be/qfc70k40318?t=84",
     "subs": "Reverse dumbbell flye, reverse cable crossover"
   },
-  {
-    "name": "3 MILE RUN",
-    "id": "run3miles",
-    "link": "https://www.youtube.com/watch?v=brFHyOtTwH4",
-    "subs": "Running"
-  },  
   {
     "name": "SEATED HIP ABDUCTION",
     "id": "seatedhipabduction",
@@ -384,6 +456,24 @@
     "subs": "Sliding leg curl, seated leg curl, lying leg curl"
   },
   {
+    "name": "Smith Machine Row",
+    "id": "smithmachinerow",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "Smith Machine Squat",
+    "id": "smithmachinesquat",
+    "link": "",
+    "subs": ""
+  },
+  {
+    "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+    "id": "smithmachinestaticlungewelevatedfrontfoot",
+    "link": "",
+    "subs": ""
+  },
+  {
     "name": "T BAR OR SMITH MACHINE SHRUG",
     "id": "tbarorsmithmachineshrug",
     "link": "https://youtu.be/C6sYjDFuq9I?t=132",
@@ -400,5 +490,17 @@
     "id": "weightedpullup",
     "link": "https://youtu.be/Hdc7Mw6BIEE?t=99",
     "subs": "Lat pulldown, neutral-grip pull-up"
+  },
+  {
+    "name": "WIDE GRIP LAT PULLDOWN",
+    "id": "widegriplatpulldown",
+    "link": "https://youtu.be/O94yEoGXtBY?t=150",
+    "subs": "Wide grip pull-up, supinated pulldown"
+  },
+  {
+    "name": "Wide-Grip Pull-Up",
+    "id": "widegrippullup",
+    "link": "",
+    "subs": ""
   }
 ]
