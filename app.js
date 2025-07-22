@@ -1,7 +1,7 @@
 const VERSION = "1.0.0"; // App version
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
-const prodHostName = "https://yourfriendfitz.github.io";
+const prodHostName = "yourfriendfitz.github.io";
 const startDate = new Date("2025-07-28T00:00:00-05:00"); // Central Daylight Time (CDT)
 
 let dbInstance = null; // Cached database instance
