@@ -2,6 +2,7 @@ const VERSION = "1.0.0"; // App version
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "wobbly-atom-periodical.glitch.me";
+const startDate = new Date("2025-07-28T00:00:00-05:00"); // Central Daylight Time (CDT)
 
 let dbInstance = null; // Cached database instance
 let currentPath = null; // Track the current path for navigation
@@ -274,24 +275,32 @@ async function loadDirectory() {
   const directoryList = document.getElementById("appContent");
 
   directoryList.innerHTML = data
-    .map(
-      (week, index) => `
+    .map((week, index) => {
+      const weekStartDate = new Date(startDate);
+      weekStartDate.setDate(startDate.getDate() + index * 7); // Calculate the start date for the week
+
+      return `
         <div class="mb-4">
-          <h2>Week ${index + 1}</h2>
+          <h2>Week ${index + 1} (${weekStartDate.toDateString()})</h2>
           <ul class="list-group">
             ${week
-              .map(
-                (workout, dayIndex) => `
-                <li class="list-group-item bg-secondary">
-                  <a href="#/workout?week=${index}&day=${dayIndex}" class="text-white" data-link>
-                    Day ${dayIndex + 1} - ${workout.name}
-                  </a>
-                </li>`
-              )
+              .map((workout, dayIndex) => {
+                const workoutDate = new Date(weekStartDate);
+                workoutDate.setDate(weekStartDate.getDate() + dayIndex); // Calculate the date for the day
+
+                return `
+                  <li class="list-group-item bg-secondary">
+                    <a href="#/workout?week=${index}&day=${dayIndex}" class="text-white" data-link>
+                      Day ${dayIndex + 1} (${workoutDate.toDateString()}) - ${
+                  workout.name
+                }
+                    </a>
+                  </li>`;
+              })
               .join("")}
           </ul>
-        </div>`
-    )
+        </div>`;
+    })
     .join("");
 
   addLinkHandlers(); // Ensure SPA links work correctly
@@ -327,22 +336,26 @@ async function fetchData() {
 
 function getWorkoutForToday(data, currentWeek) {
   const today = new Date();
-  const dayIndex = today.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
-  let workoutDay = null;
-  if (dayIndex === 3) {          // Wednesday
-    workoutDay = 1;
-  } else if (dayIndex === 5) {   // Friday
-    workoutDay = 2;
-  } else if (dayIndex === 6) {   // Saturday
-    workoutDay = 3;
+  const dayIndex = today.getDay(); // 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
+  let scheduleDay = null;
+
+  if (dayIndex === 1) {
+    // Monday
+    scheduleDay = 1;
+  } else if (dayIndex === 3) {
+    // Wednesday
+    scheduleDay = 2;
+  } else if (dayIndex === 5) {
+    // Friday
+    scheduleDay = 3;
   } else {
     return null; // Off day for all other days
   }
 
-  // In our new schedule, each week (A or B) has 3 workouts, so use workoutDay - 1 as index
+  // Each week (A or B) now has 3 workouts, so we use scheduleDay - 1 as the index
   return {
-    workout: data[currentWeek][workoutDay - 1],
-    workoutDay: workoutDay
+    workout: data[currentWeek][scheduleDay - 1],
+    workoutDay: scheduleDay,
   };
 }
 
@@ -351,18 +364,41 @@ function exerciseTemplate(exercise, exerciseDetails) {
     exerciseDetails.link || ""
   );
 
+  const numberOfSets = parseInt(exercise.workingSets, 10);
+  const workingSetsCheckboxes = Array.from(
+    { length: numberOfSets },
+    (_, index) => `
+    <div class="form-check">
+      <input class="form-check-input m-1" type="checkbox" id="set-${
+        exercise.id
+      }-${index}">
+      <label class="form-check-label m-1" for="set-${exercise.id}-${index}">
+        Set ${index + 1}
+      </label>
+    </div>`
+  ).join("");
+
   return `
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Warmup Sets: ${exercise.warmupSets}</li>
       <li id="sets-${exercise.id}" class="list-group-item" data-info="${
     exercise.workingSets
-  }">Working Sets: ${exercise.workingSets}</li>
+  }">
+        Working Sets: ${exercise.workingSets}
+        <div class="d-flex flex-column">
+          ${workingSetsCheckboxes}
+        </div>
+      </li>
       <li id="reps-${exercise.id}" class="list-group-item" data-info="${
     exercise.repsOrDuration
-  }">Reps/Duration: ${exercise.repsOrDuration}</li>
+  }">
+        Reps/Duration: ${exercise.repsOrDuration}
+      </li>
       <li id="rpe-${exercise.id}" class="list-group-item" data-info="${
     exercise.rpeOrPercent
-  }">RPE/Percent: ${exercise.rpeOrPercent}</li>
+  }">
+        RPE/Percent: ${exercise.rpeOrPercent}
+      </li>
       <li class="list-group-item">Rest: ${exercise.rest}</li>
       <li class="list-group-item">Notes: ${exercise.notes}</li>
       ${
@@ -482,7 +518,7 @@ function updateHeaderContent(currentWeek, workoutDay, workoutName) {
 
   // Create h1, h2 elements
   const name = document.createElement("h1");
-  name.textContent = workoutName;;
+  name.textContent = workoutName;
 
   // Append elements to header
   header.appendChild(name);
@@ -497,8 +533,6 @@ async function loadWorkout() {
   const [data, exercises] = await fetchData();
   const exerciseMap = mapExercisesById(exercises);
 
-  // Update startDate to March 5th, 2025 (CST)
-  const startDate = new Date("2025-03-05");
   const currentWeek = getCurrentWeek(startDate);
 
   const result = getWorkoutForToday(data, currentWeek);

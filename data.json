@@ -1,358 +1,4404 @@
 [
   [
     {
-      "name": "A - Day 1: Push legs / Pull upper body & Cardio",
+      "name": "Upper (Strength Focus)",
       "exercises": [
         {
-          "id": "legpress",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "45\u00b0 Incline Barbell Press",
+          "id": "45inclinebarbellpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "~7-8",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
         },
         {
-          "id": "weightedpullup",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": "Or failure"
+          "name": "Cable Crossover Ladder",
+          "id": "cablecrossoverladder",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Do one set with low cable position, one set with medium-height cable position, and one height with a high cable position. If you only have one or two sets, choose the one or two cable positions you prefer."
         },
         {
-          "id": "legextension",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Wide-Grip Pull-Up",
+          "id": "widegrippullup",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "1.5x shoulder width overhand grip. Slow 2-3 second negative. Feel your lats pulling apart on the way down."
         },
         {
-          "id": "humblerow",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
         },
         {
-          "id": "cablecrunch",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Pendlay Deficit Row",
+          "id": "pendlaydeficitrow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "~8-9",
+          "rest": "2-3 min",
+          "notes": "Stand on a bumper plate. Focus on getting a big stretch and touch your stomach/chest on each rep!"
         },
         {
-          "id": "run3miles",
-          "warmupSets": 0,
-          "workingSets": 1,
-          "repsOrDuration": "3 miles",
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
         }
       ]
     },
     {
-      "name": "A - Day 2: Pull legs / Push upper body & Cardio",
+      "name": "Lower \n(Strength Focus)",
       "exercises": [
         {
-          "id": "deadlift",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 3,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
-        },
-        {
-          "id": "barbellbenchpress",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 8,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
-        },
-        {
+          "name": "Lying Leg Curl",
           "id": "lyinglegcurl",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
         },
         {
-          "id": "lowtohighcableflye",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Smith Machine Squat",
+          "id": "smithmachinesquat",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "~7-8",
+          "rest": "3-5 min",
+          "notes": "Once you are under the bar, set up your feet as you would a normal squat and then bring them forward ~3-6 inches. This will cause you to lean back into the bar slightly, allowing for a more upright squat, while also placing more tension on the quads. If your heels are raising at the bottom, you may need to bring your feet more forward. If your feet feel like they are slipping or your lower back is rounding at the bottom, try bringing your feet back a bit."
         },
         {
+          "name": "Barbell RDL",
+          "id": "barbellrdl",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "To keep tension on the hamstrings, stop about 75% of the way to full lockout on each rep (i.e. stay in the bottom 3/4 of the range of motion)."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Cable Crunch",
           "id": "cablecrunch",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
-        },
-        {
-          "id": "run3miles",
-          "warmupSets": 0,
-          "workingSets": 1,
-          "repsOrDuration": "3 miles",
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
         }
       ]
     },
     {
-      "name": "A - Day 3: Gam Bam / Athletic Training & Cardio",
+      "name": "Pull (Hypertrophy Focus)",
       "exercises": [
         {
-          "id": "cleansquatpress",
-          "warmupSets": 0,
-          "workingSets": 5,
+          "name": "Neutral-Grip Lat Pulldown",
+          "id": "neutralgriplatpulldown",
+          "warmupSets": 2,
+          "workingSets": 2,
           "repsOrDuration": 8,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Do these pulldowns with the handle more out in front of you, more like a cross between pullover and a pulldown. Focus on feeling your lats working more than the weight you're using."
         },
         {
-          "id": "inclinedumbbellcurl",
-          "warmupSets": 0,
-          "workingSets": 5,
+          "name": "Chest-Supported Machine Row",
+          "id": "chestsupportedmachinerow",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Neutral-Grip Seated Cable Row",
+          "id": "neutralgripseatedcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "rpeOrPercent": "~8-9",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, driving your elbows down and back."
         },
         {
-          "id": "triceppressdown",
-          "warmupSets": 0,
-          "workingSets": 5,
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 2,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
         },
         {
-          "id": "egyptianlateralraise",
-          "warmupSets": 0,
-          "workingSets": 5,
+          "name": "Machine Shrug",
+          "id": "machineshrug",
+          "warmupSets": 2,
+          "workingSets": 2,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": "Deltoid Flies"
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Brief pause at the top of the bottom of ROM. Think about pulling your shoulders up to your ears!"
         },
         {
-          "id": "cablecrunch",
-          "warmupSets": 0,
-          "workingSets": 5,
+          "name": "EZ-Bar Cable Curl",
+          "id": "ezbarcablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Set up the cable at the lowest position. Maintain constant tension on the biceps. Slow, controlled reps!"
         },
         {
-          "id": "run3miles",
-          "warmupSets": 0,
+          "name": "Machine Preacher Curl",
+          "id": "machinepreachercurl",
+          "warmupSets": 1,
           "workingSets": 1,
-          "repsOrDuration": "3 miles",
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Barbell Bench Press",
+          "id": "barbellbenchpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "3-5 min",
+          "notes": "Set up a comfortable arch, quick pause on the chest and explode up on each rep."
+        },
+        {
+          "name": "Machine Shoulder Press",
+          "id": "machineshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half DB Flye",
+          "id": "bottomhalfdbflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Cable Triceps Kickback",
+          "id": "cabletricepskickback",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "There are two ways you can do this: upright or bent over. Choose the one that feels more comfortable for you. The main thing is that when you're in the full squeeze, your shoulder should be positioned back behind your torso."
+        },
+        {
+          "name": "Roman Chair Leg Raise",
+          "id": "romanchairlegraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Allow your lower back to round as you curl your legs up. 10-20 reps is a broad range on purpose: just go until you hit the listed RPE with controlled form."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Leg Press",
+          "id": "legpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Feet lower on the platform for more quad focus. Get as deep as you can without excessive back rounding. Control the negative and do a slight pause at the bottom of each rep."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "DB Bulgarian Split Squat",
+          "id": "dbbulgariansplitsquat",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Lower all the way down until your front thigh is parallel to the ground. Drive through your front heel on the way up."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
         }
       ]
     }
   ],
   [
     {
-      "name": "B - Day 1: Push legs / Pull upper body & Cardio",
+      "name": "Upper (Strength Focus)",
       "exercises": [
         {
-          "id": "legpress",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "45\u00b0 Incline Barbell Press",
+          "id": "45inclinebarbellpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
         },
         {
-          "id": "weightedpullup",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": "Or failure"
+          "name": "Cable Crossover Ladder",
+          "id": "cablecrossoverladder",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Do one set with low cable position, one set with medium-height cable position, and one height with a high cable position. If you only have one or two sets, choose the one or two cable positions you prefer."
         },
         {
-          "id": "legextension",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Wide-Grip Pull-Up",
+          "id": "widegrippullup",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "1.5x shoulder width overhand grip. Slow 2-3 second negative. Feel your lats pulling apart on the way down."
         },
         {
-          "id": "humblerow",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
         },
         {
-          "id": "cablecrunch",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Pendlay Deficit Row",
+          "id": "pendlaydeficitrow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Stand on a bumper plate. Focus on getting a big stretch and touch your stomach/chest on each rep!"
         },
         {
-          "id": "run3miles",
-          "warmupSets": 0,
-          "workingSets": 1,
-          "repsOrDuration": "3 miles",
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
         }
       ]
     },
     {
-      "name": "B - Day 2: Pull legs / Push upper body & Cardio",
+      "name": "Lower \n(Strength Focus)",
       "exercises": [
         {
-          "id": "deadlift",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 5,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
-        },
-        {
-          "id": "barbellbenchpress",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
-        },
-        {
+          "name": "Lying Leg Curl",
           "id": "lyinglegcurl",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
         },
         {
-          "id": "lowtohighcableflye",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Smith Machine Squat",
+          "id": "smithmachinesquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Once you are under the bar, set up your feet as you would a normal squat and then bring them forward ~3-6 inches. This will cause you to lean back into the bar slightly, allowing for a more upright squat, while also placing more tension on the quads. If your heels are raising at the bottom, you may need to bring your feet more forward. If your feet feel like they are slipping or your lower back is rounding at the bottom, try bringing your feet back a bit."
         },
         {
+          "name": "Barbell RDL",
+          "id": "barbellrdl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "To keep tension on the hamstrings, stop about 75% of the way to full lockout on each rep (i.e. stay in the bottom 3/4 of the range of motion)."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Cable Crunch",
           "id": "cablecrunch",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
-        },
-        {
-          "id": "run3miles",
-          "warmupSets": 0,
-          "workingSets": 1,
-          "repsOrDuration": "3 miles",
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
         }
       ]
     },
     {
-      "name": "B - Day 3: Gam Bam / Athletic Training & Cardio",
+      "name": "Pull (Hypertrophy Focus)",
       "exercises": [
         {
-          "id": "cleansquatpress",
-          "warmupSets": 0,
-          "workingSets": 5,
+          "name": "Neutral-Grip Lat Pulldown",
+          "id": "neutralgriplatpulldown",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Do these pulldowns with the handle more out in front of you, more like a cross between pullover and a pulldown. Focus on feeling your lats working more than the weight you're using."
+        },
+        {
+          "name": "Chest-Supported Machine Row",
+          "id": "chestsupportedmachinerow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Neutral-Grip Seated Cable Row",
+          "id": "neutralgripseatedcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
           "repsOrDuration": 10,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, driving your elbows down and back."
         },
         {
-          "id": "inclinedumbbellcurl",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
         },
         {
-          "id": "triceppressdown",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "name": "Machine Shrug",
+          "id": "machineshrug",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Brief pause at the top of the bottom of ROM. Think about pulling your shoulders up to your ears!"
         },
         {
-          "id": "egyptianlateralraise",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": "Deltoid Flies"
+          "name": "EZ-Bar Cable Curl",
+          "id": "ezbarcablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set up the cable at the lowest position. Maintain constant tension on the biceps. Slow, controlled reps!"
         },
         {
-          "id": "cablecrunch",
-          "warmupSets": 0,
-          "workingSets": 5,
-          "repsOrDuration": 15,
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
-        },
-        {
-          "id": "run3miles",
-          "warmupSets": 0,
+          "name": "Machine Preacher Curl",
+          "id": "machinepreachercurl",
+          "warmupSets": 1,
           "workingSets": 1,
-          "repsOrDuration": "3 miles",
-          "rpeOrPercent": "",
-          "rest": "",
-          "notes": ""
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Barbell Bench Press",
+          "id": "barbellbenchpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Set up a comfortable arch, quick pause on the chest and explode up on each rep."
+        },
+        {
+          "name": "Machine Shoulder Press",
+          "id": "machineshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half DB Flye",
+          "id": "bottomhalfdbflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Cable Triceps Kickback",
+          "id": "cabletricepskickback",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "There are two ways you can do this: upright or bent over. Choose the one that feels more comfortable for you. The main thing is that when you're in the full squeeze, your shoulder should be positioned back behind your torso."
+        },
+        {
+          "name": "Roman Chair Leg Raise",
+          "id": "romanchairlegraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Allow your lower back to round as you curl your legs up. 10-20 reps is a broad range on purpose: just go until you hit the listed RPE with controlled form."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Leg Press",
+          "id": "legpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Feet lower on the platform for more quad focus. Get as deep as you can without excessive back rounding. Control the negative and do a slight pause at the bottom of each rep."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "DB Bulgarian Split Squat",
+          "id": "dbbulgariansplitsquat",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lower all the way down until your front thigh is parallel to the ground. Drive through your front heel on the way up."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline Barbell Press",
+          "id": "45inclinebarbellpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Cable Crossover Ladder",
+          "id": "cablecrossoverladder",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Do one set with low cable position, one set with medium-height cable position, and one height with a high cable position. If you only have one or two sets, choose the one or two cable positions you prefer."
+        },
+        {
+          "name": "Wide-Grip Pull-Up",
+          "id": "widegrippullup",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "1.5x shoulder width overhand grip. Slow 2-3 second negative. Feel your lats pulling apart on the way down."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Pendlay Deficit Row",
+          "id": "pendlaydeficitrow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Stand on a bumper plate. Focus on getting a big stretch and touch your stomach/chest on each rep!"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Squat",
+          "id": "smithmachinesquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Once you are under the bar, set up your feet as you would a normal squat and then bring them forward ~3-6 inches. This will cause you to lean back into the bar slightly, allowing for a more upright squat, while also placing more tension on the quads. If your heels are raising at the bottom, you may need to bring your feet more forward. If your feet feel like they are slipping or your lower back is rounding at the bottom, try bringing your feet back a bit."
+        },
+        {
+          "name": "Barbell RDL",
+          "id": "barbellrdl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "To keep tension on the hamstrings, stop about 75% of the way to full lockout on each rep (i.e. stay in the bottom 3/4 of the range of motion)."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Cable Crunch",
+          "id": "cablecrunch",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Neutral-Grip Lat Pulldown",
+          "id": "neutralgriplatpulldown",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Do these pulldowns with the handle more out in front of you, more like a cross between pullover and a pulldown. Focus on feeling your lats working more than the weight you're using."
+        },
+        {
+          "name": "Chest-Supported Machine Row",
+          "id": "chestsupportedmachinerow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Neutral-Grip Seated Cable Row",
+          "id": "neutralgripseatedcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, driving your elbows down and back."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Machine Shrug",
+          "id": "machineshrug",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Brief pause at the top of the bottom of ROM. Think about pulling your shoulders up to your ears!"
+        },
+        {
+          "name": "EZ-Bar Cable Curl",
+          "id": "ezbarcablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set up the cable at the lowest position. Maintain constant tension on the biceps. Slow, controlled reps!"
+        },
+        {
+          "name": "Machine Preacher Curl",
+          "id": "machinepreachercurl",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Barbell Bench Press",
+          "id": "barbellbenchpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Set up a comfortable arch, quick pause on the chest and explode up on each rep."
+        },
+        {
+          "name": "Machine Shoulder Press",
+          "id": "machineshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half DB Flye",
+          "id": "bottomhalfdbflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Cable Triceps Kickback",
+          "id": "cabletricepskickback",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "There are two ways you can do this: upright or bent over. Choose the one that feels more comfortable for you. The main thing is that when you're in the full squeeze, your shoulder should be positioned back behind your torso."
+        },
+        {
+          "name": "Roman Chair Leg Raise",
+          "id": "romanchairlegraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Allow your lower back to round as you curl your legs up. 10-20 reps is a broad range on purpose: just go until you hit the listed RPE with controlled form."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Leg Press",
+          "id": "legpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Feet lower on the platform for more quad focus. Get as deep as you can without excessive back rounding. Control the negative and do a slight pause at the bottom of each rep."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "DB Bulgarian Split Squat",
+          "id": "dbbulgariansplitsquat",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lower all the way down until your front thigh is parallel to the ground. Drive through your front heel on the way up."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline Barbell Press",
+          "id": "45inclinebarbellpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Cable Crossover Ladder",
+          "id": "cablecrossoverladder",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Do one set with low cable position, one set with medium-height cable position, and one height with a high cable position. If you only have one or two sets, choose the one or two cable positions you prefer."
+        },
+        {
+          "name": "Wide-Grip Pull-Up",
+          "id": "widegrippullup",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "1.5x shoulder width overhand grip. Slow 2-3 second negative. Feel your lats pulling apart on the way down."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Pendlay Deficit Row",
+          "id": "pendlaydeficitrow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Stand on a bumper plate. Focus on getting a big stretch and touch your stomach/chest on each rep!"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Squat",
+          "id": "smithmachinesquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Once you are under the bar, set up your feet as you would a normal squat and then bring them forward ~3-6 inches. This will cause you to lean back into the bar slightly, allowing for a more upright squat, while also placing more tension on the quads. If your heels are raising at the bottom, you may need to bring your feet more forward. If your feet feel like they are slipping or your lower back is rounding at the bottom, try bringing your feet back a bit."
+        },
+        {
+          "name": "Barbell RDL",
+          "id": "barbellrdl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "To keep tension on the hamstrings, stop about 75% of the way to full lockout on each rep (i.e. stay in the bottom 3/4 of the range of motion)."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Cable Crunch",
+          "id": "cablecrunch",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Neutral-Grip Lat Pulldown",
+          "id": "neutralgriplatpulldown",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Do these pulldowns with the handle more out in front of you, more like a cross between pullover and a pulldown. Focus on feeling your lats working more than the weight you're using."
+        },
+        {
+          "name": "Chest-Supported Machine Row",
+          "id": "chestsupportedmachinerow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Neutral-Grip Seated Cable Row",
+          "id": "neutralgripseatedcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, driving your elbows down and back."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Machine Shrug",
+          "id": "machineshrug",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Brief pause at the top of the bottom of ROM. Think about pulling your shoulders up to your ears!"
+        },
+        {
+          "name": "EZ-Bar Cable Curl",
+          "id": "ezbarcablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set up the cable at the lowest position. Maintain constant tension on the biceps. Slow, controlled reps!"
+        },
+        {
+          "name": "Machine Preacher Curl",
+          "id": "machinepreachercurl",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Barbell Bench Press",
+          "id": "barbellbenchpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Set up a comfortable arch, quick pause on the chest and explode up on each rep."
+        },
+        {
+          "name": "Machine Shoulder Press",
+          "id": "machineshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half DB Flye",
+          "id": "bottomhalfdbflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Cable Triceps Kickback",
+          "id": "cabletricepskickback",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "There are two ways you can do this: upright or bent over. Choose the one that feels more comfortable for you. The main thing is that when you're in the full squeeze, your shoulder should be positioned back behind your torso."
+        },
+        {
+          "name": "Roman Chair Leg Raise",
+          "id": "romanchairlegraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Allow your lower back to round as you curl your legs up. 10-20 reps is a broad range on purpose: just go until you hit the listed RPE with controlled form."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Leg Press",
+          "id": "legpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Feet lower on the platform for more quad focus. Get as deep as you can without excessive back rounding. Control the negative and do a slight pause at the bottom of each rep."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "DB Bulgarian Split Squat",
+          "id": "dbbulgariansplitsquat",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lower all the way down until your front thigh is parallel to the ground. Drive through your front heel on the way up."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline Barbell Press",
+          "id": "45inclinebarbellpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Cable Crossover Ladder",
+          "id": "cablecrossoverladder",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Do one set with low cable position, one set with medium-height cable position, and one height with a high cable position. If you only have one or two sets, choose the one or two cable positions you prefer."
+        },
+        {
+          "name": "Wide-Grip Pull-Up",
+          "id": "widegrippullup",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "1.5x shoulder width overhand grip. Slow 2-3 second negative. Feel your lats pulling apart on the way down."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Pendlay Deficit Row",
+          "id": "pendlaydeficitrow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Stand on a bumper plate. Focus on getting a big stretch and touch your stomach/chest on each rep!"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Squat",
+          "id": "smithmachinesquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Once you are under the bar, set up your feet as you would a normal squat and then bring them forward ~3-6 inches. This will cause you to lean back into the bar slightly, allowing for a more upright squat, while also placing more tension on the quads. If your heels are raising at the bottom, you may need to bring your feet more forward. If your feet feel like they are slipping or your lower back is rounding at the bottom, try bringing your feet back a bit."
+        },
+        {
+          "name": "Barbell RDL",
+          "id": "barbellrdl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "To keep tension on the hamstrings, stop about 75% of the way to full lockout on each rep (i.e. stay in the bottom 3/4 of the range of motion)."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 6,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Cable Crunch",
+          "id": "cablecrunch",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Neutral-Grip Lat Pulldown",
+          "id": "neutralgriplatpulldown",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Do these pulldowns with the handle more out in front of you, more like a cross between pullover and a pulldown. Focus on feeling your lats working more than the weight you're using."
+        },
+        {
+          "name": "Chest-Supported Machine Row",
+          "id": "chestsupportedmachinerow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Neutral-Grip Seated Cable Row",
+          "id": "neutralgripseatedcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, driving your elbows down and back."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Machine Shrug",
+          "id": "machineshrug",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Brief pause at the top of the bottom of ROM. Think about pulling your shoulders up to your ears!"
+        },
+        {
+          "name": "EZ-Bar Cable Curl",
+          "id": "ezbarcablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set up the cable at the lowest position. Maintain constant tension on the biceps. Slow, controlled reps!"
+        },
+        {
+          "name": "Machine Preacher Curl",
+          "id": "machinepreachercurl",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Barbell Bench Press",
+          "id": "barbellbenchpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Set up a comfortable arch, quick pause on the chest and explode up on each rep."
+        },
+        {
+          "name": "Machine Shoulder Press",
+          "id": "machineshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half DB Flye",
+          "id": "bottomhalfdbflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Cable Triceps Kickback",
+          "id": "cabletricepskickback",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "There are two ways you can do this: upright or bent over. Choose the one that feels more comfortable for you. The main thing is that when you're in the full squeeze, your shoulder should be positioned back behind your torso."
+        },
+        {
+          "name": "Roman Chair Leg Raise",
+          "id": "romanchairlegraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Allow your lower back to round as you curl your legs up. 10-20 reps is a broad range on purpose: just go until you hit the listed RPE with controlled form."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Leg Press",
+          "id": "legpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Feet lower on the platform for more quad focus. Get as deep as you can without excessive back rounding. Control the negative and do a slight pause at the bottom of each rep."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "DB Bulgarian Split Squat",
+          "id": "dbbulgariansplitsquat",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lower all the way down until your front thigh is parallel to the ground. Drive through your front heel on the way up."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline DB Press",
+          "id": "45inclinedbpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Pec Deck",
+          "id": "pecdeck",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Focus on bringing your elbows together - not your hands"
+        },
+        {
+          "name": "Dual-Handle Lat Pulldown",
+          "id": "dualhandlelatpulldown",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Lean back by ~15\u00b0 and drive your elbows down as you squeeze your shoulder blades together. This should feel like a mix of lats and mid-traps."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Smith Machine Row",
+          "id": "smithmachinerow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, keeping your elbows at a ~45\u00b0 angle"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+          "id": "smithmachinestaticlungewelevatedfrontfoot",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "3-5 min",
+          "notes": "Elevate your front foot on a small box. Minimize contribution from your back leg."
+        },
+        {
+          "name": "45\u00b0 Hyperextension",
+          "id": "45hyperextension",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Squeeze your glutes hard at the top of each rep. Slow controlled reps on the way down, followed by an explosive positive."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Leg Press Calf Press",
+          "id": "legpresscalfpress",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Machine Crunch",
+          "id": "machinecrunch",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Lean-Back Lat Pulldown",
+          "id": "leanbacklatpulldown",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Initiate the pulldown with a straight up posture. As you pull the bar down, lean back by about 15-30\u00b0 to get the mid-back more involved. Softly touch the bar to your chest on every rep and, even though you're leaning back, still control the weight!"
+        },
+        {
+          "name": "Chest-Supported T-Bar Row",
+          "id": "chestsupportedtbarrow",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Dual-Handle Elbows-Out Cable Row",
+          "id": "dualhandleelbowsoutcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "2-3 min",
+          "notes": "Flare your elbows out ~45\u00b0. Smooth, controlled reps."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Cable Paused Shrug-In",
+          "id": "cablepausedshrugin",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Shrug up and in. Think about shrugging \"up to your ears.\" 1-2 second pause in the squeeze (at the top) of each rep, then another 1-2 second pause in the stretch (at the bottom) of each rep."
+        },
+        {
+          "name": "Cable Rope Hammer Curl",
+          "id": "cableropehammercurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Squeeze the rope hard as you curl the weight up. Smooth, controlled reps."
+        },
+        {
+          "name": "DB Concentration Curl",
+          "id": "dbconcentrationcurl",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Machine Chest Press",
+          "id": "machinechestpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~7-8",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Seated DB Shoulder Press",
+          "id": "seateddbshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half Seated Cable Flye",
+          "id": "bottomhalfseatedcableflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "EZ-Bar Skull Crusher",
+          "id": "ezbarskullcrusher",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Triceps Pressdown (Bar)",
+          "id": "tricepspressdownbar",
+          "warmupSets": 1,
+          "workingSets": 1,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your triceps to move the weight"
+        },
+        {
+          "name": "Ab Wheel Rollout",
+          "id": "abwheelrollout",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Don't just bend at your hips, use your abs to lower yourself down under control and pull yourself back up. If you don't have the core strength to get all the way extended at the bottom, try to progressively increase the ROM week to week."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Hack Squat",
+          "id": "hacksquat",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Use a controlled negative (don't free fall) and then explode on the positive."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "Walking Lunge",
+          "id": "walkinglunge",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "~7-8",
+          "rest": "2-3 min",
+          "notes": "Take medium strides. Minimize contribution from the back leg"
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "~8-9",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline DB Press",
+          "id": "45inclinedbpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Pec Deck",
+          "id": "pecdeck",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on bringing your elbows together - not your hands"
+        },
+        {
+          "name": "Dual-Handle Lat Pulldown",
+          "id": "dualhandlelatpulldown",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lean back by ~15\u00b0 and drive your elbows down as you squeeze your shoulder blades together. This should feel like a mix of lats and mid-traps."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Smith Machine Row",
+          "id": "smithmachinerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, keeping your elbows at a ~45\u00b0 angle"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+          "id": "smithmachinestaticlungewelevatedfrontfoot",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Elevate your front foot on a small box. Minimize contribution from your back leg."
+        },
+        {
+          "name": "45\u00b0 Hyperextension",
+          "id": "45hyperextension",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Squeeze your glutes hard at the top of each rep. Slow controlled reps on the way down, followed by an explosive positive."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Leg Press Calf Press",
+          "id": "legpresscalfpress",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Machine Crunch",
+          "id": "machinecrunch",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Lean-Back Lat Pulldown",
+          "id": "leanbacklatpulldown",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Initiate the pulldown with a straight up posture. As you pull the bar down, lean back by about 15-30\u00b0 to get the mid-back more involved. Softly touch the bar to your chest on every rep and, even though you're leaning back, still control the weight!"
+        },
+        {
+          "name": "Chest-Supported T-Bar Row",
+          "id": "chestsupportedtbarrow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Dual-Handle Elbows-Out Cable Row",
+          "id": "dualhandleelbowsoutcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare your elbows out ~45\u00b0. Smooth, controlled reps."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Cable Paused Shrug-In",
+          "id": "cablepausedshrugin",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Shrug up and in. Think about shrugging \"up to your ears.\" 1-2 second pause in the squeeze (at the top) of each rep, then another 1-2 second pause in the stretch (at the bottom) of each rep."
+        },
+        {
+          "name": "Cable Rope Hammer Curl",
+          "id": "cableropehammercurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Squeeze the rope hard as you curl the weight up. Smooth, controlled reps."
+        },
+        {
+          "name": "DB Concentration Curl",
+          "id": "dbconcentrationcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Machine Chest Press",
+          "id": "machinechestpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Seated DB Shoulder Press",
+          "id": "seateddbshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half Seated Cable Flye",
+          "id": "bottomhalfseatedcableflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "EZ-Bar Skull Crusher",
+          "id": "ezbarskullcrusher",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Triceps Pressdown (Bar)",
+          "id": "tricepspressdownbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your triceps to move the weight"
+        },
+        {
+          "name": "Ab Wheel Rollout",
+          "id": "abwheelrollout",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Don't just bend at your hips, use your abs to lower yourself down under control and pull yourself back up. If you don't have the core strength to get all the way extended at the bottom, try to progressively increase the ROM week to week."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Hack Squat",
+          "id": "hacksquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Use a controlled negative (don't free fall) and then explode on the positive."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "Walking Lunge",
+          "id": "walkinglunge",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Take medium strides. Minimize contribution from the back leg"
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline DB Press",
+          "id": "45inclinedbpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Pec Deck",
+          "id": "pecdeck",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on bringing your elbows together - not your hands"
+        },
+        {
+          "name": "Dual-Handle Lat Pulldown",
+          "id": "dualhandlelatpulldown",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lean back by ~15\u00b0 and drive your elbows down as you squeeze your shoulder blades together. This should feel like a mix of lats and mid-traps."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Smith Machine Row",
+          "id": "smithmachinerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, keeping your elbows at a ~45\u00b0 angle"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+          "id": "smithmachinestaticlungewelevatedfrontfoot",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Elevate your front foot on a small box. Minimize contribution from your back leg."
+        },
+        {
+          "name": "45\u00b0 Hyperextension",
+          "id": "45hyperextension",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Squeeze your glutes hard at the top of each rep. Slow controlled reps on the way down, followed by an explosive positive."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Leg Press Calf Press",
+          "id": "legpresscalfpress",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Machine Crunch",
+          "id": "machinecrunch",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Lean-Back Lat Pulldown",
+          "id": "leanbacklatpulldown",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Initiate the pulldown with a straight up posture. As you pull the bar down, lean back by about 15-30\u00b0 to get the mid-back more involved. Softly touch the bar to your chest on every rep and, even though you're leaning back, still control the weight!"
+        },
+        {
+          "name": "Chest-Supported T-Bar Row",
+          "id": "chestsupportedtbarrow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Dual-Handle Elbows-Out Cable Row",
+          "id": "dualhandleelbowsoutcablerow",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare your elbows out ~45\u00b0. Smooth, controlled reps."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Cable Paused Shrug-In",
+          "id": "cablepausedshrugin",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Shrug up and in. Think about shrugging \"up to your ears.\" 1-2 second pause in the squeeze (at the top) of each rep, then another 1-2 second pause in the stretch (at the bottom) of each rep."
+        },
+        {
+          "name": "Cable Rope Hammer Curl",
+          "id": "cableropehammercurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Squeeze the rope hard as you curl the weight up. Smooth, controlled reps."
+        },
+        {
+          "name": "DB Concentration Curl",
+          "id": "dbconcentrationcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Machine Chest Press",
+          "id": "machinechestpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Seated DB Shoulder Press",
+          "id": "seateddbshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half Seated Cable Flye",
+          "id": "bottomhalfseatedcableflye",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "EZ-Bar Skull Crusher",
+          "id": "ezbarskullcrusher",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Triceps Pressdown (Bar)",
+          "id": "tricepspressdownbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your triceps to move the weight"
+        },
+        {
+          "name": "Ab Wheel Rollout",
+          "id": "abwheelrollout",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Don't just bend at your hips, use your abs to lower yourself down under control and pull yourself back up. If you don't have the core strength to get all the way extended at the bottom, try to progressively increase the ROM week to week."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Hack Squat",
+          "id": "hacksquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Use a controlled negative (don't free fall) and then explode on the positive."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "Walking Lunge",
+          "id": "walkinglunge",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Take medium strides. Minimize contribution from the back leg"
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline DB Press",
+          "id": "45inclinedbpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Pec Deck",
+          "id": "pecdeck",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on bringing your elbows together - not your hands"
+        },
+        {
+          "name": "Dual-Handle Lat Pulldown",
+          "id": "dualhandlelatpulldown",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lean back by ~15\u00b0 and drive your elbows down as you squeeze your shoulder blades together. This should feel like a mix of lats and mid-traps."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Smith Machine Row",
+          "id": "smithmachinerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, keeping your elbows at a ~45\u00b0 angle"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+          "id": "smithmachinestaticlungewelevatedfrontfoot",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Elevate your front foot on a small box. Minimize contribution from your back leg."
+        },
+        {
+          "name": "45\u00b0 Hyperextension",
+          "id": "45hyperextension",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Squeeze your glutes hard at the top of each rep. Slow controlled reps on the way down, followed by an explosive positive."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Leg Press Calf Press",
+          "id": "legpresscalfpress",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Machine Crunch",
+          "id": "machinecrunch",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Lean-Back Lat Pulldown",
+          "id": "leanbacklatpulldown",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Initiate the pulldown with a straight up posture. As you pull the bar down, lean back by about 15-30\u00b0 to get the mid-back more involved. Softly touch the bar to your chest on every rep and, even though you're leaning back, still control the weight!"
+        },
+        {
+          "name": "Chest-Supported T-Bar Row",
+          "id": "chestsupportedtbarrow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Dual-Handle Elbows-Out Cable Row",
+          "id": "dualhandleelbowsoutcablerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare your elbows out ~45\u00b0. Smooth, controlled reps."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Cable Paused Shrug-In",
+          "id": "cablepausedshrugin",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Shrug up and in. Think about shrugging \"up to your ears.\" 1-2 second pause in the squeeze (at the top) of each rep, then another 1-2 second pause in the stretch (at the bottom) of each rep."
+        },
+        {
+          "name": "Cable Rope Hammer Curl",
+          "id": "cableropehammercurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Squeeze the rope hard as you curl the weight up. Smooth, controlled reps."
+        },
+        {
+          "name": "DB Concentration Curl",
+          "id": "dbconcentrationcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Machine Chest Press",
+          "id": "machinechestpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Seated DB Shoulder Press",
+          "id": "seateddbshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half Seated Cable Flye",
+          "id": "bottomhalfseatedcableflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "EZ-Bar Skull Crusher",
+          "id": "ezbarskullcrusher",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Triceps Pressdown (Bar)",
+          "id": "tricepspressdownbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your triceps to move the weight"
+        },
+        {
+          "name": "Ab Wheel Rollout",
+          "id": "abwheelrollout",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Don't just bend at your hips, use your abs to lower yourself down under control and pull yourself back up. If you don't have the core strength to get all the way extended at the bottom, try to progressively increase the ROM week to week."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Hack Squat",
+          "id": "hacksquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Use a controlled negative (don't free fall) and then explode on the positive."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "Walking Lunge",
+          "id": "walkinglunge",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Take medium strides. Minimize contribution from the back leg"
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline DB Press",
+          "id": "45inclinedbpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Pec Deck",
+          "id": "pecdeck",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on bringing your elbows together - not your hands"
+        },
+        {
+          "name": "Dual-Handle Lat Pulldown",
+          "id": "dualhandlelatpulldown",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lean back by ~15\u00b0 and drive your elbows down as you squeeze your shoulder blades together. This should feel like a mix of lats and mid-traps."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Smith Machine Row",
+          "id": "smithmachinerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, keeping your elbows at a ~45\u00b0 angle"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+          "id": "smithmachinestaticlungewelevatedfrontfoot",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Elevate your front foot on a small box. Minimize contribution from your back leg."
+        },
+        {
+          "name": "45\u00b0 Hyperextension",
+          "id": "45hyperextension",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Squeeze your glutes hard at the top of each rep. Slow controlled reps on the way down, followed by an explosive positive."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Leg Press Calf Press",
+          "id": "legpresscalfpress",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Machine Crunch",
+          "id": "machinecrunch",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Lean-Back Lat Pulldown",
+          "id": "leanbacklatpulldown",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Initiate the pulldown with a straight up posture. As you pull the bar down, lean back by about 15-30\u00b0 to get the mid-back more involved. Softly touch the bar to your chest on every rep and, even though you're leaning back, still control the weight!"
+        },
+        {
+          "name": "Chest-Supported T-Bar Row",
+          "id": "chestsupportedtbarrow",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Dual-Handle Elbows-Out Cable Row",
+          "id": "dualhandleelbowsoutcablerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare your elbows out ~45\u00b0. Smooth, controlled reps."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Cable Paused Shrug-In",
+          "id": "cablepausedshrugin",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Shrug up and in. Think about shrugging \"up to your ears.\" 1-2 second pause in the squeeze (at the top) of each rep, then another 1-2 second pause in the stretch (at the bottom) of each rep."
+        },
+        {
+          "name": "Cable Rope Hammer Curl",
+          "id": "cableropehammercurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Squeeze the rope hard as you curl the weight up. Smooth, controlled reps."
+        },
+        {
+          "name": "DB Concentration Curl",
+          "id": "dbconcentrationcurl",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Machine Chest Press",
+          "id": "machinechestpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Seated DB Shoulder Press",
+          "id": "seateddbshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half Seated Cable Flye",
+          "id": "bottomhalfseatedcableflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "EZ-Bar Skull Crusher",
+          "id": "ezbarskullcrusher",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Triceps Pressdown (Bar)",
+          "id": "tricepspressdownbar",
+          "warmupSets": 1,
+          "workingSets": 2,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your triceps to move the weight"
+        },
+        {
+          "name": "Ab Wheel Rollout",
+          "id": "abwheelrollout",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Don't just bend at your hips, use your abs to lower yourself down under control and pull yourself back up. If you don't have the core strength to get all the way extended at the bottom, try to progressively increase the ROM week to week."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Hack Squat",
+          "id": "hacksquat",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Use a controlled negative (don't free fall) and then explode on the positive."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "Walking Lunge",
+          "id": "walkinglunge",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Take medium strides. Minimize contribution from the back leg"
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline DB Press",
+          "id": "45inclinedbpress",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Pec Deck",
+          "id": "pecdeck",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on bringing your elbows together - not your hands"
+        },
+        {
+          "name": "Dual-Handle Lat Pulldown",
+          "id": "dualhandlelatpulldown",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lean back by ~15\u00b0 and drive your elbows down as you squeeze your shoulder blades together. This should feel like a mix of lats and mid-traps."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Smith Machine Row",
+          "id": "smithmachinerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, keeping your elbows at a ~45\u00b0 angle"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+          "id": "smithmachinestaticlungewelevatedfrontfoot",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Elevate your front foot on a small box. Minimize contribution from your back leg."
+        },
+        {
+          "name": "45\u00b0 Hyperextension",
+          "id": "45hyperextension",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Squeeze your glutes hard at the top of each rep. Slow controlled reps on the way down, followed by an explosive positive."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Leg Press Calf Press",
+          "id": "legpresscalfpress",
+          "warmupSets": 1,
+          "workingSets": 4,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Machine Crunch",
+          "id": "machinecrunch",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Lean-Back Lat Pulldown",
+          "id": "leanbacklatpulldown",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Initiate the pulldown with a straight up posture. As you pull the bar down, lean back by about 15-30\u00b0 to get the mid-back more involved. Softly touch the bar to your chest on every rep and, even though you're leaning back, still control the weight!"
+        },
+        {
+          "name": "Chest-Supported T-Bar Row",
+          "id": "chestsupportedtbarrow",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Dual-Handle Elbows-Out Cable Row",
+          "id": "dualhandleelbowsoutcablerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare your elbows out ~45\u00b0. Smooth, controlled reps."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Cable Paused Shrug-In",
+          "id": "cablepausedshrugin",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Shrug up and in. Think about shrugging \"up to your ears.\" 1-2 second pause in the squeeze (at the top) of each rep, then another 1-2 second pause in the stretch (at the bottom) of each rep."
+        },
+        {
+          "name": "Cable Rope Hammer Curl",
+          "id": "cableropehammercurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Squeeze the rope hard as you curl the weight up. Smooth, controlled reps."
+        },
+        {
+          "name": "DB Concentration Curl",
+          "id": "dbconcentrationcurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Machine Chest Press",
+          "id": "machinechestpress",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Seated DB Shoulder Press",
+          "id": "seateddbshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half Seated Cable Flye",
+          "id": "bottomhalfseatedcableflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "EZ-Bar Skull Crusher",
+          "id": "ezbarskullcrusher",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Triceps Pressdown (Bar)",
+          "id": "tricepspressdownbar",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your triceps to move the weight"
+        },
+        {
+          "name": "Ab Wheel Rollout",
+          "id": "abwheelrollout",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Don't just bend at your hips, use your abs to lower yourself down under control and pull yourself back up. If you don't have the core strength to get all the way extended at the bottom, try to progressively increase the ROM week to week."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Hack Squat",
+          "id": "hacksquat",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Use a controlled negative (don't free fall) and then explode on the positive."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 4,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "Walking Lunge",
+          "id": "walkinglunge",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Take medium strides. Minimize contribution from the back leg"
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Upper (Strength Focus)",
+      "exercises": [
+        {
+          "name": "45\u00b0 Incline DB Press",
+          "id": "45inclinedbpress",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Pec Deck",
+          "id": "pecdeck",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on bringing your elbows together - not your hands"
+        },
+        {
+          "name": "Dual-Handle Lat Pulldown",
+          "id": "dualhandlelatpulldown",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Lean back by ~15\u00b0 and drive your elbows down as you squeeze your shoulder blades together. This should feel like a mix of lats and mid-traps."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "Smith Machine Row",
+          "id": "smithmachinerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Focus on squeezing your shoulder blades together, keeping your elbows at a ~45\u00b0 angle"
+        },
+        {
+          "name": "Overhead Cable Triceps Extension (Bar)",
+          "id": "overheadcabletricepsextensionbar",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Bayesian Cable Curl",
+          "id": "bayesiancablecurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If you have a left-right bicep size imbalance, do these 1 arm at a time, starting with the weaker arm. Take the weaker arm to the listed RPE. Then match the reps with the other arm (stop once you've matched the reps, even if the RPE is lower). If you don't have a size imbalance, do these both arms at the same time."
+        }
+      ]
+    },
+    {
+      "name": "Lower \n(Strength Focus)",
+      "exercises": [
+        {
+          "name": "Lying Leg Curl",
+          "id": "lyinglegcurl",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the machine so that you get the biggest stretch possible at the bottom. Prevent your butt from popping up as you curl."
+        },
+        {
+          "name": "Smith Machine Static Lunge w/ Elevated Front Foot",
+          "id": "smithmachinestaticlungewelevatedfrontfoot",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "Elevate your front foot on a small box. Minimize contribution from your back leg."
+        },
+        {
+          "name": "45\u00b0 Hyperextension",
+          "id": "45hyperextension",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Squeeze your glutes hard at the top of each rep. Slow controlled reps on the way down, followed by an explosive positive."
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Leg Press Calf Press",
+          "id": "legpresscalfpress",
+          "warmupSets": 1,
+          "workingSets": 4,
+          "repsOrDuration": 8,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
+        },
+        {
+          "name": "Machine Crunch",
+          "id": "machinecrunch",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Round your lower back as you crunch. Maintain a mind-muscle connection with your 6-pack."
+        }
+      ]
+    },
+    {
+      "name": "Pull (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Lean-Back Lat Pulldown",
+          "id": "leanbacklatpulldown",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Initiate the pulldown with a straight up posture. As you pull the bar down, lean back by about 15-30\u00b0 to get the mid-back more involved. Softly touch the bar to your chest on every rep and, even though you're leaning back, still control the weight!"
+        },
+        {
+          "name": "Chest-Supported T-Bar Row",
+          "id": "chestsupportedtbarrow",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare elbows out at roughly 45\u00b0 and squeeze your shoulder blades together hard at the top of each rep."
+        },
+        {
+          "name": "Dual-Handle Elbows-Out Cable Row",
+          "id": "dualhandleelbowsoutcablerow",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Flare your elbows out ~45\u00b0. Smooth, controlled reps."
+        },
+        {
+          "name": "1-Arm 45\u00b0 Cable Rear Delt Flye",
+          "id": "1arm45cablereardeltflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Pause for 1-2 seconds in the squeeze of each rep. Contract the rear delts hard!"
+        },
+        {
+          "name": "Cable Paused Shrug-In",
+          "id": "cablepausedshrugin",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Shrug up and in. Think about shrugging \"up to your ears.\" 1-2 second pause in the squeeze (at the top) of each rep, then another 1-2 second pause in the stretch (at the bottom) of each rep."
+        },
+        {
+          "name": "Cable Rope Hammer Curl",
+          "id": "cableropehammercurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Squeeze the rope hard as you curl the weight up. Smooth, controlled reps."
+        },
+        {
+          "name": "DB Concentration Curl",
+          "id": "dbconcentrationcurl",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Smooth, controlled reps. Mind-muscle connection with the biceps."
+        }
+      ]
+    },
+    {
+      "name": "Push (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Machine Chest Press",
+          "id": "machinechestpress",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "3-5 min",
+          "notes": "1 second pause at the bottom of each rep while maintaining tension on the pecs"
+        },
+        {
+          "name": "Seated DB Shoulder Press",
+          "id": "seateddbshoulderpress",
+          "warmupSets": 2,
+          "workingSets": 3,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Ensure that your elbows break at least 90\u00b0. Mind-muscle connection with your delts. Smooth, controlled reps."
+        },
+        {
+          "name": "Bottom-Half Seated Cable Flye",
+          "id": "bottomhalfseatedcableflye",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "All reps and sets are to be performed in the bottom half of the ROM. Focus on feeling a deep stretch in your pecs at the bottom of each rep."
+        },
+        {
+          "name": "High-Cable Lateral Raise",
+          "id": "highcablelateralraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your lateral delt to move the weight."
+        },
+        {
+          "name": "EZ-Bar Skull Crusher",
+          "id": "ezbarskullcrusher",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Optionally pause for 0.5-1 second in the stretched aspect of each rep"
+        },
+        {
+          "name": "Triceps Pressdown (Bar)",
+          "id": "tricepspressdownbar",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 15,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Focus on squeezing your triceps to move the weight"
+        },
+        {
+          "name": "Ab Wheel Rollout",
+          "id": "abwheelrollout",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Don't just bend at your hips, use your abs to lower yourself down under control and pull yourself back up. If you don't have the core strength to get all the way extended at the bottom, try to progressively increase the ROM week to week."
+        }
+      ]
+    },
+    {
+      "name": "Legs (Hypertrophy Focus)",
+      "exercises": [
+        {
+          "name": "Hack Squat",
+          "id": "hacksquat",
+          "warmupSets": 2,
+          "workingSets": 4,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Use a controlled negative (don't free fall) and then explode on the positive."
+        },
+        {
+          "name": "Seated Leg Curl",
+          "id": "seatedlegcurl",
+          "warmupSets": 1,
+          "workingSets": 4,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Lean forward over the machine to get a maximum stretch in your hamstrings."
+        },
+        {
+          "name": "Walking Lunge",
+          "id": "walkinglunge",
+          "warmupSets": 2,
+          "workingSets": 2,
+          "repsOrDuration": 10,
+          "rpeOrPercent": "10",
+          "rest": "2-3 min",
+          "notes": "Take medium strides. Minimize contribution from the back leg"
+        },
+        {
+          "name": "Leg Extension",
+          "id": "legextension",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Set the seat back as far as it will go while still feeling comfortable. Grab the handles as hard as you can to pull your butt down into the seat. Use a 2-3 second negative. Feel your quads pulling apart on the negative."
+        },
+        {
+          "name": "Machine Hip Adduction",
+          "id": "machinehipadduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "Mind-muscle connection with your inner thighs. These are great for adding thigh mass from the front! Push them hard!"
+        },
+        {
+          "name": "Machine Hip Abduction",
+          "id": "machinehipabduction",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "If possible, use pads to increase the range of motion on the machine. Lean forward and grab onto the machine rails to stretch the glutes further."
+        },
+        {
+          "name": "Standing Calf Raise",
+          "id": "standingcalfraise",
+          "warmupSets": 1,
+          "workingSets": 3,
+          "repsOrDuration": 12,
+          "rpeOrPercent": "10",
+          "rest": "1-2 min",
+          "notes": "1-2 second pause at the bottom of each rep. Instead of just going up onto your toes, think about rolling your ankle back and forth on the balls of your feet."
         }
       ]
     }
