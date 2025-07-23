@@ -1,4 +1,4 @@
-const VERSION = "2.0.6"; // App version
+const VERSION = "2.0.8"; // App version
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
@@ -336,23 +336,29 @@ async function fetchData() {
 
 function getWorkoutForToday(data, currentWeek) {
   const today = new Date();
-  const dayIndex = today.getDay(); // 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
+  const dayIndex = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
   let scheduleDay = null;
 
   if (dayIndex === 1) {
     // Monday
     scheduleDay = 1;
+  } else if (dayIndex === 2) {
+    // Tuesday
+    scheduleDay = 2;
   } else if (dayIndex === 3) {
     // Wednesday
-    scheduleDay = 2;
+    scheduleDay = 3;
+  } else if (dayIndex === 4) {
+    // Thursday
+    scheduleDay = 4;
   } else if (dayIndex === 5) {
     // Friday
-    scheduleDay = 3;
+    scheduleDay = 5;
   } else {
-    return null; // Off day for all other days
+    return null; // Off day for Saturday and Sunday
   }
 
-  // Each week (A or B) now has 3 workouts, so we use scheduleDay - 1 as the index
+  // Each week now has 5 workouts, so we use scheduleDay - 1 as the index
   return {
     workout: data[currentWeek][scheduleDay - 1],
     workoutDay: scheduleDay,
