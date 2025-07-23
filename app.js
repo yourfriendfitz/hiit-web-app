@@ -1,4 +1,4 @@
-const VERSION = "2.0.8"; // App version
+const VERSION = "2.0.9"; // App version
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
@@ -49,11 +49,12 @@ async function saveWeight(exerciseId) {
     // Extract sets, reps, and RPE from the exercise template
     const sets = document.getElementById(`sets-${exerciseId}`).dataset.info;
     const reps = document.getElementById(`reps-${exerciseId}`).dataset.info;
-    const rpe = document.getElementById(`rpe-${exerciseId}`).dataset.info;
+    const earlyRpe = document.getElementById(`early-rpe-${exerciseId}`).dataset.info;
+    const lastRpe = document.getElementById(`last-rpe-${exerciseId}`).dataset.info;
 
-    console.log({ sets, reps, rpe }); // Debug log
+    console.log({ sets, reps, earlyRpe, lastRpe }); // Debug log
     // Append the additional details to the weight
-    const weightWithDetails = `${weight} [Sets: ${sets}, Reps: ${reps}, RPE: ${rpe}]`;
+    const weightWithDetails = `${weight} [Sets: ${sets}, Reps: ${reps}, Early RPE: ${earlyRpe}, Last RPE: ${lastRpe}]`;
 
     await storeWeight(exerciseId, weightWithDetails);
 
@@ -400,11 +401,19 @@ function exerciseTemplate(exercise, exerciseDetails) {
   }">
         Reps/Duration: ${exercise.repsOrDuration}
       </li>
-      <li id="rpe-${exercise.id}" class="list-group-item" data-info="${
-    exercise.rpeOrPercent
-  }">
-        RPE/Percent: ${exercise.rpeOrPercent}
-      </li>
+      <li id="early-rpe-${exercise.id}" class="list-group-item" data-info="${
+    exercise.earlyRpe
+  }">Early Set RPE: ${
+        exercise.earlyRpe || "N/A"
+      }</li>
+      <li id="last-rpe-${exercise.id}" class="list-group-item" data-info="${
+    exercise.lastRpe
+  }">Last Set RPE: ${
+        exercise.lastRpe || "N/A"
+      }</li>
+      <li class="list-group-item">Last-Set Intensity: ${
+        exercise.lastSetTech || "N/A"
+      }</li>
       <li class="list-group-item">Rest: ${exercise.rest}</li>
       <li class="list-group-item">Notes: ${exercise.notes}</li>
       ${
@@ -418,7 +427,7 @@ function exerciseTemplate(exercise, exerciseDetails) {
             }" 
                 frameborder="0" 
                 allowfullscreen 
-                sandbox="allow-scripts allow-same-origin allow-presentation"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 loading="lazy">
               </iframe>
             </li>`
