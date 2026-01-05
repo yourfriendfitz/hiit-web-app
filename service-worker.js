@@ -1,20 +1,12 @@
-// Service Worker for hiit-web-app
-// - Default behavior: cache-first for same-origin GET requests (fast/offline)
-// - Manual refresh: client posts message { type: 'REFRESH_APP' } to force a
-//   network revalidation of precached assets and update the cache.
+const utc = Date.now();
+let currentCacheName = `workout-app-cache-${utc}`; // Default cache version
 
-const CACHE_VERSION = "2.1.1";
-const CACHE_NAME = `hiit-web-app-${CACHE_VERSION}`;
-
-// Keep this list limited to same-origin assets you control.
-// (Cross-origin CDNs may be opaque and can fail to cache on iOS.)
-const PRECACHE_URLS = [
+const urls = [
   "/hiit-web-app/",
   "/hiit-web-app/index.html",
   "/hiit-web-app/styles.css",
   "/hiit-web-app/app.js",
   "/hiit-web-app/Header.js",
-  "/hiit-web-app/History.js",
   "/hiit-web-app/LastWeight.js",
   "/hiit-web-app/register.js",
   "/hiit-web-app/data.json",
@@ -26,120 +18,136 @@ const PRECACHE_URLS = [
   "/hiit-web-app/favicon-32x32.png",
   "/hiit-web-app/favicon-16x16.png",
   "/hiit-web-app/favicon.ico",
+  "/hiit-web-app/README.md",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+  "https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css",
+  "https://cdn.jsdelivr.net/npm/toastify-js",
 ];
 
+// Install event: Cache essential assets
 self.addEventListener("install", (event) => {
+  console.log("Installing new service worker...");
   event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      await cache.addAll(PRECACHE_URLS);
-      // Activate on next navigation without needing the user to close the PWA.
-      await self.skipWaiting();
-    })()
+    caches
+      .open(currentCacheName)
+      .then((cache) => {
+        console.log("Caching assets...");
+        return cache.addAll(urls);
+      })
+      .then(() => {
+        self.skipWaiting(); // Force the new service worker to activate immediately
+      })
   );
 });
 
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    (async () => {
-      const keys = await caches.keys();
-      await Promise.all(
-        keys.map((k) => (k === CACHE_NAME ? null : caches.delete(k)))
-      );
-      await self.clients.claim();
-    })()
-  );
-});
-
-function isSameOrigin(url) {
-  return url.origin === self.location.origin;
-}
-
-function isNavigationalRequest(request) {
-  return request.mode === "navigate";
-}
-
-async function cacheFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request, { ignoreSearch: true });
-  if (cached) return cached;
-
-  const response = await fetch(request);
-  // Only cache successful, basic (same-origin) responses.
-  if (response && response.ok && response.type === "basic") {
-    cache.put(request, response.clone());
-  }
-  return response;
-}
-
+// Fetch event: Serve from cache or fetch from network
 self.addEventListener("fetch", (event) => {
-  const { request } = event;
+  const normalizedUrl = new URL(event.request.url);
+  normalizedUrl.search = ""; // Strip query parameters
 
-  // Only handle GET.
-  if (request.method !== "GET") return;
+  event.respondWith(
+    caches.match(normalizedUrl).then((cachedResponse) => {
+      const fetchVersion = { CACHE_NAME: currentCacheName };
 
-  const url = new URL(request.url);
+      const networkFetch = fetch(event.request, {
+        mode: "cors",
+        credentials: "omit", // Exclude credentials
+      })
+        .then(async (networkResponse) => {
+          const cache = await caches.open(currentCacheName);
+          cache.put(normalizedUrl, networkResponse.clone()); // Cache new response
+          console.log(`Network fetch for ${normalizedUrl} succeeded.`);
+          return networkResponse;
+        })
+        .catch((error) => {
+          if (!navigator.onLine) {
+            console.warn(
+              `User is offline. Network fetch failed for ${normalizedUrl}: ${error}`
+            );
+          } else {
+            console.warn(`Network fetch failed for ${normalizedUrl}: ${error}`);
+          }
+        });
 
-  // Don’t try to cache cross-origin requests (CDNs). Let the browser handle them.
-  if (!isSameOrigin(url)) return;
+      const freshResponse = Promise.all([fetchVersion, networkFetch]).then(
+        ([, response]) => response
+      );
 
-  // For SPA navigations, respond with the app shell, but cache using the *actual request*.
-  // This avoids hardcoding a single URL and keeps cache lookups consistent.
-  if (isNavigationalRequest(request)) {
-    event.respondWith(cacheFirst(request));
-    return;
-  }
-
-  // Default: cache-first for same-origin static assets / json.
-  event.respondWith(cacheFirst(request));
-});
-
-async function refreshPrecache() {
-  const cache = await caches.open(CACHE_NAME);
-
-  // Force re-download of the app shell and core files.
-  // Notes:
-  // - We intentionally fetch with { cache: 'no-store' } to bypass HTTP cache.
-  // - We store under a *clean* Request (or URL string) so future cache.match() calls
-  //   keep working regardless of Request init options.
-  await Promise.all(
-    PRECACHE_URLS.map(async (url) => {
-      try {
-        const fetchReq = new Request(url, { cache: "no-store" });
-        const res = await fetch(fetchReq);
-
-        if (res && res.ok && res.type === "basic") {
-          const cacheKey = new Request(url);
-          await cache.put(cacheKey, res.clone());
-        } else {
-          console.warn("Precache refresh skipped (bad response):", url, {
-            ok: res?.ok,
-            status: res?.status,
-            type: res?.type,
-          });
-        }
-      } catch (err) {
-        // Don't throw here; refresh is best-effort. Log for debugging.
-        console.warn("Precache refresh failed:", url, err);
-      }
+      // Serve from cache or perform network fetch
+      return cachedResponse || freshResponse;
     })
   );
+});
+
+// Function to update the cache with new assets
+// eslint-disable-next-line no-unused-vars
+async function updateCache(newCacheName) {
+  const cache = await caches.open(newCacheName);
+  await cache.addAll(urls);
+
+  // Delete old caches
+  const cacheNames = await caches.keys();
+  cacheNames.forEach((cache) => {
+    if (cache !== newCacheName) {
+      caches.delete(cache);
+    }
+  });
+
+  console.log(`Cache updated to ${newCacheName}`);
 }
 
-self.addEventListener("message", (event) => {
-  const data = event.data;
-  if (!data || typeof data !== "object") return;
+// Function to update the cache with new assets
+async function updateCacheFresh(newCacheName) {
+  const cache = await caches.open(newCacheName);
+  // Fetch and cache each URL with no-cache header
+  await Promise.all(
+    urls.map(async (url) => {
+      const response = await fetch(url, {
+        cache: "no-cache",
+        mode: "cors", // Added mode to handle CORS
+      });
+      await cache.put(url, response);
+    })
+  );
 
-  // Expected message: same-origin client requesting a manual refresh.
-  // This SW only listens for "REFRESH_APP" and ignores all other messages.
-  if (data.type === "REFRESH_APP") {
-    event.waitUntil(
-      (async () => {
-        await refreshPrecache();
-        // Tell all clients refresh finished (they can reload).
-        const clients = await self.clients.matchAll({ includeUncontrolled: true });
-        clients.forEach((c) => c.postMessage({ type: "REFRESH_APP_DONE" }));
-      })()
-    );
-  }
+  // Delete old caches
+  const cacheNames = await caches.keys();
+  cacheNames.forEach((cache) => {
+    if (cache !== newCacheName) {
+      caches.delete(cache);
+    }
+  });
+
+  console.log(`Cache updated to ${newCacheName}`);
+}
+
+// eslint-disable-next-line no-unused-vars
+async function triggerUpdateCache() {
+  const utc = Date.now();
+  const newCacheName = `workout-app-cache-${utc}`;
+  if (typeof caches !== "undefined") await updateCacheFresh(newCacheName);
+}
+
+// Activate event: Clean up old caches and take control of all clients
+self.addEventListener("activate", (event) => {
+  console.log("Service worker activating...");
+  event.waitUntil(
+    caches
+      .keys()
+      .then((cacheNames) =>
+        Promise.all(
+          cacheNames.map((cache) => {
+            if (cache !== currentCacheName) {
+              console.log(`Deleting old cache: ${cache}`);
+              return caches.delete(cache);
+            }
+          })
+        )
+      )
+      .then(() => {
+        return self.clients.claim(); // Take control of all open clients immediately
+      })
+  );
 });
