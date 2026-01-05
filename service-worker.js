@@ -1,5 +1,5 @@
-const utc = Date.now();
-let currentCacheName = `workout-app-cache-${utc}`; // Default cache version
+const CACHE_VERSION = "2.1.2";
+const CACHE_NAME = `hiit-web-app-${CACHE_VERSION}`;
 
 const urls = [
   "/hiit-web-app/",
@@ -31,7 +31,7 @@ self.addEventListener("install", (event) => {
   console.log("Installing new service worker...");
   event.waitUntil(
     caches
-      .open(currentCacheName)
+      .open(CACHE_NAME)
       .then((cache) => {
         console.log("Caching assets...");
         return cache.addAll(urls);
