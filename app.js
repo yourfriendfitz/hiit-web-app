@@ -1,4 +1,4 @@
-const VERSION = "2.1.0"; // App version
+const VERSION = "2.1.1"; // App version
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
