@@ -72,21 +72,6 @@ async function cacheFirst(request) {
   return response;
 }
 
-async function networkFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  try {
-    const response = await fetch(request, { cache: "no-store" });
-    if (response && response.ok && response.type === "basic") {
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    const cached = await cache.match(request, { ignoreSearch: true });
-    if (cached) return cached;
-    throw new Error("Network failed and no cache entry.");
-  }
-}
-
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
@@ -98,9 +83,10 @@ self.addEventListener("fetch", (event) => {
   // Don’t try to cache cross-origin requests (CDNs). Let the browser handle them.
   if (!isSameOrigin(url)) return;
 
-  // For SPA navigations, serve cached shell but revalidate on the next refresh.
+  // For SPA navigations, respond with the app shell, but cache using the *actual request*.
+  // This avoids hardcoding a single URL and keeps cache lookups consistent.
   if (isNavigationalRequest(request)) {
-    event.respondWith(cacheFirst("/hiit-web-app/index.html"));
+    event.respondWith(cacheFirst(request));
     return;
   }
 
@@ -112,12 +98,29 @@ async function refreshPrecache() {
   const cache = await caches.open(CACHE_NAME);
 
   // Force re-download of the app shell and core files.
+  // Notes:
+  // - We intentionally fetch with { cache: 'no-store' } to bypass HTTP cache.
+  // - We store under a *clean* Request (or URL string) so future cache.match() calls
+  //   keep working regardless of Request init options.
   await Promise.all(
     PRECACHE_URLS.map(async (url) => {
-      const req = new Request(url, { cache: "no-store" });
-      const res = await fetch(req);
-      if (res && res.ok && res.type === "basic") {
-        await cache.put(req, res.clone());
+      try {
+        const fetchReq = new Request(url, { cache: "no-store" });
+        const res = await fetch(fetchReq);
+
+        if (res && res.ok && res.type === "basic") {
+          const cacheKey = new Request(url);
+          await cache.put(cacheKey, res.clone());
+        } else {
+          console.warn("Precache refresh skipped (bad response):", url, {
+            ok: res?.ok,
+            status: res?.status,
+            type: res?.type,
+          });
+        }
+      } catch (err) {
+        // Don't throw here; refresh is best-effort. Log for debugging.
+        console.warn("Precache refresh failed:", url, err);
       }
     })
   );
@@ -127,6 +130,8 @@ self.addEventListener("message", (event) => {
   const data = event.data;
   if (!data || typeof data !== "object") return;
 
+  // Expected message: same-origin client requesting a manual refresh.
+  // This SW only listens for "REFRESH_APP" and ignores all other messages.
   if (data.type === "REFRESH_APP") {
     event.waitUntil(
       (async () => {
