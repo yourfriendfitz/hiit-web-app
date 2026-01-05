@@ -49,14 +49,14 @@ self.addEventListener("fetch", (event) => {
 
   event.respondWith(
     caches.match(normalizedUrl).then((cachedResponse) => {
-      const fetchVersion = { CACHE_NAME: currentCacheName };
+      const fetchVersion = { CACHE_NAME: CACHE_NAME };
 
       const networkFetch = fetch(event.request, {
         mode: "cors",
         credentials: "omit", // Exclude credentials
       })
         .then(async (networkResponse) => {
-          const cache = await caches.open(currentCacheName);
+          const cache = await caches.open(CACHE_NAME);
           cache.put(normalizedUrl, networkResponse.clone()); // Cache new response
           console.log(`Network fetch for ${normalizedUrl} succeeded.`);
           return networkResponse;
@@ -139,7 +139,7 @@ self.addEventListener("activate", (event) => {
       .then((cacheNames) =>
         Promise.all(
           cacheNames.map((cache) => {
-            if (cache !== currentCacheName) {
+            if (cache !== CACHE_NAME) {
               console.log(`Deleting old cache: ${cache}`);
               return caches.delete(cache);
             }
