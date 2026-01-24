@@ -1,60 +1,90 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>PPL Gooners</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <link
-      rel="stylesheet"
-      href="styles.css"
-      media="print"
-      onload="this.media='all'"
-    />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              // Electric Emerald Theme - Trending 2025/2026 Fitness Palette
+              background: '#09090b',
+              surface: '#18181b',
+              'surface-light': '#27272a',
+              primary: '#10b981',
+              'primary-hover': '#059669',
+              accent: '#22d3ee',
+              'accent-hover': '#06b6d4',
+              danger: '#ef4444',
+              warning: '#f59e0b',
+              success: '#22c55e',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'bounce-subtle': 'bounce 2s infinite',
+            },
+          },
+        },
+      }
+    </script>
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Toastify -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   </head>
-  <body class="bg-dark text-white">
-    <div class="container mt-5">
-      <div id="header" hidden><app-header dynamic-title></app-header></div>
-      <div id="appContent" hidden></div>
-      <div id="versionIndicator" class="badge bg-secondary" hidden></div>
-      <div id="loaderContainer" class="d-flex justify-content-center">
-        <div id="loader" class="spinner-border text-light" role="status" hidden>
-          <span class="visually-hidden">Loading...</span>
-          <span class="loader-emoji" aria-hidden="true">💪</span>
+  <body class="bg-background text-zinc-50 font-sans min-h-screen antialiased">
+    <!-- Main Container -->
+    <div class="max-w-2xl mx-auto px-4 py-6 pb-20">
+      <!-- Header -->
+      <div id="header" hidden>
+        <app-header dynamic-title></app-header>
+      </div>
+      
+      <!-- Main Content -->
+      <main id="appContent" hidden class="mt-6"></main>
+      
+      <!-- Loading State -->
+      <div id="loaderContainer" class="flex flex-col items-center justify-center min-h-[60vh]">
+        <div id="loader" hidden class="relative">
+          <div class="w-16 h-16 border-4 border-surface-light border-t-primary rounded-full animate-spin"></div>
+          <span class="absolute inset-0 flex items-center justify-center text-2xl animate-pulse">💪</span>
         </div>
       </div>
     </div>
-    <!-- Toastify JS -->
+    
+    <!-- Version Badge -->
+    <div id="versionIndicator" hidden 
+      class="fixed bottom-4 right-4 px-3 py-1.5 bg-surface/80 backdrop-blur-sm text-zinc-400 text-xs font-medium rounded-full border border-zinc-800 hover:border-primary/50 transition-all cursor-default">
+    </div>
+    
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
-    <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      defer
-    ></script>
-    <!-- Components -->
     <script type="module" src="Header.js" defer></script>
     <script type="module" src="History.js" defer></script>
     <script type="module" src="LastWeight.js" defer></script>
-    <!-- Scripts -->
     <script src="app.js" defer></script>
-    <!-- Register Service Worker -->
     <script src="register.js" defer></script>
     <script src="service-worker.js" defer></script>
   </body>

@@ -1,4 +1,4 @@
-const VERSION = "2.1.2"; // App version
+const VERSION = "3.0.0"; // App version - UI Refactor with Tailwind
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
@@ -60,15 +60,12 @@ async function saveWeight(exerciseId) {
 
     // Show toast notification
     Toastify({
-      text: "Weight saved successfully!",
-      duration: 3000,
+      text: "✓ Weight saved!",
+      duration: 2500,
       gravity: "bottom",
       position: "center",
       stopOnFocus: true,
-      style: {
-        borderRadius: "5px",
-        background: "linear-gradient(to right, #2D3540, #A68160)",
-      },
+      className: "toastify",
     }).showToast();
 
     input.value = ""; // Clear input after saving
@@ -126,14 +123,6 @@ async function getWeight(id) {
   });
 }
 
-// Route handling for SPA
-// const routes = {
-//   "/": loadWorkout,
-//   "/directory": loadDirectory,
-//   "/workout": loadWorkoutPage,
-//   "/history": loadViewHistoryPage,
-// };
-
 async function loadContent(path = window.location.hash.slice(1) || "/") {
   if (path === currentPath) return; // Prevent duplicate loads
   currentPath = path;
@@ -160,7 +149,16 @@ async function loadContent(path = window.location.hash.slice(1) || "/") {
     updateHeaderComponent("home");
     await loadWorkout();
   } else {
-    appContent.innerHTML = "<h1>Page Not Found</h1>";
+    appContent.innerHTML = `
+      <div class="flex flex-col items-center justify-center py-16">
+        <span class="text-6xl mb-4">🔍</span>
+        <h1 class="text-2xl font-bold text-zinc-100">Page Not Found</h1>
+        <p class="text-zinc-400 mt-2">The page you're looking for doesn't exist.</p>
+        <a href="#/" class="mt-6 px-6 py-3 bg-primary hover:bg-primary-hover text-white font-medium rounded-xl transition-colors">
+          Go Home
+        </a>
+      </div>
+    `;
   }
   setTimeout(async () => {
     // Hide the loader once the content is loaded
@@ -169,7 +167,7 @@ async function loadContent(path = window.location.hash.slice(1) || "/") {
     appContent.hidden = false;
 
     checkForUpdates(); // Check for service worker updates
-  }, 250); // Optional small delay for smooth transition
+  }, 200); // Optional small delay for smooth transition
 }
 
 function checkForUpdates() {
@@ -211,36 +209,59 @@ async function renderExercises(exercises, exerciseMap) {
   const workoutList = document.getElementById("appContent");
 
   // Build the entire HTML content as a string
-  let htmlContent = exercises.map(async (exercise) => {
+  let htmlContent = exercises.map(async (exercise, index) => {
     const exerciseDetails = exerciseMap[exercise.id] || {};
     const latestWeight = await getWeight(exercise.id); // Fetch latest weight
 
     return `
-        <div class="accordion" id="exercise-${exercise.id}">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                data-bs-target="#collapse-${exercise.id}">
-                ${exerciseDetails.name || "Unnamed Exercise"}
-              </button>
-            </h2>
-            <div id="collapse-${
-              exercise.id
-            }" class="accordion-collapse collapse">
-              <div class="accordion-body">
-                ${exerciseTemplate(exercise, exerciseDetails, latestWeight)}
-              </div>
-            </div>
+      <div class="exercise-card mb-4 bg-surface rounded-2xl border border-zinc-800 overflow-hidden card-glow transition-all duration-300 hover:border-primary/30">
+        <button 
+          onclick="toggleAccordion('${exercise.id}')"
+          class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-surface-light/50 transition-colors group"
+          aria-expanded="false"
+          aria-controls="content-${exercise.id}"
+        >
+          <div class="flex items-center gap-3">
+            <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary font-bold text-sm">
+              ${index + 1}
+            </span>
+            <span class="font-semibold text-zinc-100 group-hover:text-primary transition-colors">
+              ${exerciseDetails.name || "Unnamed Exercise"}
+            </span>
+          </div>
+          <svg class="w-5 h-5 text-zinc-400 transform transition-transform duration-200 accordion-icon-${exercise.id}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="content-${exercise.id}" class="accordion-content">
+          <div class="px-5 pb-5 pt-2 border-t border-zinc-800/50">
+            ${exerciseTemplate(exercise, exerciseDetails, latestWeight)}
           </div>
         </div>
-      `;
+      </div>
+    `;
   });
 
   // Resolve all promises in the array using Promise.all
   const resolvedHTML = await Promise.all(htmlContent);
 
   // Set the innerHTML once with the complete HTML
-  workoutList.innerHTML = resolvedHTML.join("");
+  workoutList.innerHTML = `<div class="space-y-4">${resolvedHTML.join("")}</div>`;
+}
+
+// Toggle accordion
+window.toggleAccordion = function(id) {
+  const content = document.getElementById(`content-${id}`);
+  const icon = document.querySelector(`.accordion-icon-${id}`);
+  const isOpen = content.classList.contains('open');
+  
+  if (isOpen) {
+    content.classList.remove('open');
+    icon.classList.remove('rotate-180');
+  } else {
+    content.classList.add('open');
+    icon.classList.add('rotate-180');
+  }
 }
 
 // Load the workout list or specific workout details
@@ -255,8 +276,12 @@ async function loadWorkoutPage() {
   if (!data[week] || !data[week][day]) {
     console.error(`Invalid week or day: week=${week}, day=${day}`);
     document.getElementById("appContent").innerHTML = `
-      <div class="alert alert-danger" role="alert">
-        Workout not found for Week ${week + 1}, Day ${day + 1}.
+      <div class="bg-danger/10 border border-danger/20 rounded-2xl p-6 text-center">
+        <span class="text-4xl mb-3 block">⚠️</span>
+        <p class="text-danger font-medium">Workout not found for Week ${week + 1}, Day ${day + 1}.</p>
+        <a href="#/directory" class="inline-block mt-4 px-5 py-2.5 bg-surface hover:bg-surface-light text-zinc-100 font-medium rounded-xl transition-colors">
+          Browse Directory
+        </a>
       </div>`;
     return;
   }
@@ -278,28 +303,52 @@ async function loadDirectory() {
   directoryList.innerHTML = data
     .map((week, index) => {
       const weekStartDate = new Date(startDate);
-      weekStartDate.setDate(startDate.getDate() + index * 7); // Calculate the start date for the week
+      weekStartDate.setDate(startDate.getDate() + index * 7);
 
       return `
-        <div class="mb-4">
-          <h2>Week ${index + 1} (${weekStartDate.toDateString()})</h2>
-          <ul class="list-group">
+        <div class="mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 text-primary">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-zinc-100">Week ${index + 1}</h2>
+              <p class="text-sm text-zinc-500">${weekStartDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
+            </div>
+          </div>
+          <div class="space-y-2">
             ${week
               .map((workout, dayIndex) => {
                 const workoutDate = new Date(weekStartDate);
-                workoutDate.setDate(weekStartDate.getDate() + dayIndex); // Calculate the date for the day
+                workoutDate.setDate(weekStartDate.getDate() + dayIndex);
+                const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
                 return `
-                  <li class="list-group-item bg-secondary">
-                    <a href="#/workout?week=${index}&day=${dayIndex}" class="text-white" data-link>
-                      Day ${dayIndex + 1} (${workoutDate.toDateString()}) - ${
-                  workout.name
-                }
-                    </a>
-                  </li>`;
+                  <a href="#/workout?week=${index}&day=${dayIndex}" 
+                    class="group flex items-center gap-4 p-4 bg-surface hover:bg-surface-light border border-zinc-800 hover:border-primary/30 rounded-xl transition-all" 
+                    data-link>
+                    <div class="flex-shrink-0 w-12 h-12 flex flex-col items-center justify-center rounded-lg bg-surface-light group-hover:bg-primary/10 transition-colors">
+                      <span class="text-xs font-medium text-zinc-400 group-hover:text-primary">${dayNames[dayIndex] || 'Day'}</span>
+                      <span class="text-lg font-bold text-zinc-100 group-hover:text-primary">${workoutDate.getDate()}</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="font-medium text-zinc-100 group-hover:text-primary transition-colors truncate">
+                        ${workout.name}
+                      </p>
+                      <p class="text-sm text-zinc-500">
+                        ${workout.exercises?.length || 0} exercises
+                      </p>
+                    </div>
+                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                `;
               })
               .join("")}
-          </ul>
+          </div>
         </div>`;
     })
     .join("");
@@ -375,77 +424,117 @@ function exerciseTemplate(exercise, exerciseDetails) {
   const workingSetsCheckboxes = Array.from(
     { length: numberOfSets },
     (_, index) => `
-    <div class="form-check">
-      <input class="form-check-input m-1" type="checkbox" id="set-${
-        exercise.id
-      }-${index}">
-      <label class="form-check-label m-1" for="set-${exercise.id}-${index}">
-        Set ${index + 1}
-      </label>
-    </div>`
+      <label class="flex items-center gap-3 p-3 bg-surface-light/50 rounded-lg cursor-pointer hover:bg-surface-light transition-colors">
+        <input type="checkbox" id="set-${exercise.id}-${index}" 
+          class="w-5 h-5 rounded border-zinc-600 text-primary focus:ring-primary focus:ring-offset-0 focus:ring-2" />
+        <span class="text-zinc-300">Set ${index + 1}</span>
+      </label>`
   ).join("");
 
   return `
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Warmup Sets: ${exercise.warmupSets}</li>
-      <li id="sets-${exercise.id}" class="list-group-item" data-info="${
-    exercise.workingSets
-  }">
-        Working Sets: ${exercise.workingSets}
-        <div class="d-flex flex-column">
+    <div class="space-y-4">
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="p-3 bg-surface-light/30 rounded-xl">
+          <p class="text-xs text-zinc-500 uppercase tracking-wide">Warmup Sets</p>
+          <p class="text-lg font-semibold text-zinc-100">${exercise.warmupSets}</p>
+        </div>
+        <div id="sets-${exercise.id}" data-info="${exercise.workingSets}" class="p-3 bg-surface-light/30 rounded-xl">
+          <p class="text-xs text-zinc-500 uppercase tracking-wide">Working Sets</p>
+          <p class="text-lg font-semibold text-zinc-100">${exercise.workingSets}</p>
+        </div>
+        <div id="reps-${exercise.id}" data-info="${exercise.repsOrDuration}" class="p-3 bg-surface-light/30 rounded-xl">
+          <p class="text-xs text-zinc-500 uppercase tracking-wide">Reps/Duration</p>
+          <p class="text-lg font-semibold text-zinc-100">${exercise.repsOrDuration}</p>
+        </div>
+        <div class="p-3 bg-surface-light/30 rounded-xl">
+          <p class="text-xs text-zinc-500 uppercase tracking-wide">Rest</p>
+          <p class="text-lg font-semibold text-zinc-100">${exercise.rest}</p>
+        </div>
+      </div>
+
+      <!-- RPE Section -->
+      <div class="flex gap-3">
+        <div id="early-rpe-${exercise.id}" data-info="${exercise.earlyRpe}" class="flex-1 p-3 bg-accent/5 border border-accent/20 rounded-xl">
+          <p class="text-xs text-accent uppercase tracking-wide">Early Set RPE</p>
+          <p class="text-lg font-semibold text-zinc-100">${exercise.earlyRpe || "N/A"}</p>
+        </div>
+        <div id="last-rpe-${exercise.id}" data-info="${exercise.lastRpe}" class="flex-1 p-3 bg-primary/5 border border-primary/20 rounded-xl">
+          <p class="text-xs text-primary uppercase tracking-wide">Last Set RPE</p>
+          <p class="text-lg font-semibold text-zinc-100">${exercise.lastRpe || "N/A"}</p>
+        </div>
+      </div>
+
+      <!-- Last Set Technique -->
+      ${exercise.lastSetTech && exercise.lastSetTech !== "N/A" ? `
+        <div class="p-3 bg-warning/5 border border-warning/20 rounded-xl">
+          <p class="text-xs text-warning uppercase tracking-wide">Last-Set Intensity Technique</p>
+          <p class="text-sm font-medium text-zinc-100 mt-1">${exercise.lastSetTech}</p>
+        </div>
+      ` : ""}
+
+      <!-- Notes -->
+      ${exercise.notes ? `
+        <div class="p-4 bg-surface-light/30 rounded-xl">
+          <p class="text-xs text-zinc-500 uppercase tracking-wide mb-2">Notes</p>
+          <p class="text-sm text-zinc-300 leading-relaxed">${exercise.notes}</p>
+        </div>
+      ` : ""}
+
+      <!-- Video -->
+      ${videoId ? `
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/${videoId}?start=${timestamp || 0}" 
+            frameborder="0" 
+            allowfullscreen 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            loading="lazy">
+          </iframe>
+        </div>
+      ` : ""}
+
+      <!-- Substitutions -->
+      ${exerciseDetails.subs ? `
+        <div class="p-3 bg-surface-light/30 rounded-xl">
+          <p class="text-xs text-zinc-500 uppercase tracking-wide mb-1">Substitutions</p>
+          <p class="text-sm text-zinc-400">${exerciseDetails.subs}</p>
+        </div>
+      ` : ""}
+
+      <!-- Set Tracking -->
+      <div>
+        <p class="text-xs text-zinc-500 uppercase tracking-wide mb-3">Track Your Sets</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
           ${workingSetsCheckboxes}
         </div>
-      </li>
-      <li id="reps-${exercise.id}" class="list-group-item" data-info="${
-    exercise.repsOrDuration
-  }">
-        Reps/Duration: ${exercise.repsOrDuration}
-      </li>
-      <li id="early-rpe-${exercise.id}" class="list-group-item" data-info="${
-    exercise.earlyRpe
-  }">Early Set RPE: ${
-        exercise.earlyRpe || "N/A"
-      }</li>
-      <li id="last-rpe-${exercise.id}" class="list-group-item" data-info="${
-    exercise.lastRpe
-  }">Last Set RPE: ${
-        exercise.lastRpe || "N/A"
-      }</li>
-      <li class="list-group-item">Last-Set Intensity: ${
-        exercise.lastSetTech || "N/A"
-      }</li>
-      <li class="list-group-item">Rest: ${exercise.rest}</li>
-      <li class="list-group-item">Notes: ${exercise.notes}</li>
-      ${
-        videoId
-          ? `<li class="list-group-item">
-              <iframe 
-                width="100%" 
-                height="200" 
-                src="https://www.youtube-nocookie.com/embed/${videoId}?start=${
-              timestamp || 0
-            }" 
-                frameborder="0" 
-                allowfullscreen 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                loading="lazy">
-              </iframe>
-            </li>`
-          : ""
-      }
-      <li class="list-group-item">Substitutions: ${
-        exerciseDetails.subs || "None"
-      }</li>
-      <li class="list-group-item">
-        <last-weight exercise-id="${exercise.id}"></last-weight>
-        <input type="text" class="form-control mt-2" id="weight-${
-          exercise.id
-        }" placeholder="Enter weight" />
-        <button class="btn btn-primary mt-2" onclick="saveWeight('${
-          exercise.id
-        }')">Save</button>
-      </li>
-    </ul>
+      </div>
+
+      <!-- Weight Input -->
+      <div class="p-4 bg-primary/5 border border-primary/20 rounded-xl space-y-3">
+        <div class="flex items-center justify-between">
+          <p class="text-sm font-medium text-zinc-100">Log Weight</p>
+          <last-weight exercise-id="${exercise.id}"></last-weight>
+        </div>
+        <div class="flex gap-2">
+          <input 
+            type="text" 
+            id="weight-${exercise.id}" 
+            placeholder="Enter weight (e.g., 135 lbs)" 
+            class="flex-1 px-4 py-3 bg-surface border border-zinc-700 focus:border-primary rounded-xl text-zinc-100 placeholder-zinc-500 transition-colors"
+          />
+          <button 
+            onclick="saveWeight('${exercise.id}')"
+            class="px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-colors flex items-center gap-2"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
   `;
 }
 
@@ -529,17 +618,10 @@ function updateHeaderContent(currentWeek, workoutDay, workoutName) {
     return;
   }
 
-  header.innerHTML = ""; // Clear existing content
-
-  // Create h1, h2 elements
-  const name = document.createElement("h1");
-  name.textContent = workoutName;
-
-  // Append elements to header
-  header.appendChild(name);
-
-  // Apply Bootstrap classes for styling
-  header.className = "d-flex flex-column align-items-center text-center m-2";
+  header.innerHTML = `
+    <h1 class="text-xl font-bold text-zinc-100">${workoutName}</h1>
+    <p class="text-sm text-zinc-500">Week ${currentWeek + 1} • Day ${workoutDay}</p>
+  `;
 }
 
 async function loadWorkout() {
@@ -561,8 +643,30 @@ async function loadWorkout() {
   } else {
     updateHeaderContent(currentWeek, 0, "Rest Day");
     appContent.innerHTML = `
-      <div class="alert alert-info" role="alert">
-        Today is a rest day! No workout planned.
+      <div class="rest-day-gradient rounded-2xl p-8 text-center">
+        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
+          <span class="text-4xl">😴</span>
+        </div>
+        <h2 class="text-2xl font-bold text-zinc-100 mb-2">Rest Day</h2>
+        <p class="text-zinc-400 mb-6">No workout scheduled for today. Take it easy and recover!</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#/directory" 
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-surface hover:bg-surface-light text-zinc-100 font-medium rounded-xl transition-colors" 
+            data-link>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            Browse Workouts
+          </a>
+          <a href="#/history" 
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary font-medium rounded-xl transition-colors" 
+            data-link>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            View History
+          </a>
+        </div>
       </div>`;
   }
 }
