@@ -1,4 +1,4 @@
-const CACHE_VERSION = "3.0.0";
+const CACHE_VERSION = "3.0.1";
 const CACHE_NAME = `hiit-web-app-${CACHE_VERSION}`;
 
 const urls = [

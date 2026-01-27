@@ -1,4 +1,4 @@
-const VERSION = "3.0.0"; // App version - UI Refactor with Tailwind
+const VERSION = "3.0.1"; // App version - UI Refactor with Tailwind
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
@@ -678,7 +678,7 @@ function getCurrentWeek(startDate) {
     (today - startDate) / (1000 * 60 * 60 * 24)
   );
   const weeksSinceStart = Math.floor(daysSinceStart / 7);
-  return today < startDate ? 0 : Math.min(weeksSinceStart, 19);
+  return today < startDate ? 0 : weeksSinceStart;
 }
 
 function updateLastWeightComponents() {
