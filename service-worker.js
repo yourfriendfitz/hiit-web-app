@@ -1,4 +1,4 @@
-const CACHE_VERSION = "2.1.2";
+const CACHE_VERSION = "3.0.0";
 const CACHE_NAME = `hiit-web-app-${CACHE_VERSION}`;
 
 const urls = [
@@ -7,6 +7,7 @@ const urls = [
   "/hiit-web-app/styles.css",
   "/hiit-web-app/app.js",
   "/hiit-web-app/Header.js",
+  "/hiit-web-app/History.js",
   "/hiit-web-app/LastWeight.js",
   "/hiit-web-app/register.js",
   "/hiit-web-app/data.json",
@@ -18,12 +19,10 @@ const urls = [
   "/hiit-web-app/favicon-32x32.png",
   "/hiit-web-app/favicon-16x16.png",
   "/hiit-web-app/favicon.ico",
-  "/hiit-web-app/README.md",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+  "https://cdn.tailwindcss.com",
   "https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css",
   "https://cdn.jsdelivr.net/npm/toastify-js",
+  "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
 ];
 
 // Install event: Cache essential assets
