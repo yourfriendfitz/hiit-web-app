@@ -525,7 +525,7 @@ function exerciseTemplate(exercise, exerciseDetails) {
           />
           <button 
             onclick="saveWeight('${exercise.id}')"
-            class="px-6 py-4 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-colors flex items-center gap-2"
+            class="w-full sm:w-auto px-6 py-4 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
