@@ -2,6 +2,7 @@
   "name": "PPL Gooners",
   "short_name": "PPLG",
   "description": "Track your PPL workout program with offline support",
+  "version": "3.0.1",
   "start_url": "/hiit-web-app/index.html",
   "display": "standalone",
   "background_color": "#09090b",

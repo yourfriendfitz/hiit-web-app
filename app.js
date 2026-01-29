@@ -1,4 +1,4 @@
-const VERSION = "3.0.0"; // App version - UI Refactor with Tailwind
+const VERSION = "3.0.1"; // App version - UI Refactor with Tailwind
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
@@ -424,7 +424,7 @@ function exerciseTemplate(exercise, exerciseDetails) {
   const workingSetsCheckboxes = Array.from(
     { length: numberOfSets },
     (_, index) => `
-      <label class="flex items-center gap-3 p-3 bg-surface-light/50 rounded-lg cursor-pointer hover:bg-surface-light transition-colors">
+      <label class="flex items-center gap-3 p-4 bg-surface-light/50 rounded-lg cursor-pointer hover:bg-surface-light transition-colors">
         <input type="checkbox" id="set-${exercise.id}-${index}" 
           class="w-5 h-5 rounded border-zinc-600 text-primary focus:ring-primary focus:ring-offset-0 focus:ring-2" />
         <span class="text-zinc-300">Set ${index + 1}</span>
@@ -454,7 +454,7 @@ function exerciseTemplate(exercise, exerciseDetails) {
       </div>
 
       <!-- RPE Section -->
-      <div class="flex gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div id="early-rpe-${exercise.id}" data-info="${exercise.earlyRpe}" class="flex-1 p-3 bg-accent/5 border border-accent/20 rounded-xl">
           <p class="text-xs text-accent uppercase tracking-wide">Early Set RPE</p>
           <p class="text-lg font-semibold text-zinc-100">${exercise.earlyRpe || "N/A"}</p>
@@ -505,7 +505,7 @@ function exerciseTemplate(exercise, exerciseDetails) {
       <!-- Set Tracking -->
       <div>
         <p class="text-xs text-zinc-500 uppercase tracking-wide mb-3">Track Your Sets</p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           ${workingSetsCheckboxes}
         </div>
       </div>
@@ -516,16 +516,16 @@ function exerciseTemplate(exercise, exerciseDetails) {
           <p class="text-sm font-medium text-zinc-100">Log Weight</p>
           <last-weight exercise-id="${exercise.id}"></last-weight>
         </div>
-        <div class="flex gap-2">
+        <div class="flex flex-col sm:flex-row gap-2">
           <input 
             type="text" 
             id="weight-${exercise.id}" 
             placeholder="Enter weight (e.g., 135 lbs)" 
-            class="flex-1 px-4 py-3 bg-surface border border-zinc-700 focus:border-primary rounded-xl text-zinc-100 placeholder-zinc-500 transition-colors"
+            class="flex-1 px-4 py-4 bg-surface border border-zinc-700 focus:border-primary rounded-xl text-zinc-100 placeholder-zinc-500 transition-colors"
           />
           <button 
             onclick="saveWeight('${exercise.id}')"
-            class="px-6 py-3 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-colors flex items-center gap-2"
+            class="w-full sm:w-auto px-6 py-4 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -678,7 +678,7 @@ function getCurrentWeek(startDate) {
     (today - startDate) / (1000 * 60 * 60 * 24)
   );
   const weeksSinceStart = Math.floor(daysSinceStart / 7);
-  return today < startDate ? 0 : Math.min(weeksSinceStart, 19);
+  return today < startDate ? 0 : weeksSinceStart;
 }
 
 function updateLastWeightComponents() {
