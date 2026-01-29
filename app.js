@@ -408,6 +408,11 @@ function getWorkoutForToday(data, currentWeek) {
     return null; // Off day for Saturday and Sunday
   }
 
+  // Check if currentWeek is within data range
+  if (currentWeek >= data.length) {
+    return null; // Program completed
+  }
+
   // Each week now has 5 workouts, so we use scheduleDay - 1 as the index
   return {
     workout: data[currentWeek][scheduleDay - 1],
