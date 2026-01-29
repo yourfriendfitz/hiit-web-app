@@ -1,4 +1,4 @@
-const CACHE_VERSION = "3.0.1";
+const CACHE_VERSION = "3.0.2";
 const CACHE_NAME = `hiit-web-app-${CACHE_VERSION}`;
 
 const urls = [
@@ -19,10 +19,6 @@ const urls = [
   "/hiit-web-app/favicon-32x32.png",
   "/hiit-web-app/favicon-16x16.png",
   "/hiit-web-app/favicon.ico",
-  "https://cdn.tailwindcss.com",
-  "https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css",
-  "https://cdn.jsdelivr.net/npm/toastify-js",
-  "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
 ];
 
 // Install event: Cache essential assets

@@ -1,4 +1,4 @@
-const VERSION = "3.0.1"; // App version - UI Refactor with Tailwind
+const VERSION = "3.0.2"; // App version - UI Refactor with Tailwind
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
@@ -406,6 +406,11 @@ function getWorkoutForToday(data, currentWeek) {
     scheduleDay = 5;
   } else {
     return null; // Off day for Saturday and Sunday
+  }
+
+  // Check if currentWeek is within data range
+  if (currentWeek >= data.length) {
+    return null; // Program completed
   }
 
   // Each week now has 5 workouts, so we use scheduleDay - 1 as the index
