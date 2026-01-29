@@ -177,10 +177,8 @@ function checkForUpdates() {
     return; // Prevent running more than 3 times a min
   }
   lastUpdateCheck = now;
-  if (triggerUpdateCache) {
-    console.log("Triggering service worker update check...");
-    triggerUpdateCache();
-  }
+  // Cache functionality has been removed, so no update check needed
+  console.log("Service worker update check skipped - caching removed");
 }
 
 // Function to load the view-history page

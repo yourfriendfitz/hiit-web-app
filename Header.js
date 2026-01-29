@@ -90,12 +90,8 @@ class Header extends HTMLElement {
   addUpdateCacheHandler() {
     const updateCacheButton = this.shadowRoot.querySelector("#update-cache");
     updateCacheButton.addEventListener("click", () => {
-      if (typeof window.updateCacheFresh === "function") {
-        window.updateCacheFresh();
-        window.location.reload();
-      } else {
-        console.error("updateCacheFresh function is not defined on the window object.");
-      }
+      // Since caching has been removed in service worker, simply reload the page
+      window.location.reload();
     });
   }
 }
