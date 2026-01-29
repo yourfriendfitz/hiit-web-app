@@ -190,9 +190,9 @@ class Header extends HTMLElement {
 
   addUpdateCacheHandler() {
     const updateCacheButton = this.shadowRoot.querySelector("#update-cache");
-    updateCacheButton.addEventListener("click", () => {
+    updateCacheButton.addEventListener("click", async () => {
       if (typeof window.triggerUpdateCache === "function") {
-        window.triggerUpdateCache();
+        await window.triggerUpdateCache();
         window.location.reload();
       } else {
         console.error("triggerUpdateCache function is not defined on the window object.");
