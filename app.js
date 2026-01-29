@@ -1,4 +1,4 @@
-const VERSION = "3.0.1"; // App version - UI Refactor with Tailwind
+const VERSION = "3.0.2"; // App version - UI Refactor with Tailwind
 const dbName = `hiit-app-db`;
 const weightStore = "Weights";
 const prodHostName = "yourfriendfitz.github.io";
