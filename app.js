@@ -6,7 +6,6 @@ const startDate = new Date("2025-07-28T00:00:00-05:00"); // Central Daylight Tim
 
 let dbInstance = null; // Cached database instance
 let currentPath = null; // Track the current path for navigation
-let lastUpdateCheck = 0;
 
 // IndexedDB initialization
 function initDB() {
@@ -166,19 +165,7 @@ async function loadContent(path = window.location.hash.slice(1) || "/") {
     loader.hidden = true;
     header.hidden = false;
     appContent.hidden = false;
-
-    checkForUpdates(); // Check for service worker updates
   }, 250); // Optional small delay for smooth transition
-}
-
-function checkForUpdates() {
-  const now = Date.now();
-  if (now - lastUpdateCheck < 20000) {
-    return; // Prevent running more than 3 times a min
-  }
-  lastUpdateCheck = now;
-  // Cache functionality has been removed, so no update check needed
-  console.log("Service worker update check skipped - caching removed");
 }
 
 // Function to load the view-history page
