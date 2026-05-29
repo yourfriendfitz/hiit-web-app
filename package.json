@@ -1,0 +1,28 @@
+{
+  "name": "hiit-web-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HIIT Workout Web App",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "serve": "http-server . -p 8080 -c-1",
+    "serve:test": "http-server . -p 4173 -c-1 --silent",
+    "lint": "eslint .",
+    "format:check": "prettier --check \"docs/**/*.md\" \"tests/**/*.js\" \"*.mjs\" \"package.json\" \".github/**/*.yml\"",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run format:check && npm run test && npm run test:e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.60.0",
+    "eslint": "^10.4.1",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "globals": "^17.6.0",
+    "http-server": "^14.1.1",
+    "prettier": "^3.8.3",
+    "vitest": "^4.1.7"
+  }
+}
