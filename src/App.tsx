@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
   loadExerciseMetadata,
@@ -206,12 +206,14 @@ function showSavedToast() {
 
 function LastWeight({ exerciseId }: { exerciseId: string }) {
   const [weight, setWeight] = useState("");
+  const requestSequence = useRef(0);
 
   useEffect(() => {
     let active = true;
     const update = () => {
+      const sequence = ++requestSequence.current;
       void getWeight(exerciseId).then((latestWeight) => {
-        if (active) {
+        if (active && sequence === requestSequence.current) {
           setWeight(latestWeight);
         }
       });
@@ -222,6 +224,7 @@ function LastWeight({ exerciseId }: { exerciseId: string }) {
 
     return () => {
       active = false;
+      requestSequence.current += 1;
       window.removeEventListener("dbUpdated", update);
     };
   }, [exerciseId]);
