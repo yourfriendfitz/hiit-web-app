@@ -10,6 +10,8 @@ Use `main` as the long-term production branch and GitHub Pages deployment source
 
 Do not change the remote default branch or production deployment source until the GitHub Pages workflow is implemented and verified.
 
+Milestone 4 adds the reviewed workflow path. The remote publishing source must still be switched explicitly to GitHub Actions after merge, then verified before the remote default branch changes.
+
 ## Context
 
 The remote repository currently uses `staging` as the default branch. The refactor target is a single live GitHub Pages environment plus local development. Glitch is no longer used.
