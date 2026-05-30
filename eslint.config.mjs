@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import tseslint from "typescript-eslint";
 import unusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 
@@ -11,12 +12,15 @@ export default [
   {
     ignores: [
       "coverage/**",
+      "dist/**",
       "node_modules/**",
       "playwright-report/**",
+      "public/**",
       "test-results/**",
     ],
   },
   js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     files: ["**/*.js"],
     plugins: {
@@ -38,6 +42,23 @@ export default [
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^(updateCache|triggerUpdateCache)$",
+        },
+      ],
+    },
+  },
+  {
+    files: ["src/**/*.{ts,tsx}", "vite.config.ts"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+    },
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
         },
       ],
     },

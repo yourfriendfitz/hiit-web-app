@@ -4,7 +4,7 @@ This is a web app meant to display HIIT workout program
 
 ## Links
 
-- GitHub Pages production URL: TBD
+- GitHub Pages production URL: https://yourfriendfitz.github.io/hiit-web-app/
 
 ## Refactor Planning
 
@@ -47,7 +47,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed. If it’s not insta
    npm ci
    ```
 
-3. **Start the local static server:**
+3. **Start the local Vite server:**
 
    ```bash
    npm run serve
@@ -69,7 +69,9 @@ Individual checks:
 ```bash
 npm run lint
 npm run format:check
+npm run typecheck
 npm run test
+npm run build
 npm run test:e2e
 ```
 
@@ -78,6 +80,13 @@ Containerized check path:
 ```bash
 docker build -t hiit-web-app-checks .
 docker run --rm hiit-web-app-checks
+```
+
+Containerized local app:
+
+```bash
+docker build -t hiit-web-app-local .
+docker run --rm -it -p 8080:8080 hiit-web-app-local npm run serve
 ```
 
 ### Installing the PWA on iOS
@@ -93,7 +102,7 @@ The app will now be installed and accessible from your home screen like a native
 
 ### Service Worker and Offline Caching
 
-The service worker in this app ensures offline functionality by caching essential files and data. On subsequent visits, the app loads from the cache if the network is unavailable.
+The existing service worker is retained during the Vite migration and caches essential files and data. Service worker modernization and runtime CDN removal are scheduled for Milestone 4.
 
 If you encounter issues, ensure that:
 

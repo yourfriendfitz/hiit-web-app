@@ -3,12 +3,19 @@ import { readFileSync } from "node:fs";
 
 import { describe, expect, it } from "vitest";
 
+import {
+  validateExerciseMetadata,
+  validateWorkoutProgram,
+} from "../../src/data";
+
 const readJson = (fileName) =>
-  JSON.parse(readFileSync(new URL(`../../${fileName}`, import.meta.url)));
+  JSON.parse(
+    readFileSync(new URL(`../../public/${fileName}`, import.meta.url)),
+  );
 
 const fileHash = (fileName) =>
   createHash("sha256")
-    .update(readFileSync(new URL(`../../${fileName}`, import.meta.url)))
+    .update(readFileSync(new URL(`../../public/${fileName}`, import.meta.url)))
     .digest("hex");
 
 describe("workout data contract", () => {
@@ -25,7 +32,7 @@ describe("workout data contract", () => {
   });
 
   it("has weeks, days, and workout exercise slots", () => {
-    const data = readJson("data.json");
+    const data = validateWorkoutProgram(readJson("data.json"));
 
     expect(data).toHaveLength(48);
     expect(data.every((week) => week.length === 5)).toBe(true);
@@ -44,7 +51,7 @@ describe("workout data contract", () => {
   });
 
   it("keeps free-text-compatible exercise programming fields", () => {
-    const data = readJson("data.json");
+    const data = validateWorkoutProgram(readJson("data.json"));
 
     for (const week of data) {
       for (const workout of week) {
@@ -63,5 +70,23 @@ describe("workout data contract", () => {
         }
       }
     }
+  });
+
+  it("keeps exercise metadata typed and loadable", () => {
+    const exercises = validateExerciseMetadata(readJson("exercises.json"));
+
+    expect(exercises).toHaveLength(111);
+    expect(exercises[0]).toEqual(
+      expect.objectContaining({
+        id: expect.any(String),
+        name: expect.any(String),
+      }),
+    );
+  });
+
+  it("rejects malformed workout data at the typed boundary", () => {
+    expect(() =>
+      validateWorkoutProgram([[{ name: "Bad Workout", exercises: [{}] }]]),
+    ).toThrow(/missing id/);
   });
 });
