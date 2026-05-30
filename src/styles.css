@@ -1,3 +1,22 @@
+@import "tailwindcss";
+@import "toastify-js/src/toastify.css";
+
+@theme {
+  --color-background: #09090b;
+  --color-surface: #18181b;
+  --color-surface-light: #27272a;
+  --color-primary: #10b981;
+  --color-primary-hover: #059669;
+  --color-accent: #22d3ee;
+  --color-accent-hover: #06b6d4;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #22c55e;
+  --font-sans: system-ui, sans-serif;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-bounce-subtle: bounce 2s infinite;
+}
+
 /* Electric Emerald Theme - Custom Styles */
 /* Tailwind handles most styling, these are for special cases */
 
@@ -108,9 +127,13 @@ button:active:not(:disabled) {
 
 /* Toast customization */
 .toastify {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-accent) 100%
+  ) !important;
   border-radius: 0.75rem !important;
-  font-family: 'Inter', sans-serif !important;
+  font-family: system-ui, sans-serif !important;
   font-weight: 500 !important;
   box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3) !important;
 }
@@ -213,17 +236,6 @@ button:active:not(:disabled) {
 .nav-btn svg {
   width: 20px;
   height: 20px;
-}
-
-.refresh-btn {
-  background-color: var(--color-surface-light);
-  border-color: #3f3f46;
-}
-
-.refresh-btn:hover {
-  background-color: #3f3f46;
-  border-color: var(--color-accent);
-  color: var(--color-accent);
 }
 
 .title-section {
