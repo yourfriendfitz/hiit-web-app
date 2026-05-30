@@ -10,62 +10,10 @@
     />
     <title>PPL Gooners</title>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              // Electric Emerald Theme - Trending 2025/2026 Fitness Palette
-              background: "#09090b",
-              surface: "#18181b",
-              "surface-light": "#27272a",
-              primary: "#10b981",
-              "primary-hover": "#059669",
-              accent: "#22d3ee",
-              "accent-hover": "#06b6d4",
-              danger: "#ef4444",
-              warning: "#f59e0b",
-              success: "#22c55e",
-            },
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-            },
-            animation: {
-              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-              "bounce-subtle": "bounce 2s infinite",
-            },
-          },
-        },
-      };
-    </script>
-
-    <!-- Inter Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Toastify -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="/styles.css" />
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
   </head>
   <body class="bg-background text-zinc-50 font-sans min-h-screen antialiased">
     <div id="root"></div>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -2,58 +2,7 @@ import { expect, test } from "@playwright/test";
 
 const TEST_NOW = "2025-08-01T12:00:00-05:00";
 
-const bootstrapToggleShim = `
-  document.addEventListener("click", (event) => {
-    const button = event.target.closest('[data-bs-toggle="collapse"]');
-    if (!button) return;
-
-    const target = document.querySelector(button.getAttribute("data-bs-target"));
-    if (!target) return;
-
-    const willShow = !target.classList.contains("show");
-    target.classList.toggle("show", willShow);
-    button.classList.toggle("collapsed", !willShow);
-    button.setAttribute("aria-expanded", String(willShow));
-  });
-`;
-
-async function stubExternalAssets(page) {
-  await page.route("**/cdn.tailwindcss.com", (route) =>
-    route.fulfill({
-      body: "window.tailwind = { config: {} };",
-      contentType: "application/javascript",
-    }),
-  );
-  await page.route("**/fonts.googleapis.com/**", (route) =>
-    route.fulfill({ body: "", contentType: "text/css" }),
-  );
-  await page.route("**/fonts.gstatic.com/**", (route) =>
-    route.fulfill({ body: "", contentType: "font/woff2" }),
-  );
-  await page.route("**/bootstrap.bundle.min.js", (route) =>
-    route.fulfill({
-      body: bootstrapToggleShim,
-      contentType: "application/javascript",
-    }),
-  );
-  await page.route("**/toastify-js", (route) =>
-    route.fulfill({
-      body: "window.Toastify = function Toastify() { return { showToast() {} }; };",
-      contentType: "application/javascript",
-    }),
-  );
-  await page.route("**/toastify.min.css", (route) =>
-    route.fulfill({ body: "", contentType: "text/css" }),
-  );
-  await page.route("**/bootstrap.min.css", (route) =>
-    route.fulfill({ body: "", contentType: "text/css" }),
-  );
-  await page.route("**/font-awesome/**", (route) =>
-    route.fulfill({ body: "", contentType: "text/css" }),
-  );
-}
-
-async function freezeDateAndToast(page) {
+async function freezeDate(page) {
   await page.addInitScript((nowIso) => {
     const fixedTimestamp = new Date(nowIso).getTime();
     const RealDate = Date;
@@ -72,11 +21,7 @@ async function freezeDateAndToast(page) {
     MockDate.parse = RealDate.parse;
     MockDate.UTC = RealDate.UTC;
     MockDate.prototype = RealDate.prototype;
-
     window.Date = MockDate;
-    window.Toastify = function Toastify() {
-      return { showToast() {} };
-    };
   }, TEST_NOW);
 }
 
@@ -118,8 +63,7 @@ async function seedWeightRecords(page, records) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await freezeDateAndToast(page);
-  await stubExternalAssets(page);
+  await freezeDate(page);
 });
 
 test("loads the current workout on app launch", async ({ page }) => {
