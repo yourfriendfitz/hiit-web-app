@@ -73,6 +73,7 @@ npm run typecheck
 npm run test
 npm run build
 npm run test:e2e
+npm run test:pwa
 ```
 
 Containerized check path:
@@ -89,6 +90,13 @@ docker build -t hiit-web-app-local .
 docker run --rm -it -p 8080:8080 hiit-web-app-local npm run serve
 ```
 
+Containerized production PWA preview:
+
+```bash
+docker build -t hiit-web-app-local .
+docker run --rm -it -p 8080:8080 hiit-web-app-local npm run serve:preview
+```
+
 ### Installing the PWA on iOS
 
 To install the PWA on an iOS device:
@@ -102,9 +110,45 @@ The app will now be installed and accessible from your home screen like a native
 
 ### Service Worker and Offline Caching
 
-The existing service worker is retained during the Vite migration and caches essential files and data. Service worker modernization and runtime CDN removal are scheduled for Milestone 4.
+Vite generates the service worker and Workbox precache manifest during `npm run build`. The precache includes the app shell, workout data, exercise metadata, manifest, icons, and hashed build assets. Tailwind CSS and Toastify are bundled locally so core UI rendering does not require a CDN.
+
+Use the production preview when reviewing offline behavior:
+
+```bash
+npm run build
+npm run preview
+```
 
 If you encounter issues, ensure that:
 
 1. The service worker is correctly registered in the browser's DevTools under **Application > Service Workers**.
 2. You are accessing the app over HTTP or HTTPS, as service workers only work on secure origins.
+3. You reload once after the first online visit so the installed service worker controls the page.
+
+### GitHub Pages Deployment
+
+The `CI` workflow keeps pull requests and `staging` pushes check-only. A push to `main` deploys the GitHub Pages artifact only after lint, formatting, typecheck, unit tests, production build verification, mobile end-to-end tests, and PWA offline tests pass.
+
+The workflow builds the repository-path artifact with:
+
+```bash
+npm run build:pages
+```
+
+One repository setting must be changed manually after the workflow is reviewed and merged:
+
+1. Open **Settings > Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Run the `CI` workflow from `main` or merge a reviewed change into `main`.
+4. Confirm the `github-pages` environment deployment succeeds.
+
+Until that source switch is made, the production site continues using the legacy `main` branch-root publishing configuration.
+
+### Releases
+
+Create a GitHub Release for accepted milestones after the production deployment is verified.
+
+- Tag milestone releases as `v0.1.0`, `v0.2.0`, and so on during the refactor.
+- Include user-visible changes, migration notes, and known issues.
+- Verify install and update behavior manually in iPhone Safari before publishing a release.
+- Move to `v1.0.0` after feature parity, PWA update behavior, and the planned feature milestones are complete.
