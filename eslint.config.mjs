@@ -32,7 +32,6 @@ export default [
       globals: {
         ...globals.browser,
         IDBKeyRange: "readonly",
-        Toastify: "readonly",
       },
     },
     rules: {
@@ -41,7 +40,7 @@ export default [
         "warn",
         {
           argsIgnorePattern: "^_",
-          varsIgnorePattern: "^(updateCache|triggerUpdateCache)$",
+          varsIgnorePattern: "^_",
         },
       ],
     },
@@ -64,39 +63,12 @@ export default [
     },
   },
   {
-    files: ["app.js"],
-    languageOptions: {
-      globals: {
-        triggerUpdateCache: "readonly",
-      },
-    },
-  },
-  {
-    files: ["Header.js", "History.js", "LastWeight.js"],
-    languageOptions: {
-      sourceType: "module",
-      globals: {
-        dbInstance: "readonly",
-        getWeight: "readonly",
-        initDB: "readonly",
-        weightStore: "readonly",
-      },
-    },
-  },
-  {
-    files: ["service-worker.js"],
-    languageOptions: {
-      globals: {
-        ...globals.serviceworker,
-        navigator: "readonly",
-      },
-    },
-    rules: {
-      "no-redeclare": "off",
-    },
-  },
-  {
-    files: ["*.config.mjs", "eslint.config.mjs", "tests/**/*.js"],
+    files: [
+      "*.config.mjs",
+      "eslint.config.mjs",
+      "scripts/**/*.mjs",
+      "tests/**/*.js",
+    ],
     languageOptions: {
       sourceType: "module",
       globals: {

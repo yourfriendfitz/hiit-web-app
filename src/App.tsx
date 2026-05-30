@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import Toastify from "toastify-js";
 
 import {
   loadExerciseMetadata,
@@ -7,6 +8,7 @@ import {
 } from "./data";
 import { parseRoute } from "./routes";
 import { getAllWeights, getWeight, storeWeight } from "./storage";
+import { pwaUpdatePolicy } from "./update-policy";
 import {
   APP_VERSION,
   PROD_HOSTNAME,
@@ -32,7 +34,7 @@ type HeaderProps = {
 
 const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-function iconPath(name: "home" | "directory" | "history" | "refresh") {
+function iconPath(name: "home" | "directory" | "history") {
   switch (name) {
     case "home":
       return "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6";
@@ -40,16 +42,10 @@ function iconPath(name: "home" | "directory" | "history" | "refresh") {
       return "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253";
     case "history":
       return "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z";
-    case "refresh":
-      return "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15";
   }
 }
 
-function SvgIcon({
-  name,
-}: {
-  name: "home" | "directory" | "history" | "refresh";
-}) {
+function SvgIcon({ name }: { name: "home" | "directory" | "history" }) {
   return (
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
@@ -79,15 +75,6 @@ function Header({ route, title, subtitle }: HeaderProps) {
         >
           <SvgIcon name="home" />
         </a>
-        <button
-          id="update-cache"
-          className="nav-btn refresh-btn"
-          title="Refresh Cache"
-          type="button"
-          onClick={() => window.location.reload()}
-        >
-          <SvgIcon name="refresh" />
-        </button>
       </div>
 
       <div className="title-section">
@@ -192,16 +179,14 @@ function formatDate(date: Date) {
 }
 
 function showSavedToast() {
-  window
-    .Toastify?.({
-      text: "Weight saved!",
-      duration: 2500,
-      gravity: "bottom",
-      position: "center",
-      stopOnFocus: true,
-      className: "toastify",
-    })
-    .showToast();
+  Toastify({
+    text: "Weight saved!",
+    duration: 2500,
+    gravity: "bottom",
+    position: "center",
+    stopOnFocus: true,
+    className: "toastify",
+  }).showToast();
 }
 
 function LastWeight({ exerciseId }: { exerciseId: string }) {
@@ -262,10 +247,16 @@ function ExerciseCard({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [weight, setWeight] = useState("");
+  const weightInputId = `weight-${exercise.id}-${index}`;
   const { videoId, timestamp } = extractYouTubeVideoId(
     exerciseDetails?.link || "",
   );
   const numberOfSets = Number.parseInt(String(exercise.workingSets), 10);
+
+  useEffect(
+    () => () => pwaUpdatePolicy.clearInput(weightInputId),
+    [weightInputId],
+  );
 
   const saveWeight = async () => {
     if (!weight) {
@@ -276,6 +267,7 @@ function ExerciseCard({
     await storeWeight(exercise.id, weightWithDetails);
     showSavedToast();
     setWeight("");
+    pwaUpdatePolicy.clearInput(weightInputId);
   };
 
   return (
@@ -415,7 +407,14 @@ function ExerciseCard({
                   placeholder="Enter weight (e.g., 135 lbs)"
                   className="flex-1 px-4 py-4 bg-surface border border-zinc-700 focus:border-primary rounded-xl text-zinc-100 placeholder-zinc-500 transition-colors"
                   value={weight}
-                  onChange={(event) => setWeight(event.target.value)}
+                  onChange={(event) => {
+                    const nextWeight = event.target.value;
+                    setWeight(nextWeight);
+                    pwaUpdatePolicy.setInputDirty(
+                      weightInputId,
+                      nextWeight !== "",
+                    );
+                  }}
                 />
                 <button
                   type="button"
@@ -809,29 +808,6 @@ function useRoute() {
   return route;
 }
 
-function registerServiceWorker() {
-  if (!("serviceWorker" in navigator)) {
-    return () => undefined;
-  }
-
-  const register = () => {
-    const serviceWorkerUrl = `${import.meta.env.BASE_URL}service-worker.js`;
-    navigator.serviceWorker
-      .register(serviceWorkerUrl)
-      .catch((error: unknown) => {
-        console.error("Service Worker registration failed:", error);
-      });
-  };
-
-  if (document.readyState === "complete") {
-    register();
-  } else {
-    window.addEventListener("load", register, { once: true });
-  }
-
-  return () => window.removeEventListener("load", register);
-}
-
 function App() {
   const route = useRoute();
   const [data, setData] = useState<AppData | null>(null);
@@ -844,8 +820,6 @@ function App() {
     ) {
       document.title = `(STAGING) ${document.title}`;
     }
-
-    return registerServiceWorker();
   }, []);
 
   useEffect(() => {
