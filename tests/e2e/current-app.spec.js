@@ -74,6 +74,97 @@ test("loads the current workout on app launch", async ({ page }) => {
   await expect(page.locator("#versionIndicator")).toHaveText("v3.0.4");
 });
 
+test("renders one-handed navigation and scannable workout summaries", async ({
+  page,
+}) => {
+  await page.goto("/#/workout?week=0&day=0");
+
+  const navigation = page.getByTestId("bottom-navigation");
+  await expect(navigation).toBeVisible();
+  await expect(navigation.getByRole("link", { name: "Home" })).toBeVisible();
+  await expect(
+    navigation.getByRole("link", { name: "Directory" }),
+  ).toBeVisible();
+  await expect(navigation.getByRole("link", { name: "History" })).toBeVisible();
+
+  for (const link of await navigation.getByRole("link").all()) {
+    const box = await link.boundingBox();
+    expect(box?.height).toBeGreaterThanOrEqual(44);
+    expect(box?.width).toBeGreaterThanOrEqual(44);
+  }
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await expect(firstExercise.locator(".exercise-card__name")).toBeVisible();
+  await expect(
+    firstExercise.locator(".exercise-card__programming"),
+  ).toContainText("working sets");
+
+  await firstExercise.locator("button").first().click();
+  const weightInput = firstExercise.locator('input[id^="weight-"]');
+  const saveButton = firstExercise.getByRole("button", { name: "Save" });
+  await expect(weightInput).toHaveAttribute("inputmode", "decimal");
+  await expect(saveButton).toBeVisible();
+  expect((await saveButton.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+});
+
+test("uses bottom navigation for directory, history, and home", async ({
+  browserName,
+  page,
+}) => {
+  await page.goto("/#/workout?week=0&day=0");
+
+  const navigation = page.getByTestId("bottom-navigation");
+  await page.evaluate(() => {
+    const scrollTo = window.scrollTo.bind(window);
+    window.routeResetCalls = 0;
+    window.scrollTo = (...args) => {
+      const [position] = args;
+      if (position?.top === 0 && position?.left === 0) {
+        window.routeResetCalls += 1;
+      }
+      scrollTo(...args);
+    };
+  });
+
+  if (browserName === "chromium") {
+    await page.evaluate(() => {
+      document.querySelector("#appContent").style.paddingBottom = "1000px";
+      document.scrollingElement.scrollTop =
+        document.scrollingElement.scrollHeight;
+    });
+    expect(
+      await page.evaluate(() => document.scrollingElement.scrollTop),
+    ).toBeGreaterThan(0);
+  }
+
+  await navigation.getByRole("link", { name: "Directory" }).click();
+  await expect
+    .poll(() => page.evaluate(() => window.routeResetCalls))
+    .toBeGreaterThan(0);
+
+  if (browserName === "chromium") {
+    await expect
+      .poll(() => page.evaluate(() => document.scrollingElement.scrollTop))
+      .toBe(0);
+  }
+
+  await expect(
+    page.getByRole("heading", { name: "Week 1", exact: true }),
+  ).toBeVisible();
+
+  await navigation.getByRole("link", { name: "History" }).click();
+  await expect(page.getByPlaceholder("Search exercises...")).toBeVisible();
+
+  await navigation.getByRole("link", { name: "Home" }).click();
+  await expect(page.getByText("Legs (Hypertrophy Focus)")).toBeVisible();
+});
+
 test("opens the directory and loads a selected workout route", async ({
   page,
 }) => {
@@ -104,6 +195,20 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
   await expect(firstExercise.locator(".weight-badge")).toContainText(
     "Test 135",
   );
+
+  await expect
+    .poll(async () => {
+      const toastBox = await page.locator(".toastify").boundingBox();
+      const navigationBox = await page
+        .getByTestId("bottom-navigation")
+        .boundingBox();
+      return (
+        toastBox !== null &&
+        navigationBox !== null &&
+        toastBox.y + toastBox.height <= navigationBox.y
+      );
+    })
+    .toBe(true);
 
   await page.goto("/#/history");
 
