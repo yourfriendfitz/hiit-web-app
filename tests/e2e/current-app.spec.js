@@ -80,6 +80,43 @@ async function freezeDateAndToast(page) {
   }, TEST_NOW);
 }
 
+async function seedWeightRecords(page, records) {
+  await page.goto("/");
+  await page.evaluate(async (seedRecords) => {
+    await new Promise((resolve, reject) => {
+      const request = indexedDB.open("hiit-app-db", 1);
+
+      request.onupgradeneeded = () => {
+        const db = request.result;
+        if (!db.objectStoreNames.contains("Weights")) {
+          const store = db.createObjectStore("Weights", {
+            autoIncrement: true,
+          });
+          store.createIndex("id", "id", { unique: false });
+          store.createIndex("date", "date", { unique: false });
+          store.createIndex("weight", "weight", { unique: false });
+        }
+      };
+
+      request.onerror = () => reject(request.error);
+
+      request.onsuccess = () => {
+        const db = request.result;
+        const tx = db.transaction("Weights", "readwrite");
+        const store = tx.objectStore("Weights");
+
+        seedRecords.forEach((record) => store.put(record));
+
+        tx.oncomplete = () => {
+          db.close();
+          resolve();
+        };
+        tx.onerror = () => reject(tx.error);
+      };
+    });
+  }, records);
+}
+
 test.beforeEach(async ({ page }) => {
   await freezeDateAndToast(page);
   await stubExternalAssets(page);
@@ -128,4 +165,91 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
 
   await expect(page.getByPlaceholder("Search exercises...")).toBeVisible();
   await expect(page.getByText(/Test 135/)).toBeVisible();
+});
+
+test("reads seeded history and filters it by exercise name", async ({
+  page,
+}) => {
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Legacy 95",
+      date: "2025-07-29T12:00:00.000Z",
+    },
+    {
+      id: "45inclinebarbellpress",
+      weight: "Legacy 105",
+      date: "2025-07-31T12:00:00.000Z",
+    },
+    {
+      id: "legextension",
+      weight: "Legacy 70",
+      date: "2025-07-30T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/workout?week=0&day=0");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await expect(firstExercise.locator(".weight-badge")).toContainText(
+    "Legacy 105",
+  );
+
+  await page.goto("/#/history");
+
+  const search = page.getByPlaceholder("Search exercises...");
+  await expect(page.getByText("Legacy 105")).toBeVisible();
+  await expect(page.getByText("Legacy 70")).toBeVisible();
+
+  await search.fill("Incline Barbell");
+
+  await expect(page.getByText("Legacy 105")).toBeVisible();
+  await expect(page.getByText("Legacy 70")).toBeHidden();
+});
+
+test("cleans up database update listeners across route transitions", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const listeners = new Set();
+    const addEventListener = window.addEventListener.bind(window);
+    const removeEventListener = window.removeEventListener.bind(window);
+
+    window.addEventListener = (type, listener, options) => {
+      if (type === "dbUpdated") {
+        listeners.add(listener);
+      }
+      addEventListener(type, listener, options);
+    };
+
+    window.removeEventListener = (type, listener, options) => {
+      if (type === "dbUpdated") {
+        listeners.delete(listener);
+      }
+      removeEventListener(type, listener, options);
+    };
+
+    window.getDbUpdatedListenerCount = () => listeners.size;
+  });
+
+  await page.goto("/#/workout?week=0&day=0");
+  await expect(page.locator(".exercise-card").first()).toBeVisible();
+  await expect
+    .poll(() => page.evaluate(() => window.getDbUpdatedListenerCount()))
+    .toBe(await page.locator(".exercise-card").count());
+
+  await page.goto("/#/history");
+  await expect(page.getByPlaceholder("Search exercises...")).toBeVisible();
+  await expect
+    .poll(() => page.evaluate(() => window.getDbUpdatedListenerCount()))
+    .toBe(1);
+
+  await page.goto("/#/directory");
+  await expect(
+    page.getByRole("heading", { name: "Week 1", exact: true }),
+  ).toBeVisible();
+  await expect
+    .poll(() => page.evaluate(() => window.getDbUpdatedListenerCount()))
+    .toBe(0);
 });
