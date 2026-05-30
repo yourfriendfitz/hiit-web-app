@@ -18,7 +18,8 @@ This is a web app meant to display HIIT workout program
 - **Workout Directory:** Browse workouts by week and day.
 - **Track Progress:** Log and view weights for each exercise.
 - **Offline Support:** Use the app even without an internet connection.
-- **Mobile-Friendly:** Installable as a PWA for easy access on iOS and Android.
+- **Mobile-First UI:** Use a reachable bottom navigation bar, compact workout rows, and phone-sized weight-entry controls during training.
+- **Installable PWA:** Install the app on iOS and Android for quick access.
 - **Toast Notifications:** Get notifications when actions, like saving weights, are completed.
 
 ### Prerequisites
@@ -124,6 +125,18 @@ If you encounter issues, ensure that:
 1. The service worker is correctly registered in the browser's DevTools under **Application > Service Workers**.
 2. You are accessing the app over HTTP or HTTPS, as service workers only work on secure origins.
 3. You reload once after the first online visit so the installed service worker controls the page.
+
+### UI Structure
+
+The mobile-first interface is organized under `src/components/`:
+
+- `app-frame.tsx`: route header, version footer, and fixed bottom navigation.
+- `workout.tsx`: exercise summaries, expanded programming details, set tracking, and free-text weight entry.
+- `directory.tsx`: week and workout-day navigation.
+- `history.tsx`: saved-weight search and grouped history.
+- `states.tsx`: loading, rest-day, and not-found states.
+
+Shared visual tokens and component classes live in `src/styles.css`.
 
 ### GitHub Pages Deployment
 

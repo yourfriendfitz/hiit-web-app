@@ -28,3 +28,12 @@
 - Use `npm run serve:preview` for authoritative offline and service-worker review.
 - Reload once after the first online visit so the installed service worker controls the page.
 - `npm run serve` remains the fast development path, not the production PWA verification path.
+
+## UI Ownership
+
+- `src/App.tsx` coordinates routes and data loading.
+- `src/components/app-frame.tsx` owns the route header and fixed bottom navigation.
+- `src/components/workout.tsx` owns exercise cards and weight entry.
+- `src/components/directory.tsx` and `src/components/history.tsx` own their route surfaces.
+- `src/styles.css` owns shared design tokens and stable component classes.
+- Preserve the `44px` minimum touch targets and iPhone safe-area padding when changing navigation or workout controls.
