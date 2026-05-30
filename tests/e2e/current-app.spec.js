@@ -120,7 +120,9 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
   await firstExercise.locator('input[id^="weight-"]').fill("Test 135");
   await firstExercise.getByRole("button", { name: "Save" }).click();
 
-  await expect(firstExercise.locator("last-weight")).toContainText("Test 135");
+  await expect(firstExercise.locator(".weight-badge")).toContainText(
+    "Test 135",
+  );
 
   await page.goto("/#/history");
 
