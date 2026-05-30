@@ -8,11 +8,14 @@
 - Run all checks with `docker run --rm hiit-web-app-checks`.
 - GitHub Pages hosting remains static; the container is only for local and CI tooling.
 
-## Milestone 1 Commands
+## Project Commands
 
-- Local static app: `npm run serve`
+- Local Vite app: `npm run serve`
+- Production build: `npm run build`
+- Production preview: `npm run preview`
 - Lint: `npm run lint`
 - Format check: `npm run format:check`
+- Typecheck: `npm run typecheck`
 - Unit tests: `npm run test`
 - E2E tests: `npm run test:e2e`
 - Full check: `npm run check`
