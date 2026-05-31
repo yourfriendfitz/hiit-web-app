@@ -62,6 +62,19 @@ async function seedWeightRecords(page, records) {
   }, records);
 }
 
+async function recordDirectoryScrollRequests(page) {
+  await page.addInitScript(() => {
+    window.directoryScrollRequests = [];
+    Element.prototype.scrollIntoView = function (options) {
+      window.directoryScrollRequests.push({
+        behavior: options?.behavior,
+        block: options?.block,
+        weekIndex: this.getAttribute("data-week-index"),
+      });
+    };
+  });
+}
+
 test.beforeEach(async ({ page }) => {
   await freezeDate(page);
 });
@@ -148,12 +161,6 @@ test("uses bottom navigation for directory, history, and home", async ({
     .poll(() => page.evaluate(() => window.routeResetCalls))
     .toBeGreaterThan(0);
 
-  if (browserName === "chromium") {
-    await expect
-      .poll(() => page.evaluate(() => document.scrollingElement.scrollTop))
-      .toBe(0);
-  }
-
   await expect(
     page.getByRole("heading", { name: "Week 1", exact: true }),
   ).toBeVisible();
@@ -175,13 +182,46 @@ test("opens the directory and loads a selected workout route", async ({
   ).toBeVisible();
   await expect(page.locator('a[href="#/workout?week=0&day=0"]')).toBeVisible();
 
-  // The current app has duplicate link handlers that can race on click.
-  // Milestone 1 captures the routable behavior without changing app source.
   await page.goto("/#/workout?week=0&day=0");
 
   await expect(
     page.locator("#appContent .exercise-card button").first(),
   ).toBeVisible();
+});
+
+test("positions the directory at the current week once and keeps workout links usable", async ({
+  page,
+}) => {
+  await recordDirectoryScrollRequests(page);
+  await page.goto("/#/directory");
+
+  await expect
+    .poll(() => page.evaluate(() => window.directoryScrollRequests))
+    .toEqual([{ behavior: "smooth", block: "start", weekIndex: "0" }]);
+  await expect(page.locator('[data-current-week="true"]')).toContainText(
+    "Current",
+  );
+
+  await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
+  await page.waitForTimeout(50);
+  expect(
+    await page.evaluate(() => window.directoryScrollRequests),
+  ).toHaveLength(1);
+
+  await page.locator('a[href="#/workout?week=0&day=0"]').click();
+  await expect(page.locator(".exercise-card").first()).toBeVisible();
+});
+
+test("uses immediate directory positioning when reduced motion is requested", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await recordDirectoryScrollRequests(page);
+  await page.goto("/#/directory");
+
+  await expect
+    .poll(() => page.evaluate(() => window.directoryScrollRequests))
+    .toEqual([{ behavior: "auto", block: "start", weekIndex: "0" }]);
 });
 
 test("saves a free-text weight and shows it in history", async ({ page }) => {
