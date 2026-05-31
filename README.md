@@ -162,9 +162,10 @@ Until that source switch is made, the production site continues using the legacy
 
 ### Releases
 
-Create a GitHub Release for accepted milestones after the production deployment is verified.
+Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final refactor cutover. The [rollback runbook](docs/releases/ROLLBACK.md) records the protected pre-refactor production baseline and recovery steps.
 
-- Tag milestone releases as `v0.1.0`, `v0.2.0`, and so on during the refactor.
+- Release the completed refactor as `v4.0.0`.
 - Include user-visible changes, migration notes, and known issues.
 - Verify install and update behavior manually in iPhone Safari before publishing a release.
-- Move to `v1.0.0` after feature parity, PWA update behavior, and the planned feature milestones are complete.
+- Switch the GitHub Pages source, merge into `main`, verify production, and change the default branch in separate owner-approved steps.
+- Keep `staging` available until a later owner-approved cleanup.

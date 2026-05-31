@@ -126,7 +126,7 @@ Recommended release flow:
 
 - Create GitHub Releases for completed milestones.
 - Tag milestone releases as `v0.1.0`, `v0.2.0`, and so on until the refactor is complete.
-- Move to `v1.0.0` when feature parity, PWA update behavior, and the two planned features are done.
+- Release the completed refactor as `v4.0.0` after feature parity, PWA update behavior, and the two planned features are done.
 - Each release should include user-visible changes, migration notes, and known issues.
 
 Decision:
@@ -481,7 +481,7 @@ Acceptance criteria:
 - Weight save still associates entries with the correct exercise IDs.
 - Feature works offline because it only uses bundled program data.
 
-### Milestone 8: Stabilization And v1.0.0 Release
+### Milestone 8: Stabilization And v4.0.0 Release
 
 Purpose:
 
@@ -502,7 +502,7 @@ Acceptance criteria:
 - Manual verification passes on iPhone Safari.
 - IndexedDB data survives upgrade testing.
 - Both new features are implemented.
-- GitHub Release `v1.0.0` is published.
+- GitHub Release `v4.0.0` is published.
 
 ## Rollback Strategy
 
@@ -527,6 +527,7 @@ For failed milestones:
 4. Automatic updates should prefer next-clean-load activation rather than immediate mid-session reload.
 5. File relocation for `data.json` is acceptable only if tests prove content and ordering are unchanged.
 6. A minimal dev/test container is deferred; add it only if it materially improves setup or CI parity.
+7. The completed refactor release is `v4.0.0`, preserving monotonic product numbering after the live `v3.0.4` baseline.
 
 ## References
 

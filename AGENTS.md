@@ -29,6 +29,13 @@
 - Reload once after the first online visit so the installed service worker controls the page.
 - `npm run serve` remains the fast development path, not the production PWA verification path.
 
+## Release Cutover
+
+- Follow `docs/releases/RELEASE-CHECKLIST.md` for production release work.
+- Follow `docs/releases/ROLLBACK.md` if production verification fails.
+- Keep Pages source changes, merges into `main`, default-branch changes, tags, releases, and remote rollback references behind separate explicit owner approvals.
+- Do not delete `staging` during the refactor cutover.
+
 ## UI Ownership
 
 - `src/App.tsx` coordinates routes and data loading.

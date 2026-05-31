@@ -86,7 +86,7 @@ test("loads the current workout on app launch", async ({ page }) => {
     page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
   ).toBeVisible();
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
-  await expect(page.locator("#versionIndicator")).toHaveText("v3.0.4");
+  await expect(page.locator("#versionIndicator")).toHaveText("v4.0.0");
 });
 
 test("adds and removes one recent missed workout from home", async ({
