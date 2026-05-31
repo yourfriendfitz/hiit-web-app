@@ -10,10 +10,10 @@ import {
   loadWorkoutProgram,
   mapExercisesById,
 } from "./data";
+import { getCurrentProgramWeek } from "./program-schedule";
 import { parseRoute } from "./routes";
 import {
   PROD_HOSTNAME,
-  PROGRAM_START_DATE,
   type ExerciseMetadata,
   type Route,
   type WorkoutProgram,
@@ -23,15 +23,6 @@ type AppData = {
   program: WorkoutProgram;
   exercises: ExerciseMetadata[];
 };
-
-function getCurrentWeek(startDate: Date) {
-  const today = new Date();
-  const daysSinceStart = Math.floor(
-    (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
-  );
-  const weeksSinceStart = Math.floor(daysSinceStart / 7);
-  return today < startDate ? 0 : weeksSinceStart;
-}
 
 function getWorkoutForToday(program: WorkoutProgram, currentWeek: number) {
   const today = new Date();
@@ -125,15 +116,16 @@ function App() {
   }
 
   const exerciseMap = mapExercisesById(data.exercises);
-  const currentWeek = getCurrentWeek(PROGRAM_START_DATE);
-  const today = getWorkoutForToday(data.program, currentWeek);
+  const currentWeek = getCurrentProgramWeek(data.program.length);
+  const today =
+    currentWeek === null ? null : getWorkoutForToday(data.program, currentWeek);
 
   let title = "Rest day";
   let subtitle: string | undefined;
   let content: ReactNode = <RestDay />;
 
   if (route.name === "home") {
-    if (today?.workout) {
+    if (currentWeek !== null && today?.workout) {
       title = today.workout.name;
       subtitle = `Week ${currentWeek + 1} / Day ${today.workoutDay}`;
       content = (
@@ -143,7 +135,7 @@ function App() {
   } else if (route.name === "directory") {
     title = "Workout directory";
     subtitle = "48-week training plan";
-    content = <Directory program={data.program} />;
+    content = <Directory currentWeek={currentWeek} program={data.program} />;
   } else if (route.name === "history") {
     title = "History";
     subtitle = "Saved working weights";

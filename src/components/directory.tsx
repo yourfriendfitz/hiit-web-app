@@ -1,4 +1,5 @@
 import { CalendarDays, ChevronRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 import { PROGRAM_START_DATE, type WorkoutProgram } from "../types";
 
@@ -12,19 +13,65 @@ function formatDate(date: Date) {
   });
 }
 
-export function Directory({ program }: { program: WorkoutProgram }) {
+type DirectoryProps = {
+  currentWeek: number | null;
+  program: WorkoutProgram;
+};
+
+export function Directory({ currentWeek, program }: DirectoryProps) {
+  const currentWeekSection = useRef<HTMLElement | null>(null);
+  const positionedCurrentWeek = useRef(false);
+
+  useEffect(() => {
+    if (positionedCurrentWeek.current || currentWeek === null) {
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      const section = currentWeekSection.current;
+
+      if (!section) {
+        return;
+      }
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      section.scrollIntoView({
+        behavior: reducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+      positionedCurrentWeek.current = true;
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [currentWeek]);
+
   return (
     <div className="directory-list">
       {program.map((week, weekIndex) => {
         const weekStartDate = new Date(PROGRAM_START_DATE);
         weekStartDate.setDate(PROGRAM_START_DATE.getDate() + weekIndex * 7);
+        const isCurrentWeek = weekIndex === currentWeek;
 
         return (
-          <section className="directory-week" key={weekIndex}>
+          <section
+            className="directory-week"
+            data-current-week={isCurrentWeek ? "true" : undefined}
+            data-week-index={weekIndex}
+            key={weekIndex}
+            ref={isCurrentWeek ? currentWeekSection : undefined}
+          >
             <header className="directory-week__header">
               <CalendarDays size={18} strokeWidth={2.25} aria-hidden="true" />
               <div>
-                <h2>Week {weekIndex + 1}</h2>
+                <div className="directory-week__title">
+                  <h2>Week {weekIndex + 1}</h2>
+                  {isCurrentWeek ? (
+                    <span className="directory-week__current">Current</span>
+                  ) : null}
+                </div>
                 <p>{formatDate(weekStartDate)}</p>
               </div>
             </header>
