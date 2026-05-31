@@ -26,7 +26,9 @@ async function prepareOfflineApp(page) {
   }, TEST_NOW);
 
   await page.goto("/");
-  await expect(page.getByText("Legs (Hypertrophy Focus)")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+  ).toBeVisible();
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
   await expect
@@ -44,7 +46,20 @@ test("loads core routes and saves a weight offline after the first visit", async
   await context.setOffline(true);
 
   await page.reload();
-  await expect(page.getByText("Legs (Hypertrophy Focus)")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Add missed workout" }).click();
+  await page.locator(".quick-add__option").first().click();
+  const addedWorkout = page.locator('[data-workout-instance^="missed-"]');
+  const addedExercise = addedWorkout.locator(".exercise-card").first();
+  await addedExercise.locator("button").first().click();
+  await addedExercise.locator('input[id^="weight-"]').fill("Offline added 125");
+  await addedExercise.getByRole("button", { name: "Save" }).click();
+  await expect(addedExercise.locator(".weight-badge")).toContainText(
+    "Offline added 125",
+  );
 
   await page.goto("/#/directory");
   await expect(
@@ -62,4 +77,5 @@ test("loads core routes and saves a weight offline after the first visit", async
 
   await page.goto("/#/history");
   await expect(page.getByText(/Offline 145/)).toBeVisible();
+  await expect(page.getByText(/Offline added 125/)).toBeVisible();
 });

@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { AppFrame } from "./components/app-frame";
 import { Directory } from "./components/directory";
+import { HomeWorkout } from "./components/home-workout";
 import { HistoryPage } from "./components/history";
 import { Loader, NotFound, RestDay } from "./components/states";
 import { WorkoutView } from "./components/workout";
@@ -10,7 +11,10 @@ import {
   loadWorkoutProgram,
   mapExercisesById,
 } from "./data";
-import { getCurrentProgramWeek } from "./program-schedule";
+import {
+  getCurrentProgramWeek,
+  getRecentProgramWorkouts,
+} from "./program-schedule";
 import { parseRoute } from "./routes";
 import {
   PROD_HOSTNAME,
@@ -129,7 +133,12 @@ function App() {
       title = today.workout.name;
       subtitle = `Week ${currentWeek + 1} / Day ${today.workoutDay}`;
       content = (
-        <WorkoutView workout={today.workout} exerciseMap={exerciseMap} />
+        <HomeWorkout
+          currentWeek={currentWeek}
+          exerciseMap={exerciseMap}
+          recentWorkouts={getRecentProgramWorkouts(data.program)}
+          today={today}
+        />
       );
     }
   } else if (route.name === "directory") {
@@ -145,7 +154,13 @@ function App() {
     if (workout) {
       title = workout.name;
       subtitle = `Week ${route.week + 1} / Day ${route.day + 1}`;
-      content = <WorkoutView workout={workout} exerciseMap={exerciseMap} />;
+      content = (
+        <WorkoutView
+          workout={workout}
+          exerciseMap={exerciseMap}
+          instanceId={`route-${route.week}-${route.day}`}
+        />
+      );
     } else {
       title = "Workout not found";
       content = <NotFound />;

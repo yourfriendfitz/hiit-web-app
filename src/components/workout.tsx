@@ -96,13 +96,13 @@ function Metric({
 
 function WeightLogger({
   exercise,
-  index,
+  exerciseInstanceId,
 }: {
   exercise: ExerciseProgramming;
-  index: number;
+  exerciseInstanceId: string;
 }) {
   const [weight, setWeight] = useState("");
-  const weightInputId = `weight-${exercise.id}-${index}`;
+  const weightInputId = `weight-${exerciseInstanceId}`;
 
   useEffect(
     () => () => pwaUpdatePolicy.clearInput(weightInputId),
@@ -124,17 +124,17 @@ function WeightLogger({
   return (
     <section
       className="weight-logger"
-      aria-labelledby={`log-weight-${exercise.id}-${index}`}
+      aria-labelledby={`log-weight-${exerciseInstanceId}`}
     >
       <div className="section-heading">
         <p className="section-heading__eyebrow">Training log</p>
-        <h3 id={`log-weight-${exercise.id}-${index}`}>Log weight</h3>
+        <h3 id={`log-weight-${exerciseInstanceId}`}>Log weight</h3>
       </div>
       <div className="weight-logger__controls">
         <input
           type="text"
           inputMode="decimal"
-          id={`weight-${exercise.id}`}
+          id={weightInputId}
           placeholder="Enter weight, e.g. 135 lbs"
           value={weight}
           onChange={(event) => {
@@ -155,11 +155,11 @@ function WeightLogger({
 function ExerciseDetails({
   exercise,
   exerciseDetails,
-  index,
+  exerciseInstanceId,
 }: {
   exercise: ExerciseProgramming;
   exerciseDetails?: ExerciseMetadata;
-  index: number;
+  exerciseInstanceId: string;
 }) {
   const { videoId, timestamp } = extractYouTubeVideoId(
     exerciseDetails?.link || "",
@@ -242,7 +242,10 @@ function ExerciseDetails({
         </div>
       </section>
 
-      <WeightLogger exercise={exercise} index={index} />
+      <WeightLogger
+        exercise={exercise}
+        exerciseInstanceId={exerciseInstanceId}
+      />
     </div>
   );
 }
@@ -250,23 +253,29 @@ function ExerciseDetails({
 function ExerciseCard({
   exercise,
   exerciseDetails,
+  instanceId,
   index,
 }: {
   exercise: ExerciseProgramming;
   exerciseDetails?: ExerciseMetadata;
+  instanceId: string;
   index: number;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const exerciseInstanceId = `${instanceId}-${exercise.id}-${index}`;
   const exerciseName =
     exerciseDetails?.name || exercise.name || "Unnamed exercise";
 
   return (
-    <section className={`exercise-card ${isOpen ? "is-open" : ""}`}>
+    <section
+      className={`exercise-card ${isOpen ? "is-open" : ""}`}
+      data-exercise-id={exercise.id}
+    >
       <button
         type="button"
         className="exercise-card__toggle"
         aria-expanded={isOpen}
-        aria-controls={`content-${exercise.id}`}
+        aria-controls={`content-${exerciseInstanceId}`}
         onClick={() => setIsOpen((current) => !current)}
       >
         <span className="exercise-card__number">{index + 1}</span>
@@ -290,13 +299,13 @@ function ExerciseCard({
       </button>
 
       <div
-        id={`content-${exercise.id}`}
+        id={`content-${exerciseInstanceId}`}
         className={`accordion-content ${isOpen ? "open" : ""}`}
       >
         <ExerciseDetails
           exercise={exercise}
           exerciseDetails={exerciseDetails}
-          index={index}
+          exerciseInstanceId={exerciseInstanceId}
         />
       </div>
     </section>
@@ -305,18 +314,21 @@ function ExerciseCard({
 
 export function WorkoutView({
   exerciseMap,
+  instanceId,
   workout,
 }: {
   exerciseMap: Record<string, ExerciseMetadata>;
+  instanceId: string;
   workout: Workout;
 }) {
   return (
-    <div id="workoutList" className="workout-list">
+    <div id={`workout-${instanceId}`} className="workout-list">
       {workout.exercises.map((exercise, index) => (
         <ExerciseCard
-          key={`${exercise.id}-${index}`}
+          key={`${instanceId}-${exercise.id}-${index}`}
           exercise={exercise}
           exerciseDetails={exerciseMap[exercise.id]}
+          instanceId={instanceId}
           index={index}
         />
       ))}

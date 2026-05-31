@@ -33,8 +33,9 @@
 
 - `src/App.tsx` coordinates routes and data loading.
 - `src/components/app-frame.tsx` owns the route header and fixed bottom navigation.
+- `src/components/home-workout.tsx` owns Home-only current and missed-workout composition.
 - `src/components/workout.tsx` owns exercise cards and weight entry.
 - `src/components/directory.tsx` and `src/components/history.tsx` own their route surfaces.
-- `src/program-schedule.ts` owns calendar-safe current-week calculations.
+- `src/program-schedule.ts` owns calendar-safe current-week and recent-workout calculations.
 - `src/styles.css` owns shared design tokens and stable component classes.
 - Preserve the `44px` minimum touch targets and iPhone safe-area padding when changing navigation or workout controls.

@@ -20,6 +20,7 @@ This is a web app meant to display HIIT workout program
 - **Offline Support:** Use the app even without an internet connection.
 - **Mobile-First UI:** Use a reachable bottom navigation bar, compact workout rows, and phone-sized weight-entry controls during training.
 - **Easy Scroll:** Open the workout directory near the current training week while keeping the full plan browsable.
+- **Multi Workout:** Add one scheduled workout missed in the previous two calendar days to today's Home session.
 - **Installable PWA:** Install the app on iOS and Android for quick access.
 - **Toast Notifications:** Get notifications when actions, like saving weights, are completed.
 
@@ -132,12 +133,13 @@ If you encounter issues, ensure that:
 The mobile-first interface is organized under `src/components/`:
 
 - `app-frame.tsx`: route header, version footer, and fixed bottom navigation.
+- `home-workout.tsx`: Home-only current-workout and recent missed-workout composition.
 - `workout.tsx`: exercise summaries, expanded programming details, set tracking, and free-text weight entry.
 - `directory.tsx`: week and workout-day navigation with one-time current-week positioning.
 - `history.tsx`: saved-weight search and grouped history.
 - `states.tsx`: loading, rest-day, and not-found states.
 
-Shared visual tokens and component classes live in `src/styles.css`. Calendar-safe current-week arithmetic lives in `src/program-schedule.ts`.
+Shared visual tokens and component classes live in `src/styles.css`. Calendar-safe current-week and recent-workout arithmetic lives in `src/program-schedule.ts`.
 
 ### GitHub Pages Deployment
 

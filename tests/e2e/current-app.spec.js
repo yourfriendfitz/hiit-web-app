@@ -82,15 +82,107 @@ test.beforeEach(async ({ page }) => {
 test("loads the current workout on app launch", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByText("Legs (Hypertrophy Focus)")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+  ).toBeVisible();
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
   await expect(page.locator("#versionIndicator")).toHaveText("v3.0.4");
+});
+
+test("adds and removes one recent missed workout from home", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  await expect(page.getByTestId("workout-section")).toHaveCount(1);
+  await page.getByRole("button", { name: "Add missed workout" }).click();
+
+  const quickAddOptions = page.locator(".quick-add__option");
+  await expect(quickAddOptions).toHaveCount(2);
+  await expect(quickAddOptions.first()).toContainText("Thu, Jul 31");
+  await quickAddOptions.first().click();
+
+  const workoutSections = page.getByTestId("workout-section");
+  await expect(workoutSections).toHaveCount(2);
+  await expect(workoutSections.first()).toContainText("Today");
+  await expect(workoutSections.nth(1)).toContainText("Added missed workout");
+  await expect(
+    page.getByRole("button", { name: "Add missed workout" }),
+  ).toHaveCount(0);
+
+  expect(
+    await page.evaluate(() => {
+      const ids = [...document.querySelectorAll("[id]")].map(
+        (element) => element.id,
+      );
+      return new Set(ids).size === ids.length;
+    }),
+  ).toBe(true);
+
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+
+  await workoutSections
+    .nth(1)
+    .getByRole("button", { name: /^Remove / })
+    .click();
+  await expect(workoutSections).toHaveCount(1);
+  await expect(
+    page.getByRole("button", { name: "Add missed workout" }),
+  ).toBeVisible();
+});
+
+test("stores a missed-workout weight with its authored exercise id", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Add missed workout" }).click();
+  await page.locator(".quick-add__option").first().click();
+
+  const addedWorkout = page.locator('[data-workout-instance^="missed-"]');
+  const firstExercise = addedWorkout.locator(".exercise-card").first();
+  const exerciseId = await firstExercise.getAttribute("data-exercise-id");
+  await firstExercise.locator("button").first().click();
+  await firstExercise.locator('input[id^="weight-"]').fill("Added 155");
+  await firstExercise.getByRole("button", { name: "Save" }).click();
+
+  await expect(firstExercise.locator(".weight-badge")).toContainText(
+    "Added 155",
+  );
+  await expect
+    .poll(() =>
+      page.evaluate(async () => {
+        const db = await new Promise((resolve, reject) => {
+          const request = indexedDB.open("hiit-app-db", 1);
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+        const tx = db.transaction("Weights", "readonly");
+        const request = tx.objectStore("Weights").getAll();
+        const records = await new Promise((resolve, reject) => {
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+        db.close();
+        return records.at(-1)?.id;
+      }),
+    )
+    .toBe(exerciseId);
+
+  await page.goto("/#/history");
+  await expect(page.getByText(/Added 155/)).toBeVisible();
 });
 
 test("renders one-handed navigation and scannable workout summaries", async ({
   page,
 }) => {
   await page.goto("/#/workout?week=0&day=0");
+  await expect(
+    page.getByRole("button", { name: "Add missed workout" }),
+  ).toHaveCount(0);
 
   const navigation = page.getByTestId("bottom-navigation");
   await expect(navigation).toBeVisible();
@@ -169,7 +261,9 @@ test("uses bottom navigation for directory, history, and home", async ({
   await expect(page.getByPlaceholder("Search exercises...")).toBeVisible();
 
   await navigation.getByRole("link", { name: "Home" }).click();
-  await expect(page.getByText("Legs (Hypertrophy Focus)")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+  ).toBeVisible();
 });
 
 test("opens the directory and loads a selected workout route", async ({

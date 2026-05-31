@@ -201,6 +201,116 @@ button {
   text-align: center;
 }
 
+.home-workout,
+.workout-section,
+.quick-add {
+  display: grid;
+}
+
+.home-workout {
+  gap: 22px;
+}
+
+.workout-section {
+  gap: 10px;
+}
+
+.workout-section + .workout-section {
+  border-top: 1px solid var(--app-border);
+  padding-top: 20px;
+}
+
+.workout-section__header {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.workout-section__header h2 {
+  margin: 3px 0 0;
+  color: var(--app-text);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.workout-section__meta {
+  margin: 3px 0 0;
+  color: var(--app-text-muted);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.workout-section__remove {
+  flex: 0 0 auto;
+}
+
+.quick-add {
+  gap: 8px;
+}
+
+.quick-add__toggle {
+  width: 100%;
+}
+
+.quick-add__toggle span {
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+.quick-add__chevron {
+  transition: transform 160ms ease;
+}
+
+.quick-add__chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.quick-add__options {
+  display: grid;
+  gap: 6px;
+}
+
+.quick-add__option {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  background: var(--app-surface);
+  color: var(--app-text);
+  padding: 9px 12px;
+  text-align: left;
+}
+
+.quick-add__option span {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.quick-add__date {
+  color: var(--app-text-subdued);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.quick-add__option strong {
+  overflow-wrap: anywhere;
+  font-size: 0.84rem;
+  line-height: 1.3;
+}
+
+.quick-add__option svg {
+  flex: 0 0 auto;
+  color: var(--app-primary);
+}
+
 .workout-list,
 .directory-list {
   display: grid;
