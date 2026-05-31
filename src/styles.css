@@ -549,6 +549,7 @@ input::placeholder {
 .directory-week {
   display: grid;
   gap: 9px;
+  scroll-margin-top: 18px;
 }
 
 .directory-week__header {
@@ -563,6 +564,24 @@ input::placeholder {
   color: var(--app-text);
   font-size: 0.95rem;
   font-weight: 780;
+}
+
+.directory-week__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.directory-week__current {
+  border: 1px solid rgb(69 212 131 / 30%);
+  border-radius: 999px;
+  background: rgb(69 212 131 / 8%);
+  color: var(--app-primary);
+  padding: 2px 5px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .directory-week__header p {
