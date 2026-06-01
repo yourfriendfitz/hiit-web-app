@@ -77,7 +77,7 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [x] Create tag `pre-refactor-3.0.4` and branch `rollback/pre-refactor-3.0.4` from the approved baseline.
 - [x] Push the reviewed release-candidate branch.
 - [x] Open the approved pull request into `main`.
-- [ ] Confirm pull-request checks pass.
+- [x] Confirm pull-request checks pass.
 - [ ] Change **Settings > Pages > Build and deployment > Source** to **GitHub Actions**.
 - [ ] Merge the approved pull request into `main`.
 - [ ] Confirm the `CI` checks, Pages artifact build, and `github-pages` deployment succeed.
