@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const TEST_NOW = "2025-08-01T12:00:00-05:00";
+const TEST_NOW = "2025-08-04T12:00:00-05:00";
 
 async function freezeDate(page) {
   await page.addInitScript((nowIso) => {
@@ -101,7 +101,7 @@ test("loads the current workout on app launch", async ({ page }) => {
   await page.goto("/");
 
   await expect(
-    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+    page.getByRole("heading", { name: "Upper (Strength Focus)", level: 1 }),
   ).toBeVisible();
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
   await expect(page.locator("#versionIndicator")).toHaveText("v4.0.0");
@@ -117,7 +117,8 @@ test("adds and removes one recent missed workout from home", async ({
 
   const quickAddOptions = page.locator(".quick-add__option");
   await expect(quickAddOptions).toHaveCount(2);
-  await expect(quickAddOptions.first()).toContainText("Thu, Jul 31");
+  await expect(quickAddOptions.first()).toContainText("Fri, Aug 1");
+  await expect(quickAddOptions.nth(1)).toContainText("Thu, Jul 31");
   await quickAddOptions.first().click();
 
   const workoutSections = page.getByTestId("workout-section");
@@ -264,7 +265,7 @@ test("uses bottom navigation for directory, history, and home", async ({
 
   await navigation.getByRole("link", { name: "Home" }).click();
   await expect(
-    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+    page.getByRole("heading", { name: "Upper (Strength Focus)", level: 1 }),
   ).toBeVisible();
 });
 
@@ -293,7 +294,7 @@ test("positions the directory at the current week once and keeps workout links u
 
   await expect
     .poll(() => page.evaluate(() => window.directoryScrollRequests))
-    .toEqual([{ behavior: "smooth", block: "start", weekIndex: "0" }]);
+    .toEqual([{ behavior: "smooth", block: "start", weekIndex: "1" }]);
   await expect(page.locator('[data-current-week="true"]')).toContainText(
     "Current",
   );
@@ -317,7 +318,7 @@ test("uses immediate directory positioning when reduced motion is requested", as
 
   await expect
     .poll(() => page.evaluate(() => window.directoryScrollRequests))
-    .toEqual([{ behavior: "auto", block: "start", weekIndex: "0" }]);
+    .toEqual([{ behavior: "auto", block: "start", weekIndex: "1" }]);
 });
 
 test("saves a free-text weight and shows it in history", async ({ page }) => {

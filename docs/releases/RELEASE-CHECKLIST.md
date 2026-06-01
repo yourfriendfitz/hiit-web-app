@@ -46,7 +46,7 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [ ] Serve the production preview and confirm `/`, `/sw.js`, and `/manifest.webmanifest` return `200`.
 - [ ] Confirm Home, Directory, History, direct workout, rest-day, and not-found states.
 - [ ] Confirm Easy Scroll positions Directory near the current week once and still allows manual browsing.
-- [ ] Confirm Multi Workout add, save, History, and remove behavior on an eligible mocked weekday.
+- [ ] Confirm Multi Workout offers the previous two scheduled workouts across rest days and supports add, save, History, and remove behavior.
 - [ ] Confirm no phone viewport has horizontal overflow or fixed-navigation overlap.
 
 ## Storage Upgrade

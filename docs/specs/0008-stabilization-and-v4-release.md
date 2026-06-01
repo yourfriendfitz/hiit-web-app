@@ -88,7 +88,7 @@ The remote repository currently keeps `staging` as its default branch and publis
   - Home loads the correct scheduled workout.
   - Directory positions near the current week and remains freely scrollable.
   - History search and grouped entries remain usable.
-  - Multi Workout shows eligible prior-day options on a scheduled weekday.
+  - Multi Workout shows the previous two scheduled workouts while skipping rest days.
   - A missed workout can be added, used for weight entry, and removed.
 - Verify PWA behavior:
   - Install or open the app from iPhone Safari.

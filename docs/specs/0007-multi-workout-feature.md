@@ -17,13 +17,13 @@ Related ADRs:
 
 ## Summary
 
-Add a compact quick-add workflow to the Home workout screen so a user who missed a recent workout can include it in the current training session. Limit options to scheduled workouts from the previous two calendar days, render the current workout first, and render one selected missed workout as a clearly labeled second section.
+Add a compact quick-add workflow to the Home workout screen so a user who missed a recent workout can include it in the current training session. Limit options to the previous two scheduled workouts while skipping rest days, render the current workout first, and render one selected missed workout as a clearly labeled second section.
 
 The feature must remain local-only and offline-capable. It should compose existing bundled workout data without changing the workout program, IndexedDB schema, saved record shape, directory routes, or history behavior.
 
 ## Goals
 
-- Let users add one eligible missed workout from the previous two calendar days to today's Home workout screen.
+- Let users add one eligible missed workout from the previous two scheduled workouts to today's Home workout screen.
 - Keep the current workout visible first and clearly distinguish the optional added workout.
 - Make quick-add and remove actions obvious on a narrow phone viewport.
 - Limit the choice set to recent scheduled workouts so the workflow stays fast and intentional.
@@ -53,13 +53,13 @@ The feature must remain local-only and offline-capable. It should compose existi
   - The bundled workout program.
   - The fixed `PROGRAM_START_DATE`.
   - A supplied current date for deterministic tests.
-  - A maximum lookback of the previous two calendar days.
+  - A maximum result count of the previous two scheduled workouts.
 - Use local calendar-day arithmetic so daylight-saving changes do not shift schedule coordinates.
 - Include only valid scheduled workout days from the program:
   - Monday through Friday workout entries may be offered.
-  - Weekend days without bundled workouts are skipped.
+  - Weekend days and other dates without bundled workouts are skipped without consuming an option slot.
   - Dates before the program starts are skipped.
-  - Dates after the final authored workout week are skipped rather than clamped.
+  - Dates after the final authored workout week are skipped while scanning backward rather than clamped into duplicate options.
 - Preserve chronological context in each option:
   - Zero-based week and day indexes for lookup.
   - Workout name.
@@ -121,7 +121,7 @@ Users continue logging weights in the same free-text format. Saved entries remai
 
 ## Architecture Impact
 
-`src/program-schedule.ts` should own previous-calendar-day schedule resolution so date arithmetic remains testable and DST-safe.
+`src/program-schedule.ts` should own previous-scheduled-workout resolution so date arithmetic remains testable and DST-safe.
 
 `src/App.tsx` should own the transient Home selection because it composes route-level workout sections. The selection should reset naturally when the Home route unmounts or the page reloads.
 
@@ -166,8 +166,8 @@ Dirty-input protection must continue covering every visible weight field. An uns
 ## Acceptance Criteria
 
 - On a scheduled Home workout day with eligible recent workouts, the UI exposes an `Add missed workout` affordance.
-- Quick-add options contain only valid scheduled workouts from the previous two calendar days.
-- Weekend, pre-program, and post-program candidate dates are skipped.
+- Quick-add options contain only the previous two valid scheduled workouts, skipping rest days.
+- Weekend, pre-program, and post-program candidate dates are skipped while resolving authored workouts.
 - Users can select one eligible workout.
 - Today's workout remains visible first.
 - The selected missed workout renders as a clearly labeled second section.
@@ -188,7 +188,7 @@ Dirty-input protection must continue covering every visible weight field. An uns
 - Unit test: recent-workout resolution crosses a week boundary correctly.
 - Unit test: recent-workout resolution skips weekend days.
 - Unit test: recent-workout resolution skips dates before program start.
-- Unit test: recent-workout resolution skips dates after the authored program range rather than clamping.
+- Unit test: recent-workout resolution scans past dates after the authored program range without clamping duplicate options.
 - Playwright: Home shows eligible quick-add options for a mocked weekday.
 - Playwright: selecting an option keeps Today first and renders the added missed workout second.
 - Playwright: Remove returns Home to a single workout section.
@@ -205,8 +205,8 @@ Dirty-input protection must continue covering every visible weight field. An uns
 
 - Open the Docker production preview with a mocked scheduled weekday or during a weekday workout.
 - Confirm Home still shows today's workout first.
-- Open `Add missed workout` and inspect the available previous-day options.
-- Confirm no option is older than two calendar days.
+- Open `Add missed workout` and inspect the available previous-workout options.
+- Confirm rest days do not consume either of the two quick-add option slots.
 - Select one option and confirm its workout appears as a second labeled section.
 - Expand and collapse exercises in both sections.
 - Save a free-text weight from the added workout and confirm Last Weight and History update.
@@ -227,7 +227,7 @@ Revert the recent-workout schedule helper, Home quick-add composition, repeated-
 
 ## Decision Log
 
-- Limit quick-add eligibility to scheduled workouts from the previous two calendar days.
+- Supersedes the initial calendar-day window: limit quick-add eligibility to the previous two scheduled workouts and skip rest days.
 - Allow one added missed workout at a time.
 - Keep today's workout first and render the selected missed workout second.
 - Expose quick-add only on Home when today's workout exists; Directory workout routes stay single-workout views.

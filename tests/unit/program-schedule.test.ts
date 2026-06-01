@@ -104,21 +104,38 @@ describe("getRecentProgramWorkouts", () => {
       startDate,
     );
 
-    expect(recentWorkouts.map(({ key }) => key)).toEqual(["1-0"]);
+    expect(recentWorkouts.map(({ key }) => key)).toEqual(["1-0", "0-4"]);
   });
 
-  it("returns no options when both candidate days are unscheduled", () => {
+  it("returns the previous two workouts when a weekend separates them from Monday", () => {
+    const recentWorkouts = getRecentProgramWorkouts(
+      program,
+      new Date("2025-08-04T12:00:00-05:00"),
+      2,
+      startDate,
+    );
+
     expect(
-      getRecentProgramWorkouts(
-        program,
-        new Date("2025-08-04T12:00:00-05:00"),
-        2,
-        startDate,
-      ),
-    ).toEqual([]);
+      recentWorkouts.map(({ date, key, workout }) => ({
+        date: date.toISOString(),
+        key,
+        name: workout.name,
+      })),
+    ).toEqual([
+      {
+        date: "2025-08-01T17:00:00.000Z",
+        key: "0-4",
+        name: "Week 1 Day 5",
+      },
+      {
+        date: "2025-07-31T17:00:00.000Z",
+        key: "0-3",
+        name: "Week 1 Day 4",
+      },
+    ]);
   });
 
-  it("does not clamp candidate dates before or after the authored program", () => {
+  it("does not clamp candidate dates before the authored program", () => {
     expect(
       getRecentProgramWorkouts(
         program,
@@ -127,7 +144,9 @@ describe("getRecentProgramWorkouts", () => {
         startDate,
       ),
     ).toEqual([]);
+  });
 
+  it("returns the final authored workouts after the program range", () => {
     expect(
       getRecentProgramWorkouts(
         [makeWeek("Week 1")],
@@ -135,6 +154,9 @@ describe("getRecentProgramWorkouts", () => {
         2,
         startDate,
       ),
-    ).toEqual([]);
+    ).toMatchObject([
+      { key: "0-4", workout: { name: "Week 1 Day 5" } },
+      { key: "0-3", workout: { name: "Week 1 Day 4" } },
+    ]);
   });
 });

@@ -20,7 +20,7 @@ This is a web app meant to display HIIT workout program
 - **Offline Support:** Use the app even without an internet connection.
 - **Mobile-First UI:** Use a reachable bottom navigation bar, compact workout rows, and phone-sized weight-entry controls during training.
 - **Easy Scroll:** Open the workout directory near the current training week while keeping the full plan browsable.
-- **Multi Workout:** Add one scheduled workout missed in the previous two calendar days to today's Home session.
+- **Multi Workout:** Add one of the previous two scheduled workouts to today's Home session. Rest days are skipped.
 - **Installable PWA:** Install the app on iOS and Android for quick access.
 - **Toast Notifications:** Get notifications when actions, like saving weights, are completed.
 

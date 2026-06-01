@@ -58,7 +58,7 @@ Known baseline issues to account for:
 - Improve offline reliability without trapping users on stale versions.
 - Add two planned features after refactor safety is in place:
   - Easy Scroll: auto-scroll the week directory to the current week.
-  - Multi Workout: add a previous workout from the last two days to today's workout screen.
+  - Multi Workout: add one of the previous two scheduled workouts to today's workout screen.
 
 ## Non-Goals
 
@@ -470,7 +470,7 @@ Allow users who missed a workout to add a recent previous workout to today's wor
 Scope:
 
 - Add a UX affordance on the current workout screen.
-- Limit quick-add options to workouts from the previous two days.
+- Limit quick-add options to the previous two scheduled workouts, skipping rest days.
 - Show both the current workout and selected target workout.
 - Preserve independent weight entry per exercise.
 

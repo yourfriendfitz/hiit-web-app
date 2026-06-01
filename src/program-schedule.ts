@@ -37,15 +37,15 @@ export function getCurrentProgramWeek(
 export function getRecentProgramWorkouts(
   program: WorkoutProgram,
   now = new Date(),
-  lookbackDays = 2,
+  maximumWorkouts = 2,
   startDate = PROGRAM_START_DATE,
 ) {
   const recentWorkouts: RecentProgramWorkout[] = [];
-  const availableLookbackDays = Math.max(0, Math.floor(lookbackDays));
+  const availableWorkoutSlots = Math.max(0, Math.floor(maximumWorkouts));
+  const date = new Date(now);
 
-  for (let daysAgo = 1; daysAgo <= availableLookbackDays; daysAgo += 1) {
-    const date = new Date(now);
-    date.setDate(date.getDate() - daysAgo);
+  while (recentWorkouts.length < availableWorkoutSlots) {
+    date.setDate(date.getDate() - 1);
 
     const daysSinceStart = Math.floor(
       (getLocalCalendarDay(date) - getLocalCalendarDay(startDate)) /
@@ -53,7 +53,7 @@ export function getRecentProgramWorkouts(
     );
 
     if (daysSinceStart < 0) {
-      continue;
+      break;
     }
 
     const week = Math.floor(daysSinceStart / 7);
@@ -65,7 +65,7 @@ export function getRecentProgramWorkouts(
     }
 
     recentWorkouts.push({
-      date,
+      date: new Date(date),
       day,
       key: `${week}-${day}`,
       week,

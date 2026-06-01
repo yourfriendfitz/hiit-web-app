@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const TEST_NOW = "2025-08-01T12:00:00-05:00";
+const TEST_NOW = "2025-08-04T12:00:00-05:00";
 
 async function prepareOfflineApp(page) {
   await page.addInitScript((nowIso) => {
@@ -27,7 +27,7 @@ async function prepareOfflineApp(page) {
 
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+    page.getByRole("heading", { name: "Upper (Strength Focus)", level: 1 }),
   ).toBeVisible();
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
@@ -47,7 +47,7 @@ test("loads core routes and saves a weight offline after the first visit", async
 
   await page.reload();
   await expect(
-    page.getByRole("heading", { name: "Legs (Hypertrophy Focus)", level: 1 }),
+    page.getByRole("heading", { name: "Upper (Strength Focus)", level: 1 }),
   ).toBeVisible();
 
   await page.getByRole("button", { name: "Add missed workout" }).click();
