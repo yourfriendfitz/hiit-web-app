@@ -114,7 +114,9 @@ function WeightLogger({
       return;
     }
 
-    const weightWithDetails = `${weight} [Sets: ${exercise.workingSets}, Reps: ${exercise.repsOrDuration}, Early RPE: ${exercise.earlyRpe}, Last RPE: ${exercise.lastRpe}]`;
+    const earlyRpe = exercise.earlyRpe ?? "N/A";
+    const lastRpe = exercise.lastRpe ?? "N/A";
+    const weightWithDetails = `${weight} [Sets: ${exercise.workingSets}, Reps: ${exercise.repsOrDuration}, Early RPE: ${earlyRpe}, Last RPE: ${lastRpe}]`;
     await storeWeight(exercise.id, weightWithDetails);
     showSavedToast();
     setWeight("");
@@ -175,12 +177,12 @@ function ExerciseDetails({
         <Metric label="Rest" value={exercise.rest} />
         <Metric
           label="Early RPE"
-          value={exercise.earlyRpe || "N/A"}
+          value={exercise.earlyRpe ?? "N/A"}
           tone="accent"
         />
         <Metric
           label="Last RPE"
-          value={exercise.lastRpe || "N/A"}
+          value={exercise.lastRpe ?? "N/A"}
           tone="primary"
         />
       </div>

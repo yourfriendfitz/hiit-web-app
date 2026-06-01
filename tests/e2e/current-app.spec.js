@@ -62,6 +62,24 @@ async function seedWeightRecords(page, records) {
   }, records);
 }
 
+async function getLastWeightRecord(page) {
+  return page.evaluate(async () => {
+    const db = await new Promise((resolve, reject) => {
+      const request = indexedDB.open("hiit-app-db", 1);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    const tx = db.transaction("Weights", "readonly");
+    const request = tx.objectStore("Weights").getAll();
+    const records = await new Promise((resolve, reject) => {
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    db.close();
+    return records.at(-1);
+  });
+}
+
 async function recordDirectoryScrollRequests(page) {
   await page.addInitScript(() => {
     window.directoryScrollRequests = [];
@@ -153,23 +171,7 @@ test("stores a missed-workout weight with its authored exercise id", async ({
     "Added 155",
   );
   await expect
-    .poll(() =>
-      page.evaluate(async () => {
-        const db = await new Promise((resolve, reject) => {
-          const request = indexedDB.open("hiit-app-db", 1);
-          request.onsuccess = () => resolve(request.result);
-          request.onerror = () => reject(request.error);
-        });
-        const tx = db.transaction("Weights", "readonly");
-        const request = tx.objectStore("Weights").getAll();
-        const records = await new Promise((resolve, reject) => {
-          request.onsuccess = () => resolve(request.result);
-          request.onerror = () => reject(request.error);
-        });
-        db.close();
-        return records.at(-1)?.id;
-      }),
-    )
+    .poll(() => getLastWeightRecord(page).then((record) => record?.id))
     .toBe(exerciseId);
 
   await page.goto("/#/history");
@@ -350,6 +352,30 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
   await expect(page.getByText(/Test 135/)).toBeVisible();
 });
 
+test("stores stable context when optional RPE fields are absent", async ({
+  page,
+}) => {
+  await page.route("**/data.json", async (route) => {
+    const response = await route.fetch();
+    const data = await response.json();
+    delete data[0][0].exercises[0].earlyRpe;
+    delete data[0][0].exercises[0].lastRpe;
+    await route.fulfill({ response, json: data });
+  });
+
+  await page.goto("/#/workout?week=0&day=0");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await expect(firstExercise.getByText("N/A", { exact: true })).toHaveCount(2);
+  await firstExercise.locator('input[id^="weight-"]').fill("Fallback 145");
+  await firstExercise.getByRole("button", { name: "Save" }).click();
+
+  await expect
+    .poll(() => getLastWeightRecord(page).then((record) => record?.weight))
+    .toBe("Fallback 145 [Sets: 2, Reps: 6, Early RPE: N/A, Last RPE: N/A]");
+});
+
 test("reads seeded history and filters it by exercise name", async ({
   page,
 }) => {
@@ -369,6 +395,11 @@ test("reads seeded history and filters it by exercise name", async ({
       weight: "Legacy 70",
       date: "2025-07-30T12:00:00.000Z",
     },
+    {
+      id: "retiredexercise",
+      weight: "Legacy unknown 50",
+      date: "2025-07-28T12:00:00.000Z",
+    },
   ]);
 
   await page.goto("/#/workout?week=0&day=0");
@@ -384,11 +415,19 @@ test("reads seeded history and filters it by exercise name", async ({
   const search = page.getByPlaceholder("Search exercises...");
   await expect(page.getByText("Legacy 105")).toBeVisible();
   await expect(page.getByText("Legacy 70")).toBeVisible();
+  await expect(page.getByText("retiredexercise")).toBeVisible();
+  await expect(page.getByText("Legacy unknown 50")).toBeVisible();
 
   await search.fill("Incline Barbell");
 
   await expect(page.getByText("Legacy 105")).toBeVisible();
   await expect(page.getByText("Legacy 70")).toBeHidden();
+  await expect(page.getByText("Legacy unknown 50")).toBeHidden();
+
+  await search.fill("retiredexercise");
+
+  await expect(page.getByText("Legacy 105")).toBeHidden();
+  await expect(page.getByText("Legacy unknown 50")).toBeVisible();
 });
 
 test("cleans up database update listeners across route transitions", async ({

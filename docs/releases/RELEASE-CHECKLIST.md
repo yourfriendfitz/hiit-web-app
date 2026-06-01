@@ -10,7 +10,7 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [x] Release version selected: `v4.0.0`.
 - [x] Rollback reference strategy selected: immutable tag and rollback branch.
 - [x] Remote rollback references approved for creation.
-- [ ] Pull request into `main` approved for creation.
+- [x] Pull request into `main` approved for creation.
 - [ ] GitHub Pages source switch approved.
 - [ ] Merge into `main` approved.
 - [ ] Default-branch switch from `staging` to `main` approved.
@@ -54,7 +54,9 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [ ] Retain or seed legacy-compatible IndexedDB records shaped exactly as `{ id, weight, date }`.
 - [ ] Load the release candidate and confirm Last Weight displays the retained value.
 - [ ] Confirm History displays and filters the retained value.
+- [ ] Confirm History displays and filters a retained record whose exercise ID is absent from current metadata.
 - [ ] Save a new free-text weight.
+- [ ] Confirm an exercise with absent optional RPE context stores `N/A`, not `undefined`.
 - [ ] Reload and confirm both legacy and new entries remain readable.
 - [ ] Confirm IndexedDB remains `hiit-app-db` version `1` with the `Weights` store.
 
@@ -63,6 +65,7 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [ ] Review the release candidate on iPhone Safari.
 - [ ] Review the release candidate on Chrome mobile.
 - [ ] Install or open the PWA from iPhone Safari.
+- [ ] Confirm the iPhone install link uses `https://yourfriendfitz.github.io/hiit-web-app/`.
 - [ ] Load online once and reload under service-worker control.
 - [ ] Switch offline and verify core routes, Multi Workout, saves, and History.
 - [ ] Verify a clean-load update activates.
@@ -72,8 +75,8 @@ Do not perform any remote write unless the owner explicitly approves that step.
 
 - [x] Confirm the current production baseline is `2ef93c0cc5db8b4cad6ced6311434a62bad0e75a`.
 - [x] Create tag `pre-refactor-3.0.4` and branch `rollback/pre-refactor-3.0.4` from the approved baseline.
-- [ ] Push the reviewed release-candidate branch.
-- [ ] Open the approved pull request into `main`.
+- [x] Push the reviewed release-candidate branch.
+- [x] Open the approved pull request into `main`.
 - [ ] Confirm pull-request checks pass.
 - [ ] Change **Settings > Pages > Build and deployment > Source** to **GitHub Actions**.
 - [ ] Merge the approved pull request into `main`.

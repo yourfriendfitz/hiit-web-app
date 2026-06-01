@@ -104,7 +104,7 @@ docker run --rm -it -p 8080:8080 hiit-web-app-local npm run serve:preview
 
 To install the PWA on an iOS device:
 
-1. Open the app in Safari: [Prod](https://wobbly-atom-periodical.glitch.me/).
+1. Open the app in Safari: [Prod](https://yourfriendfitz.github.io/hiit-web-app/).
 2. Tap the **Share** button at the bottom of the screen.
 3. Scroll down and select **Add to Home Screen**.
 4. Tap **Add** in the top right corner.

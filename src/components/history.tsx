@@ -30,8 +30,11 @@ export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
   );
 
   const groupedWeights = useMemo(() => {
+    const normalizedFilter = filter.toLowerCase();
     const filteredWeights = weights.filter((weight) =>
-      exerciseMap[weight.id]?.toLowerCase().includes(filter.toLowerCase()),
+      (exerciseMap[weight.id] || weight.id)
+        .toLowerCase()
+        .includes(normalizedFilter),
     );
 
     return filteredWeights.reduce<Record<string, WeightRecord[]>>(

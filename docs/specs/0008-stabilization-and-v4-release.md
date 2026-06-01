@@ -60,6 +60,8 @@ The remote repository currently keeps `staging` as its default branch and publis
 - Confirm the generated Pages artifact references `/hiit-web-app/` paths and includes the generated manifest and service worker.
 - Confirm workout data and exercise metadata contract tests still pass without source-content edits.
 - Fix only release-blocking regressions discovered during this audit.
+- Keep historical records visible and searchable by raw exercise ID when current exercise metadata no longer contains that ID.
+- Persist `N/A` rather than `undefined` when optional RPE context is absent from a newly saved weight.
 
 ### Version And Release Documentation
 
@@ -173,10 +175,12 @@ If a release-blocking PWA defect is discovered, fix it narrowly and extend the e
 
 ## Files Likely Touched
 
-- `docs/specs/0008-stabilization-and-v1-release.md`
+- `docs/specs/0008-stabilization-and-v4-release.md`
 - `docs/releases/**`
 - `README.md`
 - `AGENTS.md`
+- `src/components/history.tsx`
+- `src/components/workout.tsx`
 - `src/types.ts`
 - `package.json`
 - `package-lock.json`
@@ -191,6 +195,8 @@ Only touch workflow, source, or test files when a version alignment or verified 
 - `public/data.json` and `public/exercises.json` remain unchanged from the accepted refactor branch.
 - IndexedDB remains `hiit-app-db` version `1` with `Weights` records shaped exactly as `{ id, weight, date }`.
 - Seeded or retained legacy-compatible records survive release-candidate upgrade verification.
+- Historical records remain visible and searchable by raw exercise ID when their metadata entry is absent.
+- Newly saved weights persist stable `N/A` fallback text when optional RPE context is absent.
 - Newly saved weights remain readable after reload.
 - Home, Directory, History, Easy Scroll, and Multi Workout manual checks pass.
 - iPhone Safari install, online-first-load, offline, saved-weight, and update checks pass.
@@ -214,6 +220,8 @@ Only touch workflow, source, or test files when a version alignment or verified 
 - Existing Vitest calendar-safe current-week and recent-workout suite remains green.
 - Existing mobile Chromium and WebKit Home, Directory, History, Easy Scroll, Multi Workout, storage, toast, and listener-cleanup suites remain green.
 - Existing Chromium service-worker-controlled offline route, Multi Workout, and saved-weight suite remains green.
+- Mobile browser coverage verifies raw-ID History fallback for records missing current metadata.
+- Mobile browser coverage verifies stable `N/A` text when optional RPE context is absent.
 - Clean-image `npm run build:pages` verifies the GitHub Pages repository-path artifact.
 - `actionlint` verifies the GitHub Actions workflow.
 - Add a regression test only when a stabilization fix closes a discovered release blocker.
@@ -230,6 +238,7 @@ Only touch workflow, source, or test files when a version alignment or verified 
 - Confirm Multi Workout add, save, history, and remove behavior with eligible mocked weekday dates.
 - Confirm a dirty weight input still defers a waiting update.
 - Confirm seeded legacy-compatible IndexedDB records remain readable and new records remain writable.
+- Confirm a retained record with an unknown exercise ID remains visible and searchable by raw ID.
 
 ### Device And Production
 
@@ -276,6 +285,8 @@ Do not clear IndexedDB, ask users to clear site data, rewrite history destructiv
 - Stabilization fixes must stay narrowly scoped to release blockers.
 - Release the completed refactor as `v4.0.0`, preserving monotonic product numbering after `v3.0.4`.
 - Preserve the pre-refactor baseline with both immutable tag `pre-refactor-3.0.4` and branch `rollback/pre-refactor-3.0.4`.
+- Preserve unknown historical exercise IDs in History and store stable `N/A` fallback text for absent optional RPE context.
+- Point iOS install guidance at the GitHub Pages production origin.
 - No production or repository-setting mutations occur before explicit owner approval.
 - Switch Pages to GitHub Actions before merging the approved release candidate into `main`.
 - Verify production before changing the repository default branch from `staging` to `main`.
