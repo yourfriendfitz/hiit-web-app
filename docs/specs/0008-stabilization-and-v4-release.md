@@ -20,7 +20,7 @@ Related ADRs:
 
 Stabilize the completed refactor, document the production cutover, and release the checked application as the new GitHub Pages baseline. This milestone does not introduce a product feature. It closes remaining release-readiness gaps, performs the full automated and manual regression pass, verifies IndexedDB upgrade safety, and executes a controlled Pages transition only after explicit owner approval.
 
-The remote repository currently keeps `staging` as its default branch and publishes GitHub Pages from the legacy `main` branch root. Milestone 4 added the checked GitHub Actions Pages workflow but intentionally left the repository settings unchanged. This milestone completes that deferred cutover, verifies production, changes the default branch to `main` after Pages is stable, and publishes the approved release.
+The checked GitHub Actions Pages cutover from `main` is complete, and the remote default branch now reports `main`. Production verification then found one release-blocking compatibility gap before tag publication: installed `v3.0.4` PWAs still request `/hiit-web-app/service-worker.js`, while the generated v4 worker is `/hiit-web-app/sw.js`. This milestone adds a narrow migration bridge at the legacy URL before publishing the approved release.
 
 ## Goals
 
@@ -32,6 +32,7 @@ The remote repository currently keeps `staging` as its default branch and publis
 - Switch GitHub Pages from legacy branch-root publishing to the reviewed GitHub Actions workflow only after explicit owner approval.
 - Move the remote default branch from `staging` to `main` only after the production Pages deployment is verified.
 - Publish the approved Git tag and GitHub Release after production verification.
+- Keep installed `v3.0.4` PWAs upgradeable without clearing device-local data or reinstalling.
 
 ## Non-Goals
 
@@ -56,8 +57,9 @@ The remote repository currently keeps `staging` as its default branch and publis
 - Run the GitHub Pages repository-path build from the clean image.
 - Run `actionlint` against the deployment workflow.
 - Confirm `git diff --check` remains clean.
-- Confirm the production preview returns `200` for `/`, `/sw.js`, and `/manifest.webmanifest`.
+- Confirm the production preview returns `200` for `/`, `/service-worker.js`, `/sw.js`, and `/manifest.webmanifest`.
 - Confirm the generated Pages artifact references `/hiit-web-app/` paths and includes the generated manifest and service worker.
+- Confirm the Pages artifact retains `/service-worker.js` as a migration-only bridge for legacy installed clients.
 - Confirm workout data and exercise metadata contract tests still pass without source-content edits.
 - Fix only release-blocking regressions discovered during this audit.
 - Keep historical records visible and searchable by raw exercise ID when current exercise metadata no longer contains that ID.
@@ -75,6 +77,7 @@ The remote repository currently keeps `staging` as its default branch and publis
   - Rollback reference.
 - Update contributor and deployment documentation so the final branch, Pages source, verification sequence, and release procedure are current.
 - Record the pre-refactor production baseline commit `2ef93c0cc5db8b4cad6ced6311434a62bad0e75a` in the rollback instructions.
+- Add an installed-PWA migration runbook covering user steps, operator verification, and bridge retention.
 
 ### Manual Upgrade Verification
 
@@ -96,6 +99,11 @@ The remote repository currently keeps `staging` as its default branch and publis
   - Save and read weights offline.
   - Confirm a newly deployed version activates on a clean app load.
   - Confirm unsaved weight text defers a waiting-version reload until the form becomes clean.
+- Verify the legacy installed-PWA bridge:
+  - Start from a profile or installed app controlled by the `v3.0.4` worker.
+  - Retain or seed legacy-compatible IndexedDB history.
+  - Open online once, close, and reopen.
+  - Confirm v4 loads, retained history remains readable, and future updates use `/sw.js`.
 - Verify Chrome mobile behavior for the same core routes and saved-weight flow.
 
 ### Controlled Production Cutover
@@ -117,6 +125,8 @@ After approval:
 
 Do not delete `staging` during this milestone. Retire it only in a separate owner-approved cleanup after production has remained stable.
 
+Before step 10, deploy and verify the reviewed migration bridge hotfix. The bridge must remain deployed after publication until a later owner-approved cleanup closes the legacy-client migration window.
+
 ## Out Of Scope
 
 - New product features.
@@ -130,13 +140,13 @@ Do not delete `staging` during this milestone. Retire it only in a separate owne
 
 ## User Impact
 
-Users receive the refactored mobile-first app at the existing GitHub Pages URL. Existing local weight history remains available. The release includes reliable offline behavior, safer PWA updates, the current-week Directory position, and the Home missed-workout quick-add workflow.
+Users receive the refactored mobile-first app at the existing GitHub Pages URL. Existing local weight history remains available. The release includes reliable offline behavior, safer PWA updates, the current-week Directory position, and the Home missed-workout quick-add workflow. Installed `v3.0.4` clients can advance by opening online once, closing, and reopening.
 
 The cutover must not require users to clear browser data, reinstall the PWA, or recreate saved weight history.
 
 ## Architecture Impact
 
-No architecture change is planned. The milestone may make narrowly scoped fixes if the release audit finds a blocker.
+The generated `/sw.js` Workbox architecture remains unchanged. A migration-only compatibility worker is retained at `/service-worker.js` so installed `v3.0.4` registrations can delete stale legacy shell caches and release fetch interception. The bridge does not handle fetch events and does not touch IndexedDB.
 
 Expected documentation work:
 
@@ -169,7 +179,7 @@ The release must be verified against seeded or retained legacy-compatible record
 
 ## Offline And PWA Impact
 
-No service-worker strategy change is planned. The milestone verifies the generated Workbox precache, repository-path Pages artifact, offline route behavior, offline IndexedDB saves, and deferred waiting-version activation policy.
+The generated Workbox service-worker strategy remains unchanged. The milestone verifies the generated Workbox precache, repository-path Pages artifact, offline route behavior, offline IndexedDB saves, deferred waiting-version activation policy, and the migration-only bridge served at the legacy `/service-worker.js` URL.
 
 If a release-blocking PWA defect is discovered, fix it narrowly and extend the existing PWA regression test before cutover.
 
@@ -186,6 +196,8 @@ If a release-blocking PWA defect is discovered, fix it narrowly and extend the e
 - `package-lock.json`
 - `.github/workflows/ci.yml`
 - `tests/**`
+- `public/service-worker.js`
+- `scripts/assert-pwa-build.mjs`
 
 Only touch workflow, source, or test files when a version alignment or verified release blocker requires it.
 
@@ -207,6 +219,9 @@ Only touch workflow, source, or test files when a version alignment or verified 
 - `git diff --check` passes.
 - The release candidate is reviewed before any production mutation.
 - After explicit owner-approved cutover, GitHub Pages deploys from GitHub Actions on `main`.
+- The Pages artifact serves both `/service-worker.js` and `/sw.js`; the legacy bridge has no fetch handler.
+- The legacy bridge deletes only `hiit-app-cache-v*` caches and preserves IndexedDB history.
+- An installed `v3.0.4` client can load v4 after opening online once, closing, and reopening without clearing site data or reinstalling.
 - The production GitHub Pages URL passes smoke, IndexedDB upgrade, PWA install/offline, and update verification.
 - The repository default branch changes from `staging` to `main` only after production verification.
 - The approved release tag and GitHub Release are published after production verification.
@@ -220,6 +235,8 @@ Only touch workflow, source, or test files when a version alignment or verified 
 - Existing Vitest calendar-safe current-week and recent-workout suite remains green.
 - Existing mobile Chromium and WebKit Home, Directory, History, Easy Scroll, Multi Workout, storage, toast, and listener-cleanup suites remain green.
 - Existing Chromium service-worker-controlled offline route, Multi Workout, and saved-weight suite remains green.
+- Chromium PWA coverage verifies the legacy bridge deletes stale shell caches, retains an unrelated control cache, and preserves a seeded IndexedDB history record.
+- Build verification requires the migration bridge, immediate activation, client claiming, the legacy-cache prefix, and the absence of a fetch handler.
 - Mobile browser coverage verifies raw-ID History fallback for records missing current metadata.
 - Mobile browser coverage verifies stable `N/A` text when optional RPE context is absent.
 - Clean-image `npm run build:pages` verifies the GitHub Pages repository-path artifact.
@@ -231,7 +248,7 @@ Only touch workflow, source, or test files when a version alignment or verified 
 ### Local Release Candidate
 
 - Build and serve the Docker production preview.
-- Confirm `/`, `/sw.js`, and `/manifest.webmanifest` return `200`.
+- Confirm `/`, `/service-worker.js`, `/sw.js`, and `/manifest.webmanifest` return `200`.
 - Confirm the Home scheduled-day, Home rest-day, Directory, History, direct workout, not-found, and offline states.
 - Confirm no phone viewport has horizontal overflow or bottom-navigation overlap.
 - Confirm Easy Scroll lands near the current week once and does not prevent manual browsing.
@@ -239,6 +256,7 @@ Only touch workflow, source, or test files when a version alignment or verified 
 - Confirm a dirty weight input still defers a waiting update.
 - Confirm seeded legacy-compatible IndexedDB records remain readable and new records remain writable.
 - Confirm a retained record with an unknown exercise ID remains visible and searchable by raw ID.
+- Confirm the migration bridge clears only `hiit-app-cache-v*` caches and retains IndexedDB history.
 
 ### Device And Production
 
@@ -253,6 +271,7 @@ Only touch workflow, source, or test files when a version alignment or verified 
 - Confirm the GitHub Pages deployment succeeds.
 - Reload the production URL and verify Home, Directory, History, Easy Scroll, Multi Workout, and weight history.
 - Confirm existing device-local weight records remain readable after the production update.
+- From an installed `v3.0.4` PWA, open online once, close, reopen, and confirm footer `v4.0.0`.
 - Confirm a clean-load update is applied without discarding unsaved weight text.
 - Change the remote default branch to `main`.
 - Publish the approved tag and GitHub Release.
@@ -291,3 +310,5 @@ Do not clear IndexedDB, ask users to clear site data, rewrite history destructiv
 - Switch Pages to GitHub Actions before merging the approved release candidate into `main`.
 - Verify production before changing the repository default branch from `staging` to `main`.
 - Keep `staging` available until separate cleanup approval.
+- Keep the migration bridge at `/service-worker.js` until a later owner-approved cleanup.
+- Serve the migration bridge without a fetch handler so the next normal launch can load the v4 shell while IndexedDB remains untouched.

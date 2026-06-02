@@ -39,3 +39,4 @@ Rollback is appropriate when production verification finds a release-blocking is
 - Do not force-push or rewrite shared history.
 - Do not delete remote branches during rollback.
 - Do not publish a release tag until production verification succeeds.
+- Do not remove the legacy PWA migration bridge during the initial v4 rollout.

@@ -27,6 +27,8 @@
 
 - Use `npm run serve:preview` for authoritative offline and service-worker review.
 - Reload once after the first online visit so the installed service worker controls the page.
+- Keep `public/service-worker.js` deployed as the documented `v3.0.4` migration bridge until a later owner-approved cleanup.
+- Follow `docs/releases/PWA-MIGRATION.md` when verifying an installed `v3.0.4` upgrade. Do not clear site data because IndexedDB history is device-local.
 - `npm run serve` remains the fast development path, not the production PWA verification path.
 
 ## Release Cutover
