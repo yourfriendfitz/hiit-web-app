@@ -11,6 +11,7 @@ const requiredFiles = [
   "favicon.ico",
   "index.html",
   "manifest.webmanifest",
+  "service-worker.js",
   "sw.js",
 ];
 const removedLegacyFiles = [
@@ -20,7 +21,6 @@ const removedLegacyFiles = [
   "app.js",
   "manifest.json",
   "register.js",
-  "service-worker.js",
   "styles.css",
 ];
 
@@ -41,6 +41,10 @@ for (const fileName of removedLegacyFiles) {
 }
 
 const html = readFileSync(new URL("index.html", distPath), "utf8");
+const legacyMigrationWorker = readFileSync(
+  new URL("service-worker.js", distPath),
+  "utf8",
+);
 const serviceWorker = readFileSync(new URL("sw.js", distPath), "utf8");
 const assetNames = readdirSync(new URL("assets/", distPath));
 
@@ -77,6 +81,24 @@ for (const fileName of [
 
 if (!serviceWorker.includes("SKIP_WAITING")) {
   fail("sw.js does not expose explicit update activation messaging");
+}
+
+if (
+  !legacyMigrationWorker.includes('LEGACY_CACHE_PREFIX = "hiit-app-cache-v"')
+) {
+  fail("service-worker.js does not target legacy shell caches");
+}
+
+if (!legacyMigrationWorker.includes("self.skipWaiting()")) {
+  fail("service-worker.js does not activate the migration bridge immediately");
+}
+
+if (!legacyMigrationWorker.includes("self.clients.claim()")) {
+  fail("service-worker.js does not claim legacy clients");
+}
+
+if (/addEventListener\(["']fetch["']/.test(legacyMigrationWorker)) {
+  fail("service-worker.js migration bridge must not intercept fetch requests");
 }
 
 console.log(`Verified generated PWA build in ${join(distPath.pathname, "")}`);

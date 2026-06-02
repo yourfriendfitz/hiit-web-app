@@ -11,7 +11,7 @@ This is a web app meant to display HIIT workout program
 - RFCs live in `docs/rfcs/`.
 - ADRs live in `docs/adr/`.
 - Milestone specs live in `docs/specs/`.
-- `main` is the accepted long-term production branch, but the remote default branch should not change until GitHub Pages deployment is implemented and verified.
+- `main` is the production and default branch. GitHub Pages deploys its checked artifact from the `CI` workflow.
 
 ### Features
 
@@ -115,6 +115,8 @@ The app will now be installed and accessible from your home screen like a native
 
 Vite generates the service worker and Workbox precache manifest during `npm run build`. The precache includes the app shell, workout data, exercise metadata, manifest, icons, and hashed build assets. Tailwind CSS and Toastify are bundled locally so core UI rendering does not require a CDN.
 
+`public/service-worker.js` is a compatibility bridge for installed `v3.0.4` PWAs. Keep it deployed at the legacy URL while those clients migrate. It deletes only stale `hiit-app-cache-v*` shell caches and does not touch IndexedDB. The generated Workbox worker remains `/sw.js`.
+
 Use the production preview when reviewing offline behavior:
 
 ```bash
@@ -127,6 +129,12 @@ If you encounter issues, ensure that:
 1. The service worker is correctly registered in the browser's DevTools under **Application > Service Workers**.
 2. You are accessing the app over HTTP or HTTPS, as service workers only work on secure origins.
 3. You reload once after the first online visit so the installed service worker controls the page.
+
+### Updating An Installed v3.0.4 PWA
+
+Users with an installed `v3.0.4` PWA should open the app online once, close it, and reopen it. The legacy worker bridge releases the stale cached shell so the v4 app can load and register `/sw.js`.
+
+Do not ask users to clear site data or reinstall the PWA. Saved workout history is device-local IndexedDB data. See the [installed PWA migration runbook](docs/releases/PWA-MIGRATION.md).
 
 ### UI Structure
 
@@ -143,7 +151,7 @@ Shared visual tokens and component classes live in `src/styles.css`. Calendar-sa
 
 ### GitHub Pages Deployment
 
-The `CI` workflow keeps pull requests and `staging` pushes check-only. A push to `main` deploys the GitHub Pages artifact only after lint, formatting, typecheck, unit tests, production build verification, mobile end-to-end tests, and PWA offline tests pass.
+The `CI` workflow keeps pull requests and `staging` pushes check-only. GitHub Pages is configured to use GitHub Actions. A push to `main` deploys the GitHub Pages artifact only after lint, formatting, typecheck, unit tests, production build verification, mobile end-to-end tests, and PWA offline tests pass.
 
 The workflow builds the repository-path artifact with:
 
@@ -151,21 +159,15 @@ The workflow builds the repository-path artifact with:
 npm run build:pages
 ```
 
-One repository setting must be changed manually after the workflow is reviewed and merged:
-
-1. Open **Settings > Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-3. Run the `CI` workflow from `main` or merge a reviewed change into `main`.
-4. Confirm the `github-pages` environment deployment succeeds.
-
-Until that source switch is made, the production site continues using the legacy `main` branch-root publishing configuration.
+Confirm the `github-pages` environment deployment succeeds after each reviewed `main` merge. The initial manual **Settings > Pages > Build and deployment > Source > GitHub Actions** switch was completed during the v4 cutover.
 
 ### Releases
 
-Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final refactor cutover. The [rollback runbook](docs/releases/ROLLBACK.md) records the protected pre-refactor production baseline and recovery steps.
+Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final refactor cutover. The [installed PWA migration runbook](docs/releases/PWA-MIGRATION.md) covers existing `v3.0.4` installs. The [rollback runbook](docs/releases/ROLLBACK.md) records the protected pre-refactor production baseline and recovery steps.
 
 - Release the completed refactor as `v4.0.0`.
 - Include user-visible changes, migration notes, and known issues.
+- Keep the legacy PWA migration bridge deployed until a later owner-approved cleanup.
 - Verify install and update behavior manually in iPhone Safari before publishing a release.
-- Switch the GitHub Pages source, merge into `main`, verify production, and change the default branch in separate owner-approved steps.
+- Keep each future production merge, tag, release, and cleanup action behind explicit owner approval.
 - Keep `staging` available until a later owner-approved cleanup.

@@ -79,3 +79,85 @@ test("loads core routes and saves a weight offline after the first visit", async
   await expect(page.getByText(/Offline 145/)).toBeVisible();
   await expect(page.getByText(/Offline added 125/)).toBeVisible();
 });
+
+test("legacy migration bridge removes stale shell caches without deleting IndexedDB history", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(
+      registrations.map((registration) => registration.unregister()),
+    );
+
+    const legacyCache = await caches.open("hiit-app-cache-v3.0.4");
+    await legacyCache.put("/legacy-index.html", new Response("legacy shell"));
+    const controlCache = await caches.open("migration-control-cache");
+    await controlCache.put("/retain.html", new Response("retain"));
+
+    await new Promise((resolve, reject) => {
+      const request = indexedDB.open("hiit-app-db", 1);
+
+      request.onsuccess = () => {
+        const db = request.result;
+        const transaction = db.transaction("Weights", "readwrite");
+        transaction.objectStore("Weights").put({
+          id: "migration-probe",
+          weight: "Legacy 135",
+          date: new Date("2026-05-01T12:00:00-05:00"),
+        });
+        transaction.oncomplete = () => {
+          db.close();
+          resolve();
+        };
+        transaction.onerror = () => reject(transaction.error);
+      };
+      request.onerror = () => reject(request.error);
+    });
+
+    await navigator.serviceWorker.register("/service-worker.js");
+  });
+
+  await expect
+    .poll(() =>
+      page.evaluate(async () => {
+        const cacheNames = await caches.keys();
+        return {
+          legacyCachePresent: cacheNames.includes("hiit-app-cache-v3.0.4"),
+          controlCachePresent: cacheNames.includes("migration-control-cache"),
+        };
+      }),
+    )
+    .toEqual({
+      legacyCachePresent: false,
+      controlCachePresent: true,
+    });
+
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          new Promise((resolve, reject) => {
+            const request = indexedDB.open("hiit-app-db", 1);
+            request.onsuccess = () => {
+              const db = request.result;
+              const transaction = db.transaction("Weights", "readonly");
+              const records = transaction.objectStore("Weights").getAll();
+              records.onsuccess = () => {
+                db.close();
+                resolve(
+                  records.result.some(
+                    ({ id, weight }) =>
+                      id === "migration-probe" && weight === "Legacy 135",
+                  ),
+                );
+              };
+              records.onerror = () => reject(records.error);
+            };
+            request.onerror = () => reject(request.error);
+          }),
+      ),
+    )
+    .toBe(true);
+});

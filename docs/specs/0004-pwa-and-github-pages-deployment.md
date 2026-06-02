@@ -18,7 +18,7 @@ Related ADRs:
 
 ## Summary
 
-Replace the retained hand-written service worker with generated Workbox precaching through `vite-plugin-pwa` and bundle browser runtime dependencies into the Vite build.
+Replace the retained hand-written service worker with generated Workbox precaching through `vite-plugin-pwa` and bundle browser runtime dependencies into the Vite build. Keep a migration-only compatibility worker at the legacy URL during the v4 rollout so installed `v3.0.4` clients can release their stale cache-first shell.
 
 The generated service worker must make the app shell, workout data, exercise metadata, and device-local weight workflows available offline after the first visit. Updates must be discovered automatically, but applying an update must be deferred while a user has unsaved weight input.
 
@@ -53,7 +53,7 @@ GitHub Actions deployment setup was explicitly deferred until after the runtime 
 - Add `vite-plugin-pwa` `1.3.x` and use its Workbox `generateSW` strategy.
 - Configure Vite PWA assets and a generated web app manifest from the existing app metadata and icon files.
 - Precache generated HTML, hashed JavaScript, hashed CSS, workout JSON, exercise JSON, manifest, and local icon assets.
-- Replace the custom `public/service-worker.js`.
+- Replace the custom cache-first `public/service-worker.js` with a migration-only bridge during the v4 rollout. The generated Workbox worker remains `/sw.js`.
 - Remove obsolete legacy runtime modules from `public/` after confirming the generated build does not reference them.
 - Replace manual service-worker registration with an explicit registration module using `virtual:pwa-register`.
 - Check for service-worker updates on app load and when the document becomes visible.
@@ -130,6 +130,7 @@ Update policy:
 - Do not force a reload while weight input contains unsaved text.
 - Apply a waiting version on the next clean load or once the app becomes clean.
 - Avoid an update loop by reloading at most once after a successful activation.
+- Keep `/service-worker.js` free of fetch interception; it exists only to clear `hiit-app-cache-v*` caches for legacy installed clients without touching IndexedDB.
 
 ## Files Likely Touched
 
@@ -151,7 +152,7 @@ Update policy:
 - `npm run build` generates a Workbox-backed service worker with a hashed precache manifest.
 - The generated Pages build uses `/hiit-web-app/` as its base path.
 - The production HTML has no Tailwind CDN, Toastify CDN, or Google Fonts dependency.
-- Obsolete hand-written service-worker and legacy runtime files are removed when no longer referenced.
+- Obsolete legacy runtime files are removed when no longer referenced. `/service-worker.js` remains temporarily as a migration-only bridge.
 - After one online visit, the app shell loads offline.
 - Today's workout, directory, workout detail, and history routes load offline.
 - Existing IndexedDB weight records remain readable offline.
@@ -170,6 +171,7 @@ Update policy:
 - Unit test: clean state allows a waiting service-worker update to apply.
 - Unit test: dirty state defers a waiting service-worker update until the state clears.
 - Build assertion: generated `dist/` contains the service worker, web manifest, workout data, exercise metadata, icons, and hashed asset references.
+- Build assertion: `dist/service-worker.js` remains a migration-only bridge with no fetch handler.
 - Build assertion: generated HTML has no Tailwind CDN, Toastify CDN, or Google Fonts URL.
 - Playwright Chromium PWA test: visit online, wait for service-worker control, switch offline, reload, and verify the home route renders.
 - Playwright Chromium PWA test: navigate to directory, workout detail, and history while offline.
@@ -216,6 +218,7 @@ Research checked at `2026-05-30T12:14:33-05:00`.
 ## Decision Log
 
 - Use generated Workbox precaching through `vite-plugin-pwa` instead of maintaining a service worker cache list manually.
+- Retain a migration-only `/service-worker.js` bridge until a later owner-approved cleanup so installed `v3.0.4` registrations can advance to the generated `/sw.js` worker without clearing IndexedDB.
 - Use explicit update readiness callbacks and app dirty-state tracking instead of unconditional immediate reload behavior.
 - Bundle Tailwind CSS and Toastify locally.
 - Use the system font stack to eliminate a core-rendering network dependency without adding font artifacts.
