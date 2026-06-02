@@ -86,6 +86,8 @@ The implementation should introduce a small internal component system and design
 ### Workout View
 
 - Keep exercise cards collapsed by default.
+- Animate expanded-card collapse as one smooth region rather than clipping
+  individual detail sections in sequence.
 - Make each collapsed row show:
   - Exercise order.
   - Exercise name.
@@ -98,6 +100,8 @@ The implementation should introduce a small internal component system and design
 - Allow the video embed to sit behind a labeled disclosure if that materially reduces scroll fatigue.
 - Keep set checkboxes as comfortable tap rows without persisting completion.
 - Keep free-text weight input.
+- Show the complete latest saved-weight record in the expanded exercise details so
+  compact-row truncation never hides the retained context on touch devices.
 - Add an appropriate mobile keyboard hint such as `inputMode="decimal"` without restricting free-text values.
 - Keep Save as a clear icon-and-text action.
 - Preserve dirty-input tracking so service-worker updates cannot discard entered weight text.
@@ -181,6 +185,8 @@ Offline regression coverage must continue proving that the app shell, workout ro
 - Primary navigation and weight-entry controls meet a minimum `44px` touch-target size.
 - The top header is compact and route-specific.
 - Collapsed exercise rows show exercise name, working-set/rep summary, and latest saved weight when available.
+- Expanded exercise details show the complete latest saved-weight record with wrapping text.
+- Expanded exercise details collapse as one smooth region.
 - Exercise expansion still exposes programming details, notes, substitutions, video, set checkboxes, and weight entry.
 - Free-text weight entry still works with the existing persisted record shape.
 - Dirty input still defers PWA update reloads.
@@ -202,6 +208,8 @@ Offline regression coverage must continue proving that the app shell, workout ro
 - Playwright: a collapsed exercise row exposes exercise name and programming summary.
 - Playwright: expanding an exercise exposes free-text weight input and Save.
 - Playwright: saving weight updates the latest-weight indicator and History.
+- Playwright: expanding an exercise exposes the complete wrapped latest saved-weight record.
+- Playwright: exercise details use a single grid-row collapse transition without a synthetic maximum height.
 - Playwright: long exercise content does not create horizontal overflow at iPhone viewport width.
 - Visual QA screenshots: home workout collapsed, workout expanded, Directory, and History on mobile Chromium.
 - Visual QA screenshots: workout route on a desktop viewport.

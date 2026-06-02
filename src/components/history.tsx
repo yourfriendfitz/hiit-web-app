@@ -115,35 +115,40 @@ export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
                   id={`collapse-${id}`}
                   className={`accordion-content ${isOpen ? "open" : ""}`}
                 >
-                  <div className="accordion-body">
-                    {entries
-                      .slice()
-                      .reverse()
-                      .map((weight, index) => (
-                        <div
-                          className={`weight-entry ${index === 0 ? "latest" : ""}`}
-                          key={`${weight.id}-${String(weight.date)}-${index}`}
-                        >
-                          <div className="weight-entry__value">
-                            <span className="weight-number">
-                              {weight.weight}
-                            </span>
-                            {index === 0 ? (
-                              <span className="latest-badge">Latest</span>
-                            ) : null}
+                  <div className="accordion-content__inner">
+                    <div className="accordion-body">
+                      {entries
+                        .slice()
+                        .reverse()
+                        .map((weight, index) => (
+                          <div
+                            className={`weight-entry ${index === 0 ? "latest" : ""}`}
+                            key={`${weight.id}-${String(weight.date)}-${index}`}
+                          >
+                            <div className="weight-entry__value">
+                              <span className="weight-number">
+                                {weight.weight}
+                              </span>
+                              {index === 0 ? (
+                                <span className="latest-badge">Latest</span>
+                              ) : null}
+                            </div>
+                            <div className="weight-date">
+                              {new Date(weight.date).toLocaleDateString(
+                                "en-US",
+                                {
+                                  weekday: "short",
+                                  month: "short",
+                                  day: "numeric",
+                                  year: "numeric",
+                                  hour: "numeric",
+                                  minute: "2-digit",
+                                },
+                              )}
+                            </div>
                           </div>
-                          <div className="weight-date">
-                            {new Date(weight.date).toLocaleDateString("en-US", {
-                              weekday: "short",
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                              hour: "numeric",
-                              minute: "2-digit",
-                            })}
-                          </div>
-                        </div>
-                      ))}
+                        ))}
+                    </div>
                   </div>
                 </div>
               </section>

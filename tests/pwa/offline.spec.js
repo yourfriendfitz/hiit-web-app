@@ -57,9 +57,9 @@ test("loads core routes and saves a weight offline after the first visit", async
   await addedExercise.locator("button").first().click();
   await addedExercise.locator('input[id^="weight-"]').fill("Offline added 125");
   await addedExercise.getByRole("button", { name: "Save" }).click();
-  await expect(addedExercise.locator(".weight-badge")).toContainText(
-    "Offline added 125",
-  );
+  await expect(
+    addedExercise.locator(".exercise-card__status .weight-badge"),
+  ).toContainText("Offline added 125");
 
   await page.goto("/#/directory");
   await expect(
@@ -71,9 +71,9 @@ test("loads core routes and saves a weight offline after the first visit", async
   await firstExercise.locator("button").first().click();
   await firstExercise.locator('input[id^="weight-"]').fill("Offline 145");
   await firstExercise.getByRole("button", { name: "Save" }).click();
-  await expect(firstExercise.locator(".weight-badge")).toContainText(
-    "Offline 145",
-  );
+  await expect(
+    firstExercise.locator(".exercise-card__status .weight-badge"),
+  ).toContainText("Offline 145");
 
   await page.goto("/#/history");
   await expect(page.getByText(/Offline 145/)).toBeVisible();

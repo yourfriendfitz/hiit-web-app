@@ -35,7 +35,7 @@ function showSavedToast() {
   }).showToast();
 }
 
-function LastWeight({ exerciseId }: { exerciseId: string }) {
+function useLastWeight(exerciseId: string) {
   const [weight, setWeight] = useState("");
   const requestSequence = useRef(0);
 
@@ -60,11 +60,21 @@ function LastWeight({ exerciseId }: { exerciseId: string }) {
     };
   }, [exerciseId]);
 
+  return weight;
+}
+
+function LastWeight({
+  variant = "compact",
+  weight,
+}: {
+  variant?: "compact" | "full";
+  weight: string;
+}) {
   const hasWeight = weight !== "";
 
   return (
     <span
-      className={`weight-badge ${hasWeight ? "" : "empty"}`}
+      className={`weight-badge weight-badge--${variant} ${hasWeight ? "" : "empty"}`}
       title={hasWeight ? `Last logged weight: ${weight}` : "No previous weight"}
     >
       {hasWeight ? (
@@ -97,9 +107,11 @@ function Metric({
 function WeightLogger({
   exercise,
   exerciseInstanceId,
+  latestWeight,
 }: {
   exercise: ExerciseProgramming;
   exerciseInstanceId: string;
+  latestWeight: string;
 }) {
   const [weight, setWeight] = useState("");
   const weightInputId = `weight-${exerciseInstanceId}`;
@@ -132,6 +144,12 @@ function WeightLogger({
         <p className="section-heading__eyebrow">Training log</p>
         <h3 id={`log-weight-${exerciseInstanceId}`}>Log weight</h3>
       </div>
+      {latestWeight ? (
+        <div className="weight-logger__latest">
+          <p className="detail-section__label">Last logged weight</p>
+          <LastWeight variant="full" weight={latestWeight} />
+        </div>
+      ) : null}
       <div className="weight-logger__controls">
         <input
           type="text"
@@ -158,10 +176,12 @@ function ExerciseDetails({
   exercise,
   exerciseDetails,
   exerciseInstanceId,
+  latestWeight,
 }: {
   exercise: ExerciseProgramming;
   exerciseDetails?: ExerciseMetadata;
   exerciseInstanceId: string;
+  latestWeight: string;
 }) {
   const { videoId, timestamp } = extractYouTubeVideoId(
     exerciseDetails?.link || "",
@@ -247,6 +267,7 @@ function ExerciseDetails({
       <WeightLogger
         exercise={exercise}
         exerciseInstanceId={exerciseInstanceId}
+        latestWeight={latestWeight}
       />
     </div>
   );
@@ -267,6 +288,7 @@ function ExerciseCard({
   const exerciseInstanceId = `${instanceId}-${exercise.id}-${index}`;
   const exerciseName =
     exerciseDetails?.name || exercise.name || "Unnamed exercise";
+  const latestWeight = useLastWeight(exercise.id);
 
   return (
     <section
@@ -290,7 +312,7 @@ function ExerciseCard({
           </span>
         </span>
         <span className="exercise-card__status">
-          <LastWeight exerciseId={exercise.id} />
+          <LastWeight weight={latestWeight} />
           <ChevronDown
             className="exercise-card__chevron"
             size={18}
@@ -304,11 +326,14 @@ function ExerciseCard({
         id={`content-${exerciseInstanceId}`}
         className={`accordion-content ${isOpen ? "open" : ""}`}
       >
-        <ExerciseDetails
-          exercise={exercise}
-          exerciseDetails={exerciseDetails}
-          exerciseInstanceId={exerciseInstanceId}
-        />
+        <div className="accordion-content__inner">
+          <ExerciseDetails
+            exercise={exercise}
+            exerciseDetails={exerciseDetails}
+            exerciseInstanceId={exerciseInstanceId}
+            latestWeight={latestWeight}
+          />
+        </div>
       </div>
     </section>
   );

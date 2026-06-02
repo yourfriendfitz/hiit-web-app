@@ -14,7 +14,7 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [x] GitHub Pages source switch approved and completed.
 - [x] Merge into `main` approved and completed.
 - [x] Remote default branch verified as `main`.
-- [ ] Tag and GitHub Release publication approved.
+- [x] Tag and GitHub Release publication approved.
 
 ## Local Release Candidate
 
@@ -72,7 +72,7 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [ ] Verify unsaved weight text defers a waiting-version reload until the app becomes clean.
 - [ ] Follow [`PWA-MIGRATION.md`](./PWA-MIGRATION.md) from a legacy-worker profile or installed `v3.0.4` PWA.
 - [ ] Confirm the legacy bridge removes stale shell caches without deleting retained IndexedDB history.
-- [ ] Confirm the migrated app reports `v4.0.0` after opening online once, closing, and reopening.
+- [x] Confirm the migrated app reports `v4.0.0` after opening online once, closing, and reopening.
 
 ## Controlled Cutover
 
@@ -85,18 +85,18 @@ Do not perform any remote write unless the owner explicitly approves that step.
 - [x] Merge the approved pull request into `main`.
 - [x] Confirm the `CI` checks, Pages artifact build, and `github-pages` deployment succeed.
 - [x] Verify `https://yourfriendfitz.github.io/hiit-web-app/`.
-- [ ] Merge and deploy the reviewed PWA migration bridge hotfix.
-- [ ] Confirm production `/hiit-web-app/service-worker.js` and `/hiit-web-app/sw.js` return `200`.
-- [ ] Repeat the production storage-upgrade and PWA smoke checks.
+- [x] Merge and deploy the reviewed PWA migration bridge hotfix.
+- [x] Confirm production `/hiit-web-app/service-worker.js` and `/hiit-web-app/sw.js` return `200`.
+- [x] Repeat the production storage-upgrade and PWA smoke checks.
 - [x] Confirm the repository default branch is `main`.
-- [ ] Publish the approved `v4.0.0` tag and GitHub Release.
+- [x] Publish the approved `v4.0.0` tag and GitHub Release.
 - [ ] Keep `staging` available until a later owner-approved cleanup.
 
 ## Release Notes
 
-- [ ] Record user-visible changes.
-- [ ] State that IndexedDB remains compatible.
-- [ ] Record manual production checks.
-- [ ] Record known issues, or state `None known`.
-- [ ] Link [`PWA-MIGRATION.md`](./PWA-MIGRATION.md).
-- [ ] Link [`ROLLBACK.md`](./ROLLBACK.md).
+- [x] Record user-visible changes.
+- [x] State that IndexedDB remains compatible.
+- [x] Record manual production checks.
+- [x] Record known issues, or state `None known`.
+- [x] Link [`PWA-MIGRATION.md`](./PWA-MIGRATION.md).
+- [x] Link [`ROLLBACK.md`](./ROLLBACK.md).
