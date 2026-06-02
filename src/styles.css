@@ -330,7 +330,7 @@ button {
   width: 100%;
   min-height: 72px;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   border: 0;
   background: transparent;
   color: var(--app-text);
@@ -390,17 +390,18 @@ button {
 
 .accordion-content {
   display: grid;
-  max-height: 0;
   overflow: hidden;
   grid-template-rows: 0fr;
-  transition:
-    grid-template-rows 180ms ease,
-    max-height 180ms ease;
+  transition: grid-template-rows 180ms ease;
 }
 
 .accordion-content.open {
-  max-height: 4000px;
   grid-template-rows: 1fr;
+}
+
+.accordion-content__inner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .exercise-card__details {
@@ -568,6 +569,11 @@ button {
   padding-top: 14px;
 }
 
+.weight-logger__latest {
+  display: grid;
+  gap: 5px;
+}
+
 .weight-logger__controls {
   display: grid;
   gap: 8px;
@@ -629,13 +635,22 @@ input::placeholder {
 
 .weight-badge {
   display: inline-flex;
-  max-width: 118px;
   min-width: 0;
   align-items: center;
   gap: 4px;
   color: var(--app-primary);
   font-size: 0.68rem;
   font-weight: 750;
+}
+
+.weight-badge--compact {
+  max-width: min(156px, 40vw);
+}
+
+.weight-badge--full {
+  max-width: 100%;
+  align-items: flex-start;
+  line-height: 1.45;
 }
 
 .weight-badge.empty {
@@ -650,6 +665,13 @@ input::placeholder {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.weight-badge--full .weight-value {
+  overflow: visible;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+  white-space: normal;
 }
 
 .directory-list {

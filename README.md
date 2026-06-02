@@ -142,7 +142,7 @@ The mobile-first interface is organized under `src/components/`:
 
 - `app-frame.tsx`: route header, version footer, and fixed bottom navigation.
 - `home-workout.tsx`: Home-only current-workout and recent missed-workout composition.
-- `workout.tsx`: exercise summaries, expanded programming details, set tracking, and free-text weight entry.
+- `workout.tsx`: exercise summaries, expanded programming details, full latest-weight context, set tracking, and free-text weight entry.
 - `directory.tsx`: week and workout-day navigation with one-time current-week positioning.
 - `history.tsx`: saved-weight search and grouped history.
 - `states.tsx`: loading, rest-day, and not-found states.
@@ -165,7 +165,8 @@ Confirm the `github-pages` environment deployment succeeds after each reviewed `
 
 Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final refactor cutover. The [installed PWA migration runbook](docs/releases/PWA-MIGRATION.md) covers existing `v3.0.4` installs. The [rollback runbook](docs/releases/ROLLBACK.md) records the protected pre-refactor production baseline and recovery steps.
 
-- Release the completed refactor as `v4.0.0`.
+- Current public release: `v4.0.0`.
+- Prepare the saved-weight readability patch as [`v4.0.1`](docs/releases/v4.0.1.md).
 - Include user-visible changes, migration notes, and known issues.
 - Keep the legacy PWA migration bridge deployed until a later owner-approved cleanup.
 - Verify install and update behavior manually in iPhone Safari before publishing a release.

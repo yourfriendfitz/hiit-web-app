@@ -104,7 +104,7 @@ test("loads the current workout on app launch", async ({ page }) => {
     page.getByRole("heading", { name: "Upper (Strength Focus)", level: 1 }),
   ).toBeVisible();
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
-  await expect(page.locator("#versionIndicator")).toHaveText("v4.0.0");
+  await expect(page.locator("#versionIndicator")).toHaveText("v4.0.1");
 });
 
 test("adds and removes one recent missed workout from home", async ({
@@ -168,9 +168,9 @@ test("stores a missed-workout weight with its authored exercise id", async ({
   await firstExercise.locator('input[id^="weight-"]').fill("Added 155");
   await firstExercise.getByRole("button", { name: "Save" }).click();
 
-  await expect(firstExercise.locator(".weight-badge")).toContainText(
-    "Added 155",
-  );
+  await expect(
+    firstExercise.locator(".exercise-card__status .weight-badge"),
+  ).toContainText("Added 155");
   await expect
     .poll(() => getLastWeightRecord(page).then((record) => record?.id))
     .toBe(exerciseId);
@@ -219,6 +219,34 @@ test("renders one-handed navigation and scannable workout summaries", async ({
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
+});
+
+test("collapses expanded exercise details as one grid transition", async ({
+  page,
+}) => {
+  await page.goto("/#/workout?week=0&day=0");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  const accordion = firstExercise.locator(".accordion-content");
+  await firstExercise.locator("button").first().click();
+  await expect(accordion).toHaveClass(/open/);
+
+  await firstExercise.locator("button").first().click();
+
+  expect(
+    await accordion.evaluate((element) => {
+      const styles = window.getComputedStyle(element);
+      return {
+        maxHeight: styles.maxHeight,
+        transitionProperty: styles.transitionProperty,
+      };
+    }),
+  ).toEqual({
+    maxHeight: "none",
+    transitionProperty: "grid-template-rows",
+  });
+
+  await expect(accordion).toHaveCSS("grid-template-rows", "0px");
 });
 
 test("uses bottom navigation for directory, history, and home", async ({
@@ -329,9 +357,23 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
   await firstExercise.locator('input[id^="weight-"]').fill("Test 135");
   await firstExercise.getByRole("button", { name: "Save" }).click();
 
-  await expect(firstExercise.locator(".weight-badge")).toContainText(
-    "Test 135",
+  await expect(
+    firstExercise.locator(".exercise-card__status .weight-badge"),
+  ).toContainText("Test 135");
+
+  const fullLatestWeight = firstExercise.locator(".weight-badge--full");
+  await expect(fullLatestWeight).toContainText(
+    "Test 135 [Sets: 2, Reps: 6, Early RPE: ~6-7, Last RPE: ~7-8]",
   );
+  await expect(fullLatestWeight.locator(".weight-value")).toHaveCSS(
+    "white-space",
+    "normal",
+  );
+  expect(
+    await fullLatestWeight.evaluate(
+      (element) => element.scrollWidth <= element.clientWidth,
+    ),
+  ).toBe(true);
 
   await expect
     .poll(async () => {
@@ -407,9 +449,9 @@ test("reads seeded history and filters it by exercise name", async ({
 
   const firstExercise = page.locator(".exercise-card").first();
   await firstExercise.locator("button").first().click();
-  await expect(firstExercise.locator(".weight-badge")).toContainText(
-    "Legacy 105",
-  );
+  await expect(
+    firstExercise.locator(".exercise-card__status .weight-badge"),
+  ).toContainText("Legacy 105");
 
   await page.goto("/#/history");
 
