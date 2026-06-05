@@ -141,13 +141,13 @@ describe("IndexedDBWeightStorage", () => {
   it("writes exactly the legacy-compatible record shape", async () => {
     const storage = createStorage();
 
-    await storage.saveWeight("curl", "Test 35");
+    await storage.saveWeight("curl", "40s; 9 for 95 9 RPE*");
 
     const [record] = await storage.listWeights();
     expect(Object.keys(record).sort()).toEqual(["date", "id", "weight"]);
     expect(record).toEqual({
       id: "curl",
-      weight: "Test 35",
+      weight: "40s; 9 for 95 9 RPE*",
       date: expect.any(Date),
     });
   });

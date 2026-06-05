@@ -104,7 +104,7 @@ test("loads the current workout on app launch", async ({ page }) => {
     page.getByRole("heading", { name: "Upper (Strength Focus)", level: 1 }),
   ).toBeVisible();
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
-  await expect(page.locator("#versionIndicator")).toHaveText("v4.0.1");
+  await expect(page.locator("#versionIndicator")).toHaveText("v4.0.2");
 });
 
 test("adds and removes one recent missed workout from home", async ({
@@ -210,7 +210,7 @@ test("renders one-handed navigation and scannable workout summaries", async ({
   await firstExercise.locator("button").first().click();
   const weightInput = firstExercise.locator('input[id^="weight-"]');
   const saveButton = firstExercise.getByRole("button", { name: "Save" });
-  await expect(weightInput).toHaveAttribute("inputmode", "decimal");
+  await expect(weightInput).toHaveAttribute("inputmode", "text");
   await expect(saveButton).toBeVisible();
   expect((await saveButton.boundingBox())?.height).toBeGreaterThanOrEqual(44);
 
@@ -352,18 +352,19 @@ test("uses immediate directory positioning when reduced motion is requested", as
 test("saves a free-text weight and shows it in history", async ({ page }) => {
   await page.goto("/#/workout?week=0&day=0");
 
+  const freeTextWeight = "40s; 9 for 95 9 RPE*";
   const firstExercise = page.locator(".exercise-card").first();
   await firstExercise.locator("button").first().click();
-  await firstExercise.locator('input[id^="weight-"]').fill("Test 135");
+  await firstExercise.locator('input[id^="weight-"]').fill(freeTextWeight);
   await firstExercise.getByRole("button", { name: "Save" }).click();
 
   await expect(
     firstExercise.locator(".exercise-card__status .weight-badge"),
-  ).toContainText("Test 135");
+  ).toContainText(freeTextWeight);
 
   const fullLatestWeight = firstExercise.locator(".weight-badge--full");
   await expect(fullLatestWeight).toContainText(
-    "Test 135 [Sets: 2, Reps: 6, Early RPE: ~6-7, Last RPE: ~7-8]",
+    `${freeTextWeight} [Sets: 2, Reps: 6, Early RPE: ~6-7, Last RPE: ~7-8]`,
   );
   await expect(fullLatestWeight.locator(".weight-value")).toHaveCSS(
     "white-space",
@@ -392,7 +393,7 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
   await page.goto("/#/history");
 
   await expect(page.getByPlaceholder("Search exercises...")).toBeVisible();
-  await expect(page.getByText(/Test 135/)).toBeVisible();
+  await expect(page.getByText(/40s; 9 for 95 9 RPE\*/)).toBeVisible();
 });
 
 test("stores stable context when optional RPE fields are absent", async ({

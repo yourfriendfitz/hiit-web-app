@@ -69,14 +69,16 @@ test("loads core routes and saves a weight offline after the first visit", async
   await page.goto("/#/workout?week=0&day=0");
   const firstExercise = page.locator(".exercise-card").first();
   await firstExercise.locator("button").first().click();
-  await firstExercise.locator('input[id^="weight-"]').fill("Offline 145");
+  await firstExercise
+    .locator('input[id^="weight-"]')
+    .fill("Offline 145; 8 RPE*");
   await firstExercise.getByRole("button", { name: "Save" }).click();
   await expect(
     firstExercise.locator(".exercise-card__status .weight-badge"),
-  ).toContainText("Offline 145");
+  ).toContainText("Offline 145; 8 RPE*");
 
   await page.goto("/#/history");
-  await expect(page.getByText(/Offline 145/)).toBeVisible();
+  await expect(page.getByText(/Offline 145; 8 RPE\*/)).toBeVisible();
   await expect(page.getByText(/Offline added 125/)).toBeVisible();
 });
 

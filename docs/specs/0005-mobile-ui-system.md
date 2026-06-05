@@ -102,7 +102,8 @@ The implementation should introduce a small internal component system and design
 - Keep free-text weight input.
 - Show the complete latest saved-weight record in the expanded exercise details so
   compact-row truncation never hides the retained context on touch devices.
-- Add an appropriate mobile keyboard hint such as `inputMode="decimal"` without restricting free-text values.
+- Add an appropriate mobile keyboard hint that preserves free-form weight text,
+  punctuation, and symbols.
 - Keep Save as a clear icon-and-text action.
 - Preserve dirty-input tracking so service-worker updates cannot discard entered weight text.
 
