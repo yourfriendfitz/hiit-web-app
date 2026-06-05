@@ -153,9 +153,9 @@ function WeightLogger({
       <div className="weight-logger__controls">
         <input
           type="text"
-          inputMode="decimal"
+          inputMode="text"
           id={weightInputId}
-          placeholder="Enter weight, e.g. 135 lbs"
+          placeholder="Enter weight or notes, e.g. 40s; RPE 9*"
           value={weight}
           onChange={(event) => {
             const nextWeight = event.target.value;
