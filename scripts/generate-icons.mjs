@@ -1,8 +1,9 @@
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { deflateSync } from "node:zlib";
 
-const OUTPUT_DIR = new URL("../public/", import.meta.url);
+const OUTPUT_DIR = fileURLToPath(new URL("../public/", import.meta.url));
 const BASE_SIZE = 512;
 const SUPERSAMPLE = 4;
 
@@ -222,18 +223,18 @@ function encodeIco(entries) {
   return Buffer.concat([header, ...entries.map(({ png }) => png)]);
 }
 
-writeFileSync(join(OUTPUT_DIR.pathname, "icon.svg"), iconSvg);
+writeFileSync(join(OUTPUT_DIR, "icon.svg"), iconSvg);
 
 const pngs = new Map(
   pngTargets.map(([fileName, size]) => {
     const png = renderIcon(size);
-    writeFileSync(join(OUTPUT_DIR.pathname, fileName), png);
+    writeFileSync(join(OUTPUT_DIR, fileName), png);
     return [size, png];
   }),
 );
 
 writeFileSync(
-  join(OUTPUT_DIR.pathname, "favicon.ico"),
+  join(OUTPUT_DIR, "favicon.ico"),
   encodeIco([
     { size: 16, png: pngs.get(16) },
     { size: 32, png: pngs.get(32) },

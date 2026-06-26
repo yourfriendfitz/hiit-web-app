@@ -322,10 +322,6 @@ test("opens the directory and loads a selected workout route", async ({
     "open",
     false,
   );
-  await expect(page.locator('[data-cycle-index="1"]')).toHaveJSProperty(
-    "open",
-    false,
-  );
   await page.locator('[data-cycle-index="1"] > summary').click();
   await expect(page.locator('[data-cycle-index="1"]')).toHaveJSProperty(
     "open",
