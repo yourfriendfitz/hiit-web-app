@@ -678,6 +678,69 @@ input::placeholder {
   gap: 22px;
 }
 
+.directory-cycle {
+  display: grid;
+  gap: 12px;
+}
+
+.directory-cycle__header {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  border-radius: var(--app-radius);
+  color: var(--app-accent);
+  cursor: pointer;
+  list-style: none;
+}
+
+.directory-cycle__header::-webkit-details-marker {
+  display: none;
+}
+
+.directory-cycle__header > div {
+  min-width: 0;
+}
+
+.directory-cycle__header h2 {
+  margin: 0;
+  color: var(--app-text);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.directory-cycle__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+
+.directory-cycle__header p {
+  margin: 3px 0 0;
+  color: var(--app-text-subdued);
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+.directory-cycle__chevron {
+  flex: 0 0 auto;
+  color: var(--app-text-subdued);
+  transition: transform 180ms ease;
+}
+
+.directory-cycle[open] .directory-cycle__chevron {
+  transform: rotate(180deg);
+}
+
+.directory-cycle__weeks {
+  display: grid;
+  gap: 14px;
+}
+
 .directory-week {
   display: grid;
   gap: 9px;
@@ -686,12 +749,25 @@ input::placeholder {
 
 .directory-week__header {
   display: flex;
+  min-height: 44px;
   align-items: center;
+  justify-content: space-between;
   gap: 9px;
+  border-radius: var(--app-radius);
   color: var(--app-accent);
+  cursor: pointer;
+  list-style: none;
 }
 
-.directory-week__header h2 {
+.directory-week__header::-webkit-details-marker {
+  display: none;
+}
+
+.directory-week__header > div {
+  min-width: 0;
+}
+
+.directory-week__header h3 {
   margin: 0;
   color: var(--app-text);
   font-size: 0.95rem;
@@ -700,10 +776,12 @@ input::placeholder {
 
 .directory-week__title {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 7px;
 }
 
+.directory-week__cycle,
 .directory-week__current {
   border: 1px solid rgb(69 212 131 / 30%);
   border-radius: 999px;
@@ -716,10 +794,26 @@ input::placeholder {
   text-transform: uppercase;
 }
 
+.directory-week__cycle {
+  border-color: var(--app-border);
+  background: var(--app-surface-muted);
+  color: var(--app-text-muted);
+}
+
 .directory-week__header p {
   margin: 2px 0 0;
   color: var(--app-text-subdued);
   font-size: 0.72rem;
+}
+
+.directory-week__chevron {
+  flex: 0 0 auto;
+  color: var(--app-text-subdued);
+  transition: transform 180ms ease;
+}
+
+.directory-week[open] .directory-week__chevron {
+  transform: rotate(180deg);
 }
 
 .directory-week__days {

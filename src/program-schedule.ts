@@ -1,9 +1,27 @@
 import { PROGRAM_START_DATE, type Workout, type WorkoutProgram } from "./types";
 
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+export const PROGRAM_CYCLE_LENGTH_WEEKS = 12;
 
 function getLocalCalendarDay(date: Date) {
   return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function getPositiveInteger(value: number, fallback: number) {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
+  const integer = Math.floor(value);
+  return integer > 0 ? integer : fallback;
+}
+
+function getNonNegativeInteger(value: number) {
+  if (!Number.isFinite(value)) {
+    return 0;
+  }
+
+  return Math.max(0, Math.floor(value));
 }
 
 export type RecentProgramWorkout = {
@@ -13,6 +31,48 @@ export type RecentProgramWorkout = {
   week: number;
   workout: Workout;
 };
+
+export type ProgramCyclePosition = {
+  cycle: number;
+  cycleLength: number;
+  cycleWeek: number;
+  programWeek: number;
+  totalCycles: number;
+};
+
+export function getProgramCyclePosition(
+  weekIndex: number,
+  programLength: number,
+  cycleLength = PROGRAM_CYCLE_LENGTH_WEEKS,
+): ProgramCyclePosition {
+  const availableWeeks = getNonNegativeInteger(programLength);
+  const normalizedCycleLength = getPositiveInteger(cycleLength, 1);
+  const normalizedWeekIndex = Math.min(
+    getNonNegativeInteger(weekIndex),
+    Math.max(availableWeeks - 1, 0),
+  );
+
+  return {
+    cycle: Math.floor(normalizedWeekIndex / normalizedCycleLength) + 1,
+    cycleLength: normalizedCycleLength,
+    cycleWeek: (normalizedWeekIndex % normalizedCycleLength) + 1,
+    programWeek: normalizedWeekIndex + 1,
+    totalCycles:
+      availableWeeks === 0
+        ? 0
+        : Math.ceil(availableWeeks / normalizedCycleLength),
+  };
+}
+
+export function formatWorkoutScheduleLabel(
+  weekIndex: number,
+  day: number,
+  programLength: number,
+) {
+  const cyclePosition = getProgramCyclePosition(weekIndex, programLength);
+
+  return `Cycle Week ${cyclePosition.cycleWeek}/${cyclePosition.cycleLength} • Day ${day}`;
+}
 
 export function getCurrentProgramWeek(
   programLength: number,

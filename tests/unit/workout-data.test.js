@@ -15,13 +15,18 @@ const readJson = (fileName) =>
 
 const fileHash = (fileName) =>
   createHash("sha256")
-    .update(readFileSync(new URL(`../../public/${fileName}`, import.meta.url)))
+    .update(
+      readFileSync(
+        new URL(`../../public/${fileName}`, import.meta.url),
+        "utf8",
+      ).replace(/\r\n/g, "\n"),
+    )
     .digest("hex");
 
 describe("workout data contract", () => {
   it("keeps the expert-authored workout source unchanged", () => {
     expect(fileHash("data.json")).toBe(
-      "55e4ebd015f3c219e5bbf03a04be47f59a6151aabaa840c8b90b642626ffbb53",
+      "814263053aeb85c2e2c05771d5eeac18339639424b103815dd4ba376e265add5",
     );
   });
 
@@ -34,7 +39,7 @@ describe("workout data contract", () => {
   it("has weeks, days, and workout exercise slots", () => {
     const data = validateWorkoutProgram(readJson("data.json"));
 
-    expect(data).toHaveLength(48);
+    expect(data).toHaveLength(96);
     expect(data.every((week) => week.length === 5)).toBe(true);
 
     for (const week of data) {
@@ -47,6 +52,23 @@ describe("workout data contract", () => {
         );
         expect(workout.exercises.length).toBeGreaterThan(0);
       }
+    }
+  });
+
+  it("keeps eight exact 12-week training cycles", () => {
+    const data = validateWorkoutProgram(readJson("data.json"));
+    const cycleLength = 12;
+    const firstCycle = data.slice(0, cycleLength);
+
+    expect(data).toHaveLength(cycleLength * 8);
+
+    for (let cycleIndex = 1; cycleIndex < 8; cycleIndex += 1) {
+      expect(
+        data.slice(
+          cycleIndex * cycleLength,
+          cycleIndex * cycleLength + cycleLength,
+        ),
+      ).toEqual(firstCycle);
     }
   });
 

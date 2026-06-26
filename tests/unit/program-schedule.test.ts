@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  PROGRAM_CYCLE_LENGTH_WEEKS,
+  formatWorkoutScheduleLabel,
   getCurrentProgramWeek,
+  getProgramCyclePosition,
   getRecentProgramWorkouts,
 } from "../../src/program-schedule";
 import type { Workout, WorkoutProgram } from "../../src/types";
@@ -57,6 +60,48 @@ describe("getCurrentProgramWeek", () => {
         new Date("2026-03-02T00:00:00-06:00"),
       ),
     ).toBe(1);
+  });
+});
+
+describe("getProgramCyclePosition", () => {
+  it("uses the authored 12-week cycle length", () => {
+    expect(PROGRAM_CYCLE_LENGTH_WEEKS).toBe(12);
+  });
+
+  it("returns cycle context for the final week of cycle 4", () => {
+    expect(getProgramCyclePosition(47, 96)).toEqual({
+      cycle: 4,
+      cycleLength: 12,
+      cycleWeek: 12,
+      programWeek: 48,
+      totalCycles: 8,
+    });
+  });
+
+  it("starts a new cycle after each 12-week block", () => {
+    expect(getProgramCyclePosition(48, 96)).toEqual({
+      cycle: 5,
+      cycleLength: 12,
+      cycleWeek: 1,
+      programWeek: 49,
+      totalCycles: 8,
+    });
+  });
+
+  it("clamps cycle context to the authored program range", () => {
+    expect(getProgramCyclePosition(120, 96)).toEqual({
+      cycle: 8,
+      cycleLength: 12,
+      cycleWeek: 12,
+      programWeek: 96,
+      totalCycles: 8,
+    });
+  });
+
+  it("formats workout schedule labels without global program week", () => {
+    expect(formatWorkoutScheduleLabel(47, 5, 96)).toBe(
+      "Cycle Week 12/12 • Day 5",
+    );
   });
 });
 

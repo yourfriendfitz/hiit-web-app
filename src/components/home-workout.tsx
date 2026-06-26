@@ -1,7 +1,10 @@
 import { CalendarPlus, ChevronDown, Plus, X } from "lucide-react";
 import { useState } from "react";
 
-import type { RecentProgramWorkout } from "../program-schedule";
+import {
+  formatWorkoutScheduleLabel,
+  type RecentProgramWorkout,
+} from "../program-schedule";
 import type { ExerciseMetadata, Workout } from "../types";
 import { WorkoutView } from "./workout";
 
@@ -64,11 +67,13 @@ function WorkoutSection({
 export function HomeWorkout({
   currentWeek,
   exerciseMap,
+  programLength,
   recentWorkouts,
   today,
 }: {
   currentWeek: number;
   exerciseMap: Record<string, ExerciseMetadata>;
+  programLength: number;
   recentWorkouts: RecentProgramWorkout[];
   today: {
     workout: Workout;
@@ -85,7 +90,11 @@ export function HomeWorkout({
         exerciseMap={exerciseMap}
         instanceId="today"
         label="Today"
-        meta={`Week ${currentWeek + 1} / Day ${today.workoutDay}`}
+        meta={formatWorkoutScheduleLabel(
+          currentWeek,
+          today.workoutDay,
+          programLength,
+        )}
         workout={today.workout}
       />
 
@@ -94,9 +103,13 @@ export function HomeWorkout({
           exerciseMap={exerciseMap}
           instanceId={`missed-${selectedWorkout.key}`}
           label="Added missed workout"
-          meta={`${formatWorkoutDate(selectedWorkout.date)} / Week ${
-            selectedWorkout.week + 1
-          } / Day ${selectedWorkout.day + 1}`}
+          meta={`${formatWorkoutDate(
+            selectedWorkout.date,
+          )} • ${formatWorkoutScheduleLabel(
+            selectedWorkout.week,
+            selectedWorkout.day + 1,
+            programLength,
+          )}`}
           onRemove={() => setSelectedWorkout(null)}
           workout={selectedWorkout.workout}
         />

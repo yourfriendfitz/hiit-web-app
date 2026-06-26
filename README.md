@@ -16,6 +16,7 @@ This is a web app meant to display HIIT workout program
 ### Features
 
 - **Workout Directory:** Browse workouts by week and day.
+- **Cycle-Aware Schedule:** See the 96-week plan as eight repeated 12-week cycles, with cycle-week context on workouts.
 - **Track Progress:** Log and view weights for each exercise.
 - **Offline Support:** Use the app even without an internet connection.
 - **Mobile-First UI:** Use a reachable bottom navigation bar, compact workout rows, and phone-sized weight-entry controls during training.
@@ -167,6 +168,7 @@ Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final re
 
 - Current public release: [`v4.0.1`](docs/releases/v4.0.1.md).
 - Prepare the free-form weight-entry patch as [`v4.0.2`](docs/releases/v4.0.2.md).
+- Prepare the cycle-aware schedule and icon refresh as [`v4.1.0`](docs/releases/v4.1.0.md).
 - Include user-visible changes, migration notes, and known issues.
 - Keep the legacy PWA migration bridge deployed until a later owner-approved cleanup.
 - Verify install and update behavior manually in iPhone Safari before publishing a release.
