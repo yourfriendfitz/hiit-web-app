@@ -63,7 +63,7 @@ test("loads core routes and saves a weight offline after the first visit", async
 
   await page.goto("/#/directory");
   await expect(
-    page.getByRole("heading", { name: "Week 1", exact: true }),
+    page.getByRole("heading", { name: "Program Week 1", exact: true }),
   ).toBeVisible();
 
   await page.goto("/#/workout?week=0&day=0");

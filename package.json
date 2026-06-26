@@ -1,6 +1,6 @@
 {
   "name": "hiit-web-app",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "private": true,
   "description": "HIIT Workout Web App",
   "engines": {
@@ -15,6 +15,7 @@
     "preview:pwa-test": "vite preview --host 0.0.0.0 --port 4174",
     "serve:test": "npm run build && npm run preview:test",
     "serve:pwa-test": "npm run build && npm run preview:pwa-test",
+    "generate:icons": "node scripts/generate-icons.mjs",
     "lint": "eslint .",
     "format:check": "prettier --check \"docs/**/*.md\" \"scripts/**/*.mjs\" \"tests/**/*.{js,ts}\" \"src/**/*.{css,ts,tsx}\" \"*.{mjs,ts}\" \"index.html\" \"package.json\" \".github/**/*.yml\"",
     "typecheck": "tsc --noEmit",

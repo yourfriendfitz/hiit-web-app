@@ -12,6 +12,8 @@ import {
   mapExercisesById,
 } from "./data";
 import {
+  PROGRAM_CYCLE_LENGTH_WEEKS,
+  formatWorkoutScheduleLabel,
   getCurrentProgramWeek,
   getRecentProgramWorkouts,
 } from "./program-schedule";
@@ -131,11 +133,16 @@ function App() {
   if (route.name === "home") {
     if (currentWeek !== null && today?.workout) {
       title = today.workout.name;
-      subtitle = `Week ${currentWeek + 1} / Day ${today.workoutDay}`;
+      subtitle = formatWorkoutScheduleLabel(
+        currentWeek,
+        today.workoutDay,
+        data.program.length,
+      );
       content = (
         <HomeWorkout
           currentWeek={currentWeek}
           exerciseMap={exerciseMap}
+          programLength={data.program.length}
           recentWorkouts={getRecentProgramWorkouts(data.program)}
           today={today}
         />
@@ -143,7 +150,9 @@ function App() {
     }
   } else if (route.name === "directory") {
     title = "Workout directory";
-    subtitle = "48-week training plan";
+    subtitle = `${data.program.length}-week training plan • ${Math.ceil(
+      data.program.length / PROGRAM_CYCLE_LENGTH_WEEKS,
+    )} cycles of ${PROGRAM_CYCLE_LENGTH_WEEKS} weeks`;
     content = <Directory currentWeek={currentWeek} program={data.program} />;
   } else if (route.name === "history") {
     title = "History";
@@ -153,7 +162,11 @@ function App() {
     const workout = data.program[route.week]?.[route.day];
     if (workout) {
       title = workout.name;
-      subtitle = `Week ${route.week + 1} / Day ${route.day + 1}`;
+      subtitle = formatWorkoutScheduleLabel(
+        route.week,
+        route.day + 1,
+        data.program.length,
+      );
       content = (
         <WorkoutView
           workout={workout}

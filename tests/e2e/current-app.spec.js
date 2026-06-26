@@ -103,8 +103,11 @@ test("loads the current workout on app launch", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Upper (Strength Focus)", level: 1 }),
   ).toBeVisible();
+  await expect(page.locator(".route-header__subtitle")).toHaveText(
+    "Cycle Week 2/12 • Day 1",
+  );
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
-  await expect(page.locator("#versionIndicator")).toHaveText("v4.0.2");
+  await expect(page.locator("#versionIndicator")).toHaveText("v4.1.0");
 });
 
 test("adds and removes one recent missed workout from home", async ({
@@ -125,6 +128,9 @@ test("adds and removes one recent missed workout from home", async ({
   await expect(workoutSections).toHaveCount(2);
   await expect(workoutSections.first()).toContainText("Today");
   await expect(workoutSections.nth(1)).toContainText("Added missed workout");
+  await expect(workoutSections.nth(1)).toContainText(
+    "Fri, Aug 1 • Cycle Week 1/12 • Day 5",
+  );
   await expect(
     page.getByRole("button", { name: "Add missed workout" }),
   ).toHaveCount(0);
@@ -285,7 +291,7 @@ test("uses bottom navigation for directory, history, and home", async ({
     .toBeGreaterThan(0);
 
   await expect(
-    page.getByRole("heading", { name: "Week 1", exact: true }),
+    page.getByRole("heading", { name: "Program Week 1", exact: true }),
   ).toBeVisible();
 
   await navigation.getByRole("link", { name: "History" }).click();
@@ -303,12 +309,44 @@ test("opens the directory and loads a selected workout route", async ({
   await page.goto("/#/directory");
 
   await expect(
-    page.getByRole("heading", { name: "Week 1", exact: true }),
+    page.getByRole("heading", { name: "Program Week 1", exact: true }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Cycle 1 of 8", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator('[data-cycle-index="0"]')).toHaveJSProperty(
+    "open",
+    true,
+  );
+  await expect(page.locator('[data-cycle-index="1"]')).toHaveJSProperty(
+    "open",
+    false,
+  );
+  await page.locator('[data-cycle-index="1"] > summary').click();
+  await expect(page.locator('[data-cycle-index="1"]')).toHaveJSProperty(
+    "open",
+    true,
+  );
+  await expect(
+    page.getByRole("heading", { name: "Program Week 13", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator('[data-week-index="0"]')).toHaveJSProperty(
+    "open",
+    false,
+  );
+  await expect(page.locator('[data-week-index="1"]')).toHaveJSProperty(
+    "open",
+    true,
+  );
+  await expect(page.locator('a[href="#/workout?week=0&day=0"]')).toBeHidden();
+  await page.locator('[data-week-index="0"] > summary').click();
   await expect(page.locator('a[href="#/workout?week=0&day=0"]')).toBeVisible();
 
   await page.goto("/#/workout?week=0&day=0");
 
+  await expect(page.locator(".route-header__subtitle")).toHaveText(
+    "Cycle Week 1/12 • Day 1",
+  );
   await expect(
     page.locator("#appContent .exercise-card button").first(),
   ).toBeVisible();
@@ -326,6 +364,13 @@ test("positions the directory at the current week once and keeps workout links u
   await expect(page.locator('[data-current-week="true"]')).toContainText(
     "Current",
   );
+  await expect(page.locator('[data-current-week="true"]')).toContainText(
+    "Cycle Week 2/12",
+  );
+  await expect(page.locator('[data-current-week="true"]')).toHaveJSProperty(
+    "open",
+    true,
+  );
 
   await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
   await page.waitForTimeout(50);
@@ -333,6 +378,7 @@ test("positions the directory at the current week once and keeps workout links u
     await page.evaluate(() => window.directoryScrollRequests),
   ).toHaveLength(1);
 
+  await page.locator('[data-week-index="0"] > summary').click();
   await page.locator('a[href="#/workout?week=0&day=0"]').click();
   await expect(page.locator(".exercise-card").first()).toBeVisible();
 });
@@ -513,7 +559,7 @@ test("cleans up database update listeners across route transitions", async ({
 
   await page.goto("/#/directory");
   await expect(
-    page.getByRole("heading", { name: "Week 1", exact: true }),
+    page.getByRole("heading", { name: "Program Week 1", exact: true }),
   ).toBeVisible();
   await expect
     .poll(() => page.evaluate(() => window.getDbUpdatedListenerCount()))

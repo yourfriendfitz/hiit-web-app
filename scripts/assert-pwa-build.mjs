@@ -9,6 +9,7 @@ const requiredFiles = [
   "data.json",
   "exercises.json",
   "favicon.ico",
+  "icon.svg",
   "index.html",
   "manifest.webmanifest",
   "service-worker.js",
