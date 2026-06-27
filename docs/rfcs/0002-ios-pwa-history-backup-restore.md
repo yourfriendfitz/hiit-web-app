@@ -1,10 +1,12 @@
 # RFC 0002: iOS PWA History Backup And Restore
 
-Status: Draft
+Status: Accepted
 
 Owner: Fitz
 
 Created: 2026-06-26T15:25:29-05:00
+
+Accepted: 2026-06-26T20:32:30-05:00
 
 Target release: `v4.1.1`
 
@@ -249,10 +251,6 @@ and avoid repeat imports until a fixed patch is deployed.
 
 ## Open Questions
 
-- Should import live only on History, or should empty History show a stronger
-  import-first call to action?
-- Should export include `APP_VERSION` as informational metadata?
-- Should import show a preview/confirmation step before writing records, or is a
-  direct validated merge acceptable for `v4.1.1`?
-- Should the backup file include a checksum for accidental edit detection, or is
-  strict JSON validation enough for the initial patch?
+- None known. The accepted `v4.1.1` direction is History-only controls, no
+  `APP_VERSION` metadata, direct validated merge, and strict JSON validation
+  without a checksum.

@@ -169,4 +169,39 @@ describe("IndexedDBWeightStorage", () => {
 
     await expect(createStorage().listWeights()).resolves.toEqual(seededRecords);
   });
+
+  it("bulk imports legacy-compatible records without a schema migration", async () => {
+    const storage = createStorage();
+
+    await expect(
+      storage.importWeights([
+        {
+          id: "press",
+          weight: "Imported 95",
+          date: "2026-06-01T12:00:00.000Z",
+        },
+        {
+          id: "row",
+          weight: "Imported 135",
+          date: "2026-06-02T12:00:00.000Z",
+        },
+      ]),
+    ).resolves.toBe(2);
+
+    const db = await storage.open();
+    expect(db.version).toBe(DB_VERSION);
+    expect(Array.from(db.objectStoreNames)).toEqual([WEIGHT_STORE]);
+    await expect(storage.listWeights()).resolves.toEqual([
+      {
+        id: "press",
+        weight: "Imported 95",
+        date: "2026-06-01T12:00:00.000Z",
+      },
+      {
+        id: "row",
+        weight: "Imported 135",
+        date: "2026-06-02T12:00:00.000Z",
+      },
+    ]);
+  });
 });

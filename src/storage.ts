@@ -11,6 +11,7 @@ type StorageAdapterOptions = {
 export interface WeightStorage {
   open(): Promise<IDBDatabase>;
   getLatestWeight(id: string): Promise<string>;
+  importWeights(records: WeightRecord[]): Promise<number>;
   listWeights(): Promise<WeightRecord[]>;
   saveWeight(id: string, weight: string): Promise<void>;
   close(): void;
@@ -88,6 +89,36 @@ export class IndexedDBWeightStorage implements WeightStorage {
         reject(tx.error || new Error("Failed to store weight."));
       tx.onabort = () =>
         reject(tx.error || new Error("Weight transaction aborted."));
+    });
+  }
+
+  async importWeights(records: WeightRecord[]): Promise<number> {
+    if (records.length === 0) {
+      return 0;
+    }
+
+    const db = await this.open();
+    const tx = db.transaction(WEIGHT_STORE, "readwrite");
+    const store = tx.objectStore(WEIGHT_STORE);
+
+    records.forEach((record) => {
+      store.put({
+        id: record.id,
+        weight: record.weight,
+        date: record.date,
+      });
+    });
+
+    return new Promise((resolve, reject) => {
+      tx.oncomplete = () => {
+        this.onUpdated?.();
+        resolve(records.length);
+      };
+
+      tx.onerror = () =>
+        reject(tx.error || new Error("Failed to import weights."));
+      tx.onabort = () =>
+        reject(tx.error || new Error("Weight import transaction aborted."));
     });
   }
 
@@ -176,6 +207,8 @@ export function getBrowserWeightStorage(): IndexedDBWeightStorage {
 export const initDB = () => getBrowserWeightStorage().open();
 export const storeWeight = (id: string, weight: string) =>
   getBrowserWeightStorage().saveWeight(id, weight);
+export const importWeights = (records: WeightRecord[]) =>
+  getBrowserWeightStorage().importWeights(records);
 export const getWeight = (id: string) =>
   getBrowserWeightStorage().getLatestWeight(id);
 export const getAllWeights = () => getBrowserWeightStorage().listWeights();
