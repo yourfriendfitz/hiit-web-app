@@ -190,6 +190,7 @@ export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
           type="file"
           accept="application/json,.json"
           aria-label="Import history backup"
+          tabIndex={-1}
           onChange={(event) => {
             const file = event.target.files?.[0];
             event.currentTarget.value = "";
