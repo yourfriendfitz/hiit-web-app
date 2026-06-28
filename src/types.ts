@@ -1,4 +1,4 @@
-export const APP_VERSION = "4.1.0";
+export const APP_VERSION = "4.1.1";
 export const DB_NAME = "hiit-app-db";
 export const WEIGHT_STORE = "Weights";
 export const PROD_HOSTNAME = "yourfriendfitz.github.io";

@@ -80,6 +80,38 @@ test("loads core routes and saves a weight offline after the first visit", async
   await page.goto("/#/history");
   await expect(page.getByText(/Offline 145; 8 RPE\*/)).toBeVisible();
   await expect(page.getByText(/Offline added 125/)).toBeVisible();
+
+  await page.getByLabel("Import history backup").setInputFiles({
+    name: "offline-history-backup.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(
+      JSON.stringify({
+        app: "hiit-web-app",
+        format: "weights-backup",
+        formatVersion: 1,
+        exportedAt: "2026-06-26T20:32:30.000Z",
+        recordCount: 1,
+        records: [
+          {
+            id: "legextension",
+            weight: "Offline imported 225",
+            date: "2025-08-03T12:00:00.000Z",
+          },
+        ],
+      }),
+    ),
+  });
+  await expect(
+    page.getByText("Imported 1 record. No duplicates skipped."),
+  ).toBeVisible();
+  await expect(page.getByText(/Offline imported 225/)).toBeVisible();
+
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export" }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(
+    /^hiit-history-backup-\d{4}-\d{2}-\d{2}\.json$/,
+  );
 });
 
 test("legacy migration bridge removes stale shell caches without deleting IndexedDB history", async ({

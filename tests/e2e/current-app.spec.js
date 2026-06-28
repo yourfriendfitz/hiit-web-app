@@ -80,6 +80,40 @@ async function getLastWeightRecord(page) {
   });
 }
 
+async function clearWeightRecords(page) {
+  await page.evaluate(async () => {
+    const db = await new Promise((resolve, reject) => {
+      const request = indexedDB.open("hiit-app-db", 1);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    const tx = db.transaction("Weights", "readwrite");
+    const request = tx.objectStore("Weights").clear();
+    await new Promise((resolve, reject) => {
+      request.onsuccess = () => resolve();
+      request.onerror = () => reject(request.error);
+    });
+    db.close();
+  });
+}
+
+function createBackupFile(records) {
+  return {
+    name: "hiit-history-backup-2026-06-26.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(
+      JSON.stringify({
+        app: "hiit-web-app",
+        format: "weights-backup",
+        formatVersion: 1,
+        exportedAt: "2026-06-26T20:32:30.000Z",
+        recordCount: records.length,
+        records,
+      }),
+    ),
+  };
+}
+
 async function recordDirectoryScrollRequests(page) {
   await page.addInitScript(() => {
     window.directoryScrollRequests = [];
@@ -107,7 +141,7 @@ test("loads the current workout on app launch", async ({ page }) => {
     "Cycle Week 2/12 • Day 1",
   );
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
-  await expect(page.locator("#versionIndicator")).toHaveText("v4.1.0");
+  await expect(page.locator("#versionIndicator")).toHaveText("v4.1.1");
 });
 
 test("adds and removes one recent missed workout from home", async ({
@@ -518,6 +552,95 @@ test("reads seeded history and filters it by exercise name", async ({
 
   await expect(page.getByText("Legacy 105")).toBeHidden();
   await expect(page.getByText("Legacy unknown 50")).toBeVisible();
+});
+
+test("imports a history backup and skips duplicate imports", async ({
+  page,
+}) => {
+  await page.goto("/#/history");
+
+  const backupFile = createBackupFile([
+    {
+      id: "45inclinebarbellpress",
+      weight: "Imported 95",
+      date: "2025-07-29T12:00:00.000Z",
+    },
+    {
+      id: "legextension",
+      weight: "Imported 70",
+      date: "2025-07-30T12:00:00.000Z",
+    },
+  ]);
+
+  await page.getByLabel("Import history backup").setInputFiles(backupFile);
+  await expect(
+    page.getByText("Imported 2 records. No duplicates skipped."),
+  ).toBeVisible();
+  await expect(page.getByText("Imported 95")).toBeVisible();
+  await expect(page.getByText("Imported 70")).toBeVisible();
+
+  await page.reload();
+  await expect(page.getByText("Imported 95")).toBeVisible();
+
+  await page.goto("/#/workout?week=0&day=0");
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await expect(
+    firstExercise.locator(".exercise-card__status .weight-badge"),
+  ).toContainText("Imported 95");
+
+  await page.goto("/#/history");
+
+  await page.getByLabel("Import history backup").setInputFiles(backupFile);
+  await expect(
+    page.getByText("Imported 0 records. Skipped 2 records."),
+  ).toBeVisible();
+  await expect(page.getByText("2 entries")).toHaveCount(0);
+  await expect(page.getByText("1 entry")).toHaveCount(2);
+});
+
+test("exports a history backup file", async ({
+  browserName,
+  page,
+}, testInfo) => {
+  test.skip(
+    browserName !== "chromium",
+    "Blob download coverage runs once in Chromium.",
+  );
+
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Exported 95",
+      date: "2025-07-29T12:00:00.000Z",
+    },
+    {
+      id: "legextension",
+      weight: "Exported 70",
+      date: "2025-07-30T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/history");
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export" }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(
+    /^hiit-history-backup-\d{4}-\d{2}-\d{2}\.json$/,
+  );
+
+  const backupPath = testInfo.outputPath("history-backup.json");
+  await download.saveAs(backupPath);
+  await clearWeightRecords(page);
+  await page.reload();
+  await expect(page.getByText("No history yet")).toBeVisible();
+
+  await page.getByLabel("Import history backup").setInputFiles(backupPath);
+  await expect(
+    page.getByText("Imported 2 records. No duplicates skipped."),
+  ).toBeVisible();
+  await expect(page.getByText("Exported 95")).toBeVisible();
+  await expect(page.getByText("Exported 70")).toBeVisible();
 });
 
 test("cleans up database update listeners across route transitions", async ({

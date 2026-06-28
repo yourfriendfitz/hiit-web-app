@@ -1,13 +1,48 @@
-import { ChevronDown, Search, TrendingUp } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import {
+  ChevronDown,
+  Download,
+  Search,
+  TrendingUp,
+  Upload,
+} from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Toastify from "toastify-js";
 
-import { getAllWeights } from "../storage";
+import {
+  createWeightHistoryBackup,
+  getWeightHistoryBackupFileName,
+  parseWeightHistoryBackup,
+  planWeightHistoryImport,
+  serializeWeightHistoryBackup,
+} from "../history-backup";
+import { getAllWeights, importWeights } from "../storage";
 import type { ExerciseMetadata, WeightRecord } from "../types";
+
+function showHistoryToast(text: string) {
+  Toastify({
+    text,
+    duration: 2500,
+    gravity: "bottom",
+    position: "center",
+    stopOnFocus: true,
+    className: "toastify",
+  }).showToast();
+}
+
+function describeRecordCount(count: number) {
+  return `${count} ${count === 1 ? "record" : "records"}`;
+}
 
 export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
   const [weights, setWeights] = useState<WeightRecord[]>([]);
   const [filter, setFilter] = useState("");
   const [openIds, setOpenIds] = useState<Set<string>>(() => new Set());
+  const [backupStatus, setBackupStatus] = useState<{
+    tone: "error" | "success";
+    text: string;
+  } | null>(null);
+  const [isImporting, setIsImporting] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const update = () => {
@@ -61,8 +96,119 @@ export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
     });
   };
 
+  const exportHistory = async () => {
+    try {
+      const records = await getAllWeights();
+
+      if (records.length === 0) {
+        const text = "No history to export yet.";
+        setBackupStatus({ tone: "error", text });
+        showHistoryToast(text);
+        return;
+      }
+
+      const backup = createWeightHistoryBackup(records);
+      const blob = new Blob([serializeWeightHistoryBackup(backup)], {
+        type: "application/json",
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = getWeightHistoryBackupFileName(backup.exportedAt);
+      document.body.append(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 0);
+
+      const text = `Exported ${describeRecordCount(backup.recordCount)}.`;
+      setBackupStatus({ tone: "success", text });
+      showHistoryToast("History exported");
+    } catch (error) {
+      const text =
+        error instanceof Error ? error.message : "History export failed.";
+      setBackupStatus({ tone: "error", text });
+      showHistoryToast("History export failed");
+    }
+  };
+
+  const importHistory = async (file: File) => {
+    setIsImporting(true);
+
+    try {
+      const backup = parseWeightHistoryBackup(await file.text());
+      const plan = planWeightHistoryImport(
+        await getAllWeights(),
+        backup.records,
+      );
+      const importedCount = await importWeights(plan.recordsToImport);
+      const nextWeights = await getAllWeights();
+      setWeights(nextWeights);
+
+      const importedText = `Imported ${describeRecordCount(importedCount)}`;
+      const skippedText =
+        plan.skippedDuplicates > 0
+          ? `Skipped ${describeRecordCount(plan.skippedDuplicates)}.`
+          : "No duplicates skipped.";
+      const text = `${importedText}. ${skippedText}`;
+      setBackupStatus({ tone: "success", text });
+      showHistoryToast("History imported");
+    } catch (error) {
+      const text = `Import failed: ${
+        error instanceof Error ? error.message : "Unknown backup error."
+      }`;
+      setBackupStatus({ tone: "error", text });
+      showHistoryToast("History import failed");
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
   return (
     <div className="history-page">
+      <div className="history-actions" aria-label="History backup actions">
+        <button
+          type="button"
+          className="secondary-action history-actions__button"
+          onClick={exportHistory}
+          disabled={weights.length === 0 || isImporting}
+        >
+          <Download size={18} strokeWidth={2.25} aria-hidden="true" />
+          <span>Export</span>
+        </button>
+        <button
+          type="button"
+          className="primary-action history-actions__button"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={isImporting}
+        >
+          <Upload size={18} strokeWidth={2.25} aria-hidden="true" />
+          <span>{isImporting ? "Importing" : "Import"}</span>
+        </button>
+        <input
+          ref={fileInputRef}
+          className="history-actions__file"
+          type="file"
+          accept="application/json,.json"
+          aria-label="Import history backup"
+          tabIndex={-1}
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            event.currentTarget.value = "";
+            if (file) {
+              void importHistory(file);
+            }
+          }}
+        />
+      </div>
+      {backupStatus ? (
+        <p
+          className={`history-actions__status history-actions__status--${backupStatus.tone}`}
+          role="status"
+        >
+          {backupStatus.text}
+        </p>
+      ) : null}
+
       <label className="search-container" htmlFor="searchBar">
         <Search className="search-icon" size={18} strokeWidth={2.25} />
         <input

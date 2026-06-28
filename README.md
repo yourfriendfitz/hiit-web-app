@@ -169,6 +169,7 @@ Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final re
 - Current public release: [`v4.0.1`](docs/releases/v4.0.1.md).
 - Prepare the free-form weight-entry patch as [`v4.0.2`](docs/releases/v4.0.2.md).
 - Prepare the cycle-aware schedule and icon refresh as [`v4.1.0`](docs/releases/v4.1.0.md).
+- Prepare the History backup and restore patch as [`v4.1.1`](docs/releases/v4.1.1.md).
 - Include user-visible changes, migration notes, and known issues.
 - Keep the legacy PWA migration bridge deployed until a later owner-approved cleanup.
 - Verify install and update behavior manually in iPhone Safari before publishing a release.

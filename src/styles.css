@@ -78,6 +78,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 *:focus-visible {
   outline: 2px solid var(--app-accent);
   outline-offset: 3px;
@@ -633,6 +638,12 @@ input::placeholder {
   padding: 0 12px;
 }
 
+.primary-action:disabled,
+.secondary-action:disabled {
+  background: var(--app-surface-soft);
+  color: var(--app-text-subdued);
+}
+
 .weight-badge {
   display: inline-flex;
   min-width: 0;
@@ -882,6 +893,44 @@ input::placeholder {
   position: relative;
   display: block;
   margin-bottom: 12px;
+}
+
+.history-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.history-actions__button {
+  width: 100%;
+}
+
+.history-actions__file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.history-actions__status {
+  min-height: 20px;
+  margin: 0 0 10px;
+  color: var(--app-text-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.history-actions__status--success {
+  color: var(--app-primary);
+}
+
+.history-actions__status--error {
+  color: var(--app-danger);
 }
 
 .search-icon {
