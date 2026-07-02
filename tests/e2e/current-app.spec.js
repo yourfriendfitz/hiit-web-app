@@ -599,6 +599,49 @@ test("imports a history backup and skips duplicate imports", async ({
   await expect(page.getByText("1 entry")).toHaveCount(2);
 });
 
+test("keeps newer local history marked latest after importing older records", async ({
+  page,
+}) => {
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Newer local 105",
+      date: "2025-08-10T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/history");
+
+  const backupFile = createBackupFile([
+    {
+      id: "45inclinebarbellpress",
+      weight: "Older imported 95",
+      date: "2025-07-29T12:00:00.000Z",
+    },
+  ]);
+
+  await page.getByLabel("Import history backup").setInputFiles(backupFile);
+  await expect(
+    page.getByText("Imported 1 record. No duplicates skipped."),
+  ).toBeVisible();
+
+  const exerciseGroup = page.locator(".accordion-item").filter({
+    hasText: "45° Incline Barbell Press",
+  });
+  await exerciseGroup
+    .getByRole("button", { name: /45° Incline Barbell Press/ })
+    .click();
+
+  const entries = exerciseGroup.locator(".weight-entry");
+  await expect(entries).toHaveCount(2);
+  await expect(entries.first()).toContainText("Newer local 105");
+  await expect(entries.first()).toContainText("Latest");
+
+  const olderImportedEntry = entries.filter({ hasText: "Older imported 95" });
+  await expect(olderImportedEntry).toBeVisible();
+  await expect(olderImportedEntry).not.toContainText("Latest");
+});
+
 test("exports a history backup file", async ({
   browserName,
   page,
