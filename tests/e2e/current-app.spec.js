@@ -476,6 +476,49 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
   await expect(page.getByText(/40s; 9 for 95 9 RPE\*/)).toBeVisible();
 });
 
+test("shows feedback and preserves input when a weight save fails", async ({
+  page,
+}) => {
+  const pageErrors = [];
+  page.on("pageerror", (error) => {
+    pageErrors.push(error.message);
+  });
+
+  await page.goto("/#/workout?week=0&day=0");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  const weightInput = firstExercise.locator('input[id^="weight-"]');
+  await weightInput.fill("Will fail 100");
+
+  await page.evaluate(() => {
+    const originalTransaction = IDBDatabase.prototype.transaction;
+    window.restoreTransactions = () => {
+      IDBDatabase.prototype.transaction = originalTransaction;
+      delete window.restoreTransactions;
+    };
+    IDBDatabase.prototype.transaction = () => {
+      throw new Error("Forced transaction failure");
+    };
+  });
+
+  try {
+    await firstExercise.getByRole("button", { name: "Save" }).click();
+
+    await expect(
+      firstExercise.getByText("Weight was not saved. Try again."),
+    ).toBeVisible();
+    await expect(page.getByText("Weight save failed")).toBeVisible();
+    await expect(page.getByText("Weight saved", { exact: true })).toHaveCount(
+      0,
+    );
+    await expect(weightInput).toHaveValue("Will fail 100");
+    expect(pageErrors).toEqual([]);
+  } finally {
+    await page.evaluate(() => window.restoreTransactions?.());
+  }
+});
+
 test("stores stable context when optional RPE fields are absent", async ({
   page,
 }) => {

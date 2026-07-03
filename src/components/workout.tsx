@@ -35,6 +35,17 @@ function showSavedToast() {
   }).showToast();
 }
 
+function showSaveFailedToast() {
+  Toastify({
+    text: "Weight save failed",
+    duration: 2500,
+    gravity: "bottom",
+    position: "center",
+    stopOnFocus: true,
+    className: "toastify",
+  }).showToast();
+}
+
 function useLastWeight(exerciseId: string) {
   const [weight, setWeight] = useState("");
   const requestSequence = useRef(0);
@@ -43,11 +54,13 @@ function useLastWeight(exerciseId: string) {
     let active = true;
     const update = () => {
       const sequence = ++requestSequence.current;
-      void getWeight(exerciseId).then((latestWeight) => {
-        if (active && sequence === requestSequence.current) {
-          setWeight(latestWeight);
-        }
-      });
+      void getWeight(exerciseId)
+        .then((latestWeight) => {
+          if (active && sequence === requestSequence.current) {
+            setWeight(latestWeight);
+          }
+        })
+        .catch(() => undefined);
     };
 
     update();
@@ -114,6 +127,8 @@ function WeightLogger({
   latestWeight: string;
 }) {
   const [weight, setWeight] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const weightInputId = `weight-${exerciseInstanceId}`;
 
   useEffect(
@@ -122,17 +137,29 @@ function WeightLogger({
   );
 
   const saveWeight = async () => {
-    if (!weight) {
+    if (!weight || isSaving) {
       return;
     }
 
     const earlyRpe = exercise.earlyRpe ?? "N/A";
     const lastRpe = exercise.lastRpe ?? "N/A";
     const weightWithDetails = `${weight} [Sets: ${exercise.workingSets}, Reps: ${exercise.repsOrDuration}, Early RPE: ${earlyRpe}, Last RPE: ${lastRpe}]`;
-    await storeWeight(exercise.id, weightWithDetails);
-    showSavedToast();
-    setWeight("");
-    pwaUpdatePolicy.clearInput(weightInputId);
+    setIsSaving(true);
+    setSaveError("");
+
+    try {
+      await storeWeight(exercise.id, weightWithDetails);
+      showSavedToast();
+      setWeight("");
+      pwaUpdatePolicy.clearInput(weightInputId);
+      setSaveError("");
+    } catch {
+      setSaveError("Weight was not saved. Try again.");
+      pwaUpdatePolicy.setInputDirty(weightInputId, true);
+      showSaveFailedToast();
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -163,11 +190,21 @@ function WeightLogger({
             pwaUpdatePolicy.setInputDirty(weightInputId, nextWeight !== "");
           }}
         />
-        <button type="button" className="primary-action" onClick={saveWeight}>
+        <button
+          type="button"
+          className="primary-action"
+          onClick={saveWeight}
+          disabled={isSaving}
+        >
           <Save size={18} strokeWidth={2.5} aria-hidden="true" />
           <span>Save</span>
         </button>
       </div>
+      {saveError ? (
+        <p className="weight-logger__error" role="status">
+          {saveError}
+        </p>
+      ) : null}
     </section>
   );
 }
