@@ -166,10 +166,10 @@ Confirm the `github-pages` environment deployment succeeds after each reviewed `
 
 Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final refactor cutover. The [installed PWA migration runbook](docs/releases/PWA-MIGRATION.md) covers existing `v3.0.4` installs. The [rollback runbook](docs/releases/ROLLBACK.md) records the protected pre-refactor production baseline and recovery steps.
 
-- Current public release: [`v4.0.1`](docs/releases/v4.0.1.md).
-- Prepare the free-form weight-entry patch as [`v4.0.2`](docs/releases/v4.0.2.md).
-- Prepare the cycle-aware schedule and icon refresh as [`v4.1.0`](docs/releases/v4.1.0.md).
-- Prepare the History backup and restore patch as [`v4.1.1`](docs/releases/v4.1.1.md).
+- Current public release: [`v4.1.1`](docs/releases/v4.1.1.md).
+- Release notes: [`v4.0.2`](docs/releases/v4.0.2.md) free-form weight entry.
+- Published release notes: [`v4.1.0`](docs/releases/v4.1.0.md) cycle-aware schedule and icon refresh.
+- Published release notes: [`v4.1.1`](docs/releases/v4.1.1.md) History backup and restore.
 - Include user-visible changes, migration notes, and known issues.
 - Keep the legacy PWA migration bridge deployed until a later owner-approved cleanup.
 - Verify install and update behavior manually in iPhone Safari before publishing a release.
