@@ -141,7 +141,7 @@ test("loads the current workout on app launch", async ({ page }) => {
     "Cycle Week 2/12 • Day 1",
   );
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
-  await expect(page.locator("#versionIndicator")).toHaveText("v4.1.1");
+  await expect(page.locator("#versionIndicator")).toHaveText("v4.1.2");
 });
 
 test("adds and removes one recent missed workout from home", async ({
