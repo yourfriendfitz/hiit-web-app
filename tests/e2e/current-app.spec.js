@@ -685,6 +685,41 @@ test("keeps newer local history marked latest after importing older records", as
   await expect(olderImportedEntry).not.toContainText("Latest");
 });
 
+test("preserves same-timestamp history order when marking latest", async ({
+  page,
+}) => {
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Same time first 105",
+      date: "2025-08-10T12:00:00.000Z",
+    },
+    {
+      id: "45inclinebarbellpress",
+      weight: "Same time second 95",
+      date: "2025-08-10T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/history");
+
+  const exerciseGroup = page.locator(".accordion-item").filter({
+    hasText: "45° Incline Barbell Press",
+  });
+  await exerciseGroup
+    .getByRole("button", { name: /45° Incline Barbell Press/ })
+    .click();
+
+  const entries = exerciseGroup.locator(".weight-entry");
+  await expect(entries).toHaveCount(2);
+  await expect(entries.first()).toContainText("Same time first 105");
+  await expect(entries.first()).toContainText("Latest");
+
+  const secondEntry = entries.filter({ hasText: "Same time second 95" });
+  await expect(secondEntry).toBeVisible();
+  await expect(secondEntry).not.toContainText("Latest");
+});
+
 test("exports a history backup file", async ({
   browserName,
   page,

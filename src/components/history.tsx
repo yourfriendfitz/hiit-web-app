@@ -37,20 +37,7 @@ function compareWeightRecordsByNewest(
   first: WeightRecord,
   second: WeightRecord,
 ) {
-  const dateDifference =
-    new Date(second.date).getTime() - new Date(first.date).getTime();
-
-  if (dateDifference !== 0) {
-    return dateDifference;
-  }
-
-  const weightDifference = first.weight.localeCompare(second.weight);
-
-  if (weightDifference !== 0) {
-    return weightDifference;
-  }
-
-  return first.id.localeCompare(second.id);
+  return new Date(second.date).getTime() - new Date(first.date).getTime();
 }
 
 export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
