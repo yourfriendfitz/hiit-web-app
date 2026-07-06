@@ -585,6 +585,14 @@ button:disabled {
   grid-template-columns: minmax(0, 1fr) auto;
 }
 
+.weight-logger__error {
+  margin: 0;
+  color: var(--app-danger);
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 input[type="text"],
 input[type="search"] {
   width: 100%;

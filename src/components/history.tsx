@@ -33,6 +33,13 @@ function describeRecordCount(count: number) {
   return `${count} ${count === 1 ? "record" : "records"}`;
 }
 
+function compareWeightRecordsByNewest(
+  first: WeightRecord,
+  second: WeightRecord,
+) {
+  return new Date(second.date).getTime() - new Date(first.date).getTime();
+}
+
 export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
   const [weights, setWeights] = useState<WeightRecord[]>([]);
   const [filter, setFilter] = useState("");
@@ -72,7 +79,7 @@ export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
         .includes(normalizedFilter),
     );
 
-    return filteredWeights.reduce<Record<string, WeightRecord[]>>(
+    const groups = filteredWeights.reduce<Record<string, WeightRecord[]>>(
       (groups, weight) => {
         groups[weight.id] = groups[weight.id] || [];
         groups[weight.id].push(weight);
@@ -80,6 +87,12 @@ export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
       },
       {},
     );
+
+    Object.values(groups).forEach((entries) => {
+      entries.sort(compareWeightRecordsByNewest);
+    });
+
+    return groups;
   }, [exerciseMap, filter, weights]);
 
   const groupIds = Object.keys(groupedWeights);
@@ -263,37 +276,31 @@ export function HistoryPage({ exercises }: { exercises: ExerciseMetadata[] }) {
                 >
                   <div className="accordion-content__inner">
                     <div className="accordion-body">
-                      {entries
-                        .slice()
-                        .reverse()
-                        .map((weight, index) => (
-                          <div
-                            className={`weight-entry ${index === 0 ? "latest" : ""}`}
-                            key={`${weight.id}-${String(weight.date)}-${index}`}
-                          >
-                            <div className="weight-entry__value">
-                              <span className="weight-number">
-                                {weight.weight}
-                              </span>
-                              {index === 0 ? (
-                                <span className="latest-badge">Latest</span>
-                              ) : null}
-                            </div>
-                            <div className="weight-date">
-                              {new Date(weight.date).toLocaleDateString(
-                                "en-US",
-                                {
-                                  weekday: "short",
-                                  month: "short",
-                                  day: "numeric",
-                                  year: "numeric",
-                                  hour: "numeric",
-                                  minute: "2-digit",
-                                },
-                              )}
-                            </div>
+                      {entries.map((weight, index) => (
+                        <div
+                          className={`weight-entry ${index === 0 ? "latest" : ""}`}
+                          key={`${weight.id}-${String(weight.date)}-${index}`}
+                        >
+                          <div className="weight-entry__value">
+                            <span className="weight-number">
+                              {weight.weight}
+                            </span>
+                            {index === 0 ? (
+                              <span className="latest-badge">Latest</span>
+                            ) : null}
                           </div>
-                        ))}
+                          <div className="weight-date">
+                            {new Date(weight.date).toLocaleDateString("en-US", {
+                              weekday: "short",
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                              hour: "numeric",
+                              minute: "2-digit",
+                            })}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

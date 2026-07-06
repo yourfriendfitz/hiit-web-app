@@ -141,7 +141,7 @@ test("loads the current workout on app launch", async ({ page }) => {
     "Cycle Week 2/12 • Day 1",
   );
   await expect(page.locator(".exercise-card button").first()).toBeVisible();
-  await expect(page.locator("#versionIndicator")).toHaveText("v4.1.1");
+  await expect(page.locator("#versionIndicator")).toHaveText("v4.1.2");
 });
 
 test("adds and removes one recent missed workout from home", async ({
@@ -476,6 +476,49 @@ test("saves a free-text weight and shows it in history", async ({ page }) => {
   await expect(page.getByText(/40s; 9 for 95 9 RPE\*/)).toBeVisible();
 });
 
+test("shows feedback and preserves input when a weight save fails", async ({
+  page,
+}) => {
+  const pageErrors = [];
+  page.on("pageerror", (error) => {
+    pageErrors.push(error.message);
+  });
+
+  await page.goto("/#/workout?week=0&day=0");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  const weightInput = firstExercise.locator('input[id^="weight-"]');
+  await weightInput.fill("Will fail 100");
+
+  await page.evaluate(() => {
+    const originalTransaction = IDBDatabase.prototype.transaction;
+    window.restoreTransactions = () => {
+      IDBDatabase.prototype.transaction = originalTransaction;
+      delete window.restoreTransactions;
+    };
+    IDBDatabase.prototype.transaction = () => {
+      throw new Error("Forced transaction failure");
+    };
+  });
+
+  try {
+    await firstExercise.getByRole("button", { name: "Save" }).click();
+
+    await expect(
+      firstExercise.getByText("Weight was not saved. Try again."),
+    ).toBeVisible();
+    await expect(page.getByText("Weight save failed")).toBeVisible();
+    await expect(page.getByText("Weight saved", { exact: true })).toHaveCount(
+      0,
+    );
+    await expect(weightInput).toHaveValue("Will fail 100");
+    expect(pageErrors).toEqual([]);
+  } finally {
+    await page.evaluate(() => window.restoreTransactions?.());
+  }
+});
+
 test("stores stable context when optional RPE fields are absent", async ({
   page,
 }) => {
@@ -597,6 +640,84 @@ test("imports a history backup and skips duplicate imports", async ({
   ).toBeVisible();
   await expect(page.getByText("2 entries")).toHaveCount(0);
   await expect(page.getByText("1 entry")).toHaveCount(2);
+});
+
+test("keeps newer local history marked latest after importing older records", async ({
+  page,
+}) => {
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Newer local 105",
+      date: "2025-08-10T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/history");
+
+  const backupFile = createBackupFile([
+    {
+      id: "45inclinebarbellpress",
+      weight: "Older imported 95",
+      date: "2025-07-29T12:00:00.000Z",
+    },
+  ]);
+
+  await page.getByLabel("Import history backup").setInputFiles(backupFile);
+  await expect(
+    page.getByText("Imported 1 record. No duplicates skipped."),
+  ).toBeVisible();
+
+  const exerciseGroup = page.locator(".accordion-item").filter({
+    hasText: "45° Incline Barbell Press",
+  });
+  await exerciseGroup
+    .getByRole("button", { name: /45° Incline Barbell Press/ })
+    .click();
+
+  const entries = exerciseGroup.locator(".weight-entry");
+  await expect(entries).toHaveCount(2);
+  await expect(entries.first()).toContainText("Newer local 105");
+  await expect(entries.first()).toContainText("Latest");
+
+  const olderImportedEntry = entries.filter({ hasText: "Older imported 95" });
+  await expect(olderImportedEntry).toBeVisible();
+  await expect(olderImportedEntry).not.toContainText("Latest");
+});
+
+test("preserves same-timestamp history order when marking latest", async ({
+  page,
+}) => {
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Same time first 105",
+      date: "2025-08-10T12:00:00.000Z",
+    },
+    {
+      id: "45inclinebarbellpress",
+      weight: "Same time second 95",
+      date: "2025-08-10T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/history");
+
+  const exerciseGroup = page.locator(".accordion-item").filter({
+    hasText: "45° Incline Barbell Press",
+  });
+  await exerciseGroup
+    .getByRole("button", { name: /45° Incline Barbell Press/ })
+    .click();
+
+  const entries = exerciseGroup.locator(".weight-entry");
+  await expect(entries).toHaveCount(2);
+  await expect(entries.first()).toContainText("Same time first 105");
+  await expect(entries.first()).toContainText("Latest");
+
+  const secondEntry = entries.filter({ hasText: "Same time second 95" });
+  await expect(secondEntry).toBeVisible();
+  await expect(secondEntry).not.toContainText("Latest");
 });
 
 test("exports a history backup file", async ({
