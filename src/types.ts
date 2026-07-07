@@ -32,10 +32,24 @@ export type ExerciseMetadata = {
   subs?: string;
 };
 
+export type WeightRecordContext = {
+  programWeek: number;
+  cycle: number;
+  cycleWeek: number;
+  cycleLength: number;
+  workoutDay: number;
+};
+
 export type WeightRecord = {
   id: string;
   weight: string;
   date: Date | string;
+} & Partial<WeightRecordContext>;
+
+export type WorkoutLogContext = {
+  dayIndex: number;
+  programLength: number;
+  weekIndex: number;
 };
 
 export type Route =

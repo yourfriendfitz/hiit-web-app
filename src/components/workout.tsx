@@ -9,8 +9,19 @@ import {
 import { useEffect, useRef, useState } from "react";
 import Toastify from "toastify-js";
 
-import { getWeight, storeWeight } from "../storage";
-import type { ExerciseMetadata, ExerciseProgramming, Workout } from "../types";
+import {
+  getWeightForContext,
+  storeWeight,
+  type WeightLookupResult,
+} from "../storage";
+import { getWeightRecordContext } from "../program-schedule";
+import type {
+  ExerciseMetadata,
+  ExerciseProgramming,
+  WeightRecordContext,
+  Workout,
+  WorkoutLogContext,
+} from "../types";
 import { pwaUpdatePolicy } from "../update-policy";
 
 function extractYouTubeVideoId(url: string) {
@@ -46,18 +57,36 @@ function showSaveFailedToast() {
   }).showToast();
 }
 
-function useLastWeight(exerciseId: string) {
-  const [weight, setWeight] = useState("");
+const emptyWeightLookupResult: WeightLookupResult = {
+  record: null,
+  source: "none",
+  weight: "",
+};
+
+function useLastWeight(
+  exerciseId: string,
+  context: WeightRecordContext,
+): WeightLookupResult {
+  const [lookupResult, setLookupResult] = useState<WeightLookupResult>(
+    emptyWeightLookupResult,
+  );
   const requestSequence = useRef(0);
+  const { cycle, cycleLength, cycleWeek, programWeek, workoutDay } = context;
 
   useEffect(() => {
     let active = true;
     const update = () => {
       const sequence = ++requestSequence.current;
-      void getWeight(exerciseId)
+      void getWeightForContext(exerciseId, {
+        programWeek,
+        cycle,
+        cycleWeek,
+        cycleLength,
+        workoutDay,
+      })
         .then((latestWeight) => {
           if (active && sequence === requestSequence.current) {
-            setWeight(latestWeight);
+            setLookupResult(latestWeight);
           }
         })
         .catch(() => undefined);
@@ -71,24 +100,43 @@ function useLastWeight(exerciseId: string) {
       requestSequence.current += 1;
       window.removeEventListener("dbUpdated", update);
     };
-  }, [exerciseId]);
+  }, [cycle, cycleLength, cycleWeek, exerciseId, programWeek, workoutDay]);
 
-  return weight;
+  return lookupResult;
+}
+
+function getLastWeightSourceLabel(
+  lookupResult: WeightLookupResult,
+  context: WeightRecordContext,
+) {
+  if (lookupResult.source === "cycle-context") {
+    return `Last from Cycle Week ${lookupResult.record?.cycleWeek ?? context.cycleWeek}/${lookupResult.record?.cycleLength ?? context.cycleLength} • Day ${lookupResult.record?.workoutDay ?? context.workoutDay}`;
+  }
+
+  if (lookupResult.source === "exercise-fallback") {
+    return "Last logged for exercise";
+  }
+
+  return "No previous";
 }
 
 function LastWeight({
+  sourceLabel,
   variant = "compact",
   weight,
 }: {
+  sourceLabel: string;
   variant?: "compact" | "full";
   weight: string;
 }) {
   const hasWeight = weight !== "";
+  const accessibleLabel = hasWeight ? `${sourceLabel}: ${weight}` : sourceLabel;
 
   return (
     <span
       className={`weight-badge weight-badge--${variant} ${hasWeight ? "" : "empty"}`}
-      title={hasWeight ? `Last logged weight: ${weight}` : "No previous weight"}
+      title={accessibleLabel}
+      aria-label={accessibleLabel}
     >
       {hasWeight ? (
         <TrendingUp size={14} strokeWidth={2.5} aria-hidden="true" />
@@ -121,10 +169,14 @@ function WeightLogger({
   exercise,
   exerciseInstanceId,
   latestWeight,
+  latestWeightSourceLabel,
+  weightRecordContext,
 }: {
   exercise: ExerciseProgramming;
   exerciseInstanceId: string;
   latestWeight: string;
+  latestWeightSourceLabel: string;
+  weightRecordContext: WeightRecordContext;
 }) {
   const [weight, setWeight] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -148,7 +200,7 @@ function WeightLogger({
     setSaveError("");
 
     try {
-      await storeWeight(exercise.id, weightWithDetails);
+      await storeWeight(exercise.id, weightWithDetails, weightRecordContext);
       showSavedToast();
       setWeight("");
       pwaUpdatePolicy.clearInput(weightInputId);
@@ -171,12 +223,14 @@ function WeightLogger({
         <p className="section-heading__eyebrow">Training log</p>
         <h3 id={`log-weight-${exerciseInstanceId}`}>Log weight</h3>
       </div>
-      {latestWeight ? (
-        <div className="weight-logger__latest">
-          <p className="detail-section__label">Last logged weight</p>
-          <LastWeight variant="full" weight={latestWeight} />
-        </div>
-      ) : null}
+      <div className="weight-logger__latest">
+        <p className="detail-section__label">{latestWeightSourceLabel}</p>
+        <LastWeight
+          sourceLabel={latestWeightSourceLabel}
+          variant="full"
+          weight={latestWeight}
+        />
+      </div>
       <div className="weight-logger__controls">
         <input
           type="text"
@@ -214,11 +268,15 @@ function ExerciseDetails({
   exerciseDetails,
   exerciseInstanceId,
   latestWeight,
+  latestWeightSourceLabel,
+  weightRecordContext,
 }: {
   exercise: ExerciseProgramming;
   exerciseDetails?: ExerciseMetadata;
   exerciseInstanceId: string;
   latestWeight: string;
+  latestWeightSourceLabel: string;
+  weightRecordContext: WeightRecordContext;
 }) {
   const { videoId, timestamp } = extractYouTubeVideoId(
     exerciseDetails?.link || "",
@@ -305,6 +363,8 @@ function ExerciseDetails({
         exercise={exercise}
         exerciseInstanceId={exerciseInstanceId}
         latestWeight={latestWeight}
+        latestWeightSourceLabel={latestWeightSourceLabel}
+        weightRecordContext={weightRecordContext}
       />
     </div>
   );
@@ -315,17 +375,24 @@ function ExerciseCard({
   exerciseDetails,
   instanceId,
   index,
+  workoutContext,
 }: {
   exercise: ExerciseProgramming;
   exerciseDetails?: ExerciseMetadata;
   instanceId: string;
   index: number;
+  workoutContext: WorkoutLogContext;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const exerciseInstanceId = `${instanceId}-${exercise.id}-${index}`;
   const exerciseName =
     exerciseDetails?.name || exercise.name || "Unnamed exercise";
-  const latestWeight = useLastWeight(exercise.id);
+  const weightRecordContext = getWeightRecordContext(workoutContext);
+  const latestWeight = useLastWeight(exercise.id, weightRecordContext);
+  const latestWeightSourceLabel = getLastWeightSourceLabel(
+    latestWeight,
+    weightRecordContext,
+  );
 
   return (
     <section
@@ -349,7 +416,10 @@ function ExerciseCard({
           </span>
         </span>
         <span className="exercise-card__status">
-          <LastWeight weight={latestWeight} />
+          <LastWeight
+            sourceLabel={latestWeightSourceLabel}
+            weight={latestWeight.weight}
+          />
           <ChevronDown
             className="exercise-card__chevron"
             size={18}
@@ -368,7 +438,9 @@ function ExerciseCard({
             exercise={exercise}
             exerciseDetails={exerciseDetails}
             exerciseInstanceId={exerciseInstanceId}
-            latestWeight={latestWeight}
+            latestWeight={latestWeight.weight}
+            latestWeightSourceLabel={latestWeightSourceLabel}
+            weightRecordContext={weightRecordContext}
           />
         </div>
       </div>
@@ -380,10 +452,12 @@ export function WorkoutView({
   exerciseMap,
   instanceId,
   workout,
+  workoutContext,
 }: {
   exerciseMap: Record<string, ExerciseMetadata>;
   instanceId: string;
   workout: Workout;
+  workoutContext: WorkoutLogContext;
 }) {
   return (
     <div id={`workout-${instanceId}`} className="workout-list">
@@ -394,6 +468,7 @@ export function WorkoutView({
           exerciseDetails={exerciseMap[exercise.id]}
           instanceId={instanceId}
           index={index}
+          workoutContext={workoutContext}
         />
       ))}
     </div>

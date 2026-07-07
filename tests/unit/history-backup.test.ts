@@ -51,13 +51,44 @@ describe("history backup", () => {
     );
   });
 
+  it("includes optional context fields when exporting records", () => {
+    const backup = createWeightHistoryBackup(
+      [
+        {
+          id: "press",
+          weight: "95",
+          date: "2026-06-01T12:00:00.000Z",
+          programWeek: 14,
+          cycle: 2,
+          cycleWeek: 2,
+          cycleLength: 12,
+          workoutDay: 2,
+        },
+      ],
+      "2026-06-26T20:32:30.000Z",
+    );
+
+    expect(backup.records).toEqual([
+      {
+        id: "press",
+        weight: "95",
+        date: "2026-06-01T12:00:00.000Z",
+        programWeek: 14,
+        cycle: 2,
+        cycleWeek: 2,
+        cycleLength: 12,
+        workoutDay: 2,
+      },
+    ]);
+  });
+
   it("uses the export date in the backup filename", () => {
     expect(getWeightHistoryBackupFileName("2026-06-26T20:32:30.000Z")).toBe(
       "hiit-history-backup-2026-06-26.json",
     );
   });
 
-  it("parses a valid backup", () => {
+  it("parses a valid old backup without context", () => {
     const backup = parseWeightHistoryBackup(
       JSON.stringify({
         app: "hiit-web-app",
@@ -80,6 +111,43 @@ describe("history backup", () => {
         id: "press",
         weight: "95",
         date: "2026-06-01T12:00:00.000Z",
+      },
+    ]);
+  });
+
+  it("parses a valid backup with context", () => {
+    const backup = parseWeightHistoryBackup(
+      JSON.stringify({
+        app: "hiit-web-app",
+        format: "weights-backup",
+        formatVersion: 1,
+        exportedAt: "2026-06-26T20:32:30.000Z",
+        recordCount: 1,
+        records: [
+          {
+            id: "press",
+            weight: "95",
+            date: "2026-06-01T12:00:00.000Z",
+            programWeek: 14,
+            cycle: 2,
+            cycleWeek: 2,
+            cycleLength: 12,
+            workoutDay: 2,
+          },
+        ],
+      }),
+    );
+
+    expect(backup.records).toEqual([
+      {
+        id: "press",
+        weight: "95",
+        date: "2026-06-01T12:00:00.000Z",
+        programWeek: 14,
+        cycle: 2,
+        cycleWeek: 2,
+        cycleLength: 12,
+        workoutDay: 2,
       },
     ]);
   });
@@ -120,6 +188,50 @@ describe("history backup", () => {
     ).toThrow("invalid date");
   });
 
+  it("rejects invalid optional context fields", () => {
+    expect(() =>
+      parseWeightHistoryBackup(
+        JSON.stringify({
+          app: "hiit-web-app",
+          format: "weights-backup",
+          formatVersion: 1,
+          exportedAt: "2026-06-26T20:32:30.000Z",
+          recordCount: 1,
+          records: [
+            {
+              id: "press",
+              weight: "95",
+              date: "2026-06-01T12:00:00.000Z",
+              cycleWeek: 1.5,
+              cycleLength: 12,
+              workoutDay: 1,
+            },
+          ],
+        }),
+      ),
+    ).toThrow("cycleWeek must be a finite positive integer");
+
+    expect(() =>
+      parseWeightHistoryBackup(
+        JSON.stringify({
+          app: "hiit-web-app",
+          format: "weights-backup",
+          formatVersion: 1,
+          exportedAt: "2026-06-26T20:32:30.000Z",
+          recordCount: 1,
+          records: [
+            {
+              id: "press",
+              weight: "95",
+              date: "2026-06-01T12:00:00.000Z",
+              workoutDay: 0,
+            },
+          ],
+        }),
+      ),
+    ).toThrow("workoutDay must be a finite positive integer");
+  });
+
   it("plans a merge-only import and skips exact duplicates", () => {
     const importPlan = planWeightHistoryImport(
       [
@@ -139,11 +251,19 @@ describe("history backup", () => {
           id: "press",
           weight: "105",
           date: "2026-06-02T12:00:00.000Z",
+          programWeek: 14,
+          cycle: 2,
+          cycleWeek: 2,
+          cycleLength: 12,
+          workoutDay: 2,
         },
         {
           id: "press",
           weight: "105",
           date: "2026-06-02T12:00:00.000Z",
+          cycleWeek: 3,
+          cycleLength: 12,
+          workoutDay: 3,
         },
       ],
     );
@@ -155,6 +275,11 @@ describe("history backup", () => {
           id: "press",
           weight: "105",
           date: "2026-06-02T12:00:00.000Z",
+          programWeek: 14,
+          cycle: 2,
+          cycleWeek: 2,
+          cycleLength: 12,
+          workoutDay: 2,
         },
       ],
     });

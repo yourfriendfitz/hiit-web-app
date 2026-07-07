@@ -5,7 +5,7 @@ import {
   formatWorkoutScheduleLabel,
   type RecentProgramWorkout,
 } from "../program-schedule";
-import type { ExerciseMetadata, Workout } from "../types";
+import type { ExerciseMetadata, Workout, WorkoutLogContext } from "../types";
 import { WorkoutView } from "./workout";
 
 function formatWorkoutDate(date: Date) {
@@ -23,6 +23,7 @@ function WorkoutSection({
   meta,
   onRemove,
   workout,
+  workoutContext,
 }: {
   exerciseMap: Record<string, ExerciseMetadata>;
   instanceId: string;
@@ -30,6 +31,7 @@ function WorkoutSection({
   meta: string;
   onRemove?: () => void;
   workout: Workout;
+  workoutContext: WorkoutLogContext;
 }) {
   return (
     <section
@@ -59,6 +61,7 @@ function WorkoutSection({
         exerciseMap={exerciseMap}
         instanceId={instanceId}
         workout={workout}
+        workoutContext={workoutContext}
       />
     </section>
   );
@@ -96,6 +99,11 @@ export function HomeWorkout({
           programLength,
         )}
         workout={today.workout}
+        workoutContext={{
+          weekIndex: currentWeek,
+          dayIndex: today.workoutDay - 1,
+          programLength,
+        }}
       />
 
       {selectedWorkout ? (
@@ -112,6 +120,11 @@ export function HomeWorkout({
           )}`}
           onRemove={() => setSelectedWorkout(null)}
           workout={selectedWorkout.workout}
+          workoutContext={{
+            weekIndex: selectedWorkout.week,
+            dayIndex: selectedWorkout.day,
+            programLength,
+          }}
         />
       ) : recentWorkouts.length > 0 ? (
         <section className="quick-add" aria-label="Missed workout">

@@ -29,17 +29,35 @@ async function seedWeightRecords(page, records) {
   await page.goto("/");
   await page.evaluate(async (seedRecords) => {
     await new Promise((resolve, reject) => {
-      const request = indexedDB.open("hiit-app-db", 1);
+      const request = indexedDB.open("hiit-app-db", 2);
 
       request.onupgradeneeded = () => {
         const db = request.result;
+        let store;
+
         if (!db.objectStoreNames.contains("Weights")) {
-          const store = db.createObjectStore("Weights", {
+          store = db.createObjectStore("Weights", {
             autoIncrement: true,
           });
+        } else {
+          store = request.transaction.objectStore("Weights");
+        }
+
+        if (!store.indexNames.contains("id")) {
           store.createIndex("id", "id", { unique: false });
+        }
+        if (!store.indexNames.contains("date")) {
           store.createIndex("date", "date", { unique: false });
+        }
+        if (!store.indexNames.contains("weight")) {
           store.createIndex("weight", "weight", { unique: false });
+        }
+        if (!store.indexNames.contains("exerciseCycleContext")) {
+          store.createIndex(
+            "exerciseCycleContext",
+            ["id", "cycleLength", "cycleWeek", "workoutDay"],
+            { unique: false },
+          );
         }
       };
 
@@ -65,7 +83,7 @@ async function seedWeightRecords(page, records) {
 async function getLastWeightRecord(page) {
   return page.evaluate(async () => {
     const db = await new Promise((resolve, reject) => {
-      const request = indexedDB.open("hiit-app-db", 1);
+      const request = indexedDB.open("hiit-app-db", 2);
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);
     });
@@ -83,7 +101,7 @@ async function getLastWeightRecord(page) {
 async function clearWeightRecords(page) {
   await page.evaluate(async () => {
     const db = await new Promise((resolve, reject) => {
-      const request = indexedDB.open("hiit-app-db", 1);
+      const request = indexedDB.open("hiit-app-db", 2);
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);
     });
@@ -595,6 +613,167 @@ test("reads seeded history and filters it by exercise name", async ({
 
   await expect(page.getByText("Legacy 105")).toBeHidden();
   await expect(page.getByText("Legacy unknown 50")).toBeVisible();
+});
+
+test("shows exact cycle-context record before newer fallback", async ({
+  page,
+}) => {
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Cycle context 95",
+      date: "2026-05-01T12:00:00.000Z",
+      programWeek: 13,
+      cycle: 2,
+      cycleWeek: 1,
+      cycleLength: 12,
+      workoutDay: 1,
+    },
+    {
+      id: "45inclinebarbellpress",
+      weight: "Fallback latest 135",
+      date: "2026-05-02T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/workout?week=12&day=0");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await expect(firstExercise.locator(".weight-badge--full")).toContainText(
+    "Cycle context 95",
+  );
+  await expect(
+    firstExercise.getByText("Last from Cycle Week 1/12 • Day 1"),
+  ).toBeVisible();
+  await expect(
+    firstExercise
+      .locator(".weight-badge")
+      .filter({ hasText: "Fallback latest 135" }),
+  ).toHaveCount(0);
+});
+
+test("falls back to latest exercise record when no exact context exists", async ({
+  page,
+}) => {
+  await seedWeightRecords(page, [
+    {
+      id: "45inclinebarbellpress",
+      weight: "Fallback older 95",
+      date: "2026-05-01T12:00:00.000Z",
+    },
+    {
+      id: "45inclinebarbellpress",
+      weight: "Fallback newest 105",
+      date: "2026-05-02T12:00:00.000Z",
+    },
+  ]);
+
+  await page.goto("/#/workout?week=12&day=0");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await expect(firstExercise.locator(".weight-badge--full")).toContainText(
+    "Fallback newest 105",
+  );
+  await expect(
+    firstExercise.getByText("Last logged for exercise"),
+  ).toBeVisible();
+});
+
+test("saves route workout records with context", async ({ page }) => {
+  await page.goto("/#/workout?week=13&day=1");
+
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await firstExercise.locator('input[id^="weight-"]').fill("Route context 115");
+  await firstExercise.getByRole("button", { name: "Save" }).click();
+
+  await expect
+    .poll(async () => {
+      const record = await getLastWeightRecord(page);
+      return {
+        cycleLength: record?.cycleLength,
+        cycleWeek: record?.cycleWeek,
+        workoutDay: record?.workoutDay,
+        programWeek: record?.programWeek,
+        cycle: record?.cycle,
+      };
+    })
+    .toEqual({
+      cycleLength: 12,
+      cycleWeek: 2,
+      workoutDay: 2,
+      programWeek: 14,
+      cycle: 2,
+    });
+});
+
+test("saves missed-workout records with missed workout context", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Add missed workout" }).click();
+  await page.locator(".quick-add__option").first().click();
+
+  const addedWorkout = page.locator('[data-workout-instance^="missed-"]');
+  const firstExercise = addedWorkout.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await firstExercise
+    .locator('input[id^="weight-"]')
+    .fill("Missed context 155");
+  await firstExercise.getByRole("button", { name: "Save" }).click();
+
+  await expect
+    .poll(async () => {
+      const record = await getLastWeightRecord(page);
+      return {
+        cycleLength: record?.cycleLength,
+        cycleWeek: record?.cycleWeek,
+        workoutDay: record?.workoutDay,
+        programWeek: record?.programWeek,
+        cycle: record?.cycle,
+      };
+    })
+    .toEqual({
+      cycleLength: 12,
+      cycleWeek: 1,
+      workoutDay: 5,
+      programWeek: 1,
+      cycle: 1,
+    });
+});
+
+test("backup import preserves context enough for lookup", async ({ page }) => {
+  await page.goto("/#/history");
+
+  const backupFile = createBackupFile([
+    {
+      id: "45inclinebarbellpress",
+      weight: "Imported context 95",
+      date: "2026-05-01T12:00:00.000Z",
+      programWeek: 13,
+      cycle: 2,
+      cycleWeek: 1,
+      cycleLength: 12,
+      workoutDay: 1,
+    },
+  ]);
+
+  await page.getByLabel("Import history backup").setInputFiles(backupFile);
+  await expect(
+    page.getByText("Imported 1 record. No duplicates skipped."),
+  ).toBeVisible();
+
+  await page.goto("/#/workout?week=12&day=0");
+  const firstExercise = page.locator(".exercise-card").first();
+  await firstExercise.locator("button").first().click();
+  await expect(firstExercise.locator(".weight-badge--full")).toContainText(
+    "Imported context 95",
+  );
+  await expect(
+    firstExercise.getByText("Last from Cycle Week 1/12 • Day 1"),
+  ).toBeVisible();
 });
 
 test("imports a history backup and skips duplicate imports", async ({

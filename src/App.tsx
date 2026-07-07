@@ -172,6 +172,11 @@ function App() {
           workout={workout}
           exerciseMap={exerciseMap}
           instanceId={`route-${route.week}-${route.day}`}
+          workoutContext={{
+            weekIndex: route.week,
+            dayIndex: route.day,
+            programLength: data.program.length,
+          }}
         />
       );
     } else {
