@@ -1,4 +1,4 @@
-import type { WeightRecord } from "./types";
+import type { WeightRecord, WeightRecordContext } from "./types";
 
 export const WEIGHT_BACKUP_APP = "hiit-web-app";
 export const WEIGHT_BACKUP_FORMAT = "weights-backup";
@@ -8,7 +8,7 @@ export type BackupWeightRecord = {
   id: string;
   weight: string;
   date: string;
-};
+} & Partial<WeightRecordContext>;
 
 export type WeightHistoryBackup = {
   app: typeof WEIGHT_BACKUP_APP;
@@ -53,6 +53,71 @@ function assertString(value: unknown, label: string) {
   return value;
 }
 
+function normalizeOptionalContextField(value: unknown, label: string) {
+  if (value === undefined) {
+    return undefined;
+  }
+
+  if (
+    typeof value !== "number" ||
+    !Number.isFinite(value) ||
+    !Number.isInteger(value) ||
+    value <= 0
+  ) {
+    throw new WeightHistoryBackupError(
+      `${label} must be a finite positive integer.`,
+    );
+  }
+
+  return value;
+}
+
+function normalizeOptionalContextFields(
+  record: Partial<WeightRecordContext>,
+  label: string,
+): Partial<WeightRecordContext> {
+  const context: Partial<WeightRecordContext> = {};
+  const programWeek = normalizeOptionalContextField(
+    record.programWeek,
+    `${label} programWeek`,
+  );
+  const cycle = normalizeOptionalContextField(record.cycle, `${label} cycle`);
+  const cycleWeek = normalizeOptionalContextField(
+    record.cycleWeek,
+    `${label} cycleWeek`,
+  );
+  const cycleLength = normalizeOptionalContextField(
+    record.cycleLength,
+    `${label} cycleLength`,
+  );
+  const workoutDay = normalizeOptionalContextField(
+    record.workoutDay,
+    `${label} workoutDay`,
+  );
+
+  if (programWeek !== undefined) {
+    context.programWeek = programWeek;
+  }
+
+  if (cycle !== undefined) {
+    context.cycle = cycle;
+  }
+
+  if (cycleWeek !== undefined) {
+    context.cycleWeek = cycleWeek;
+  }
+
+  if (cycleLength !== undefined) {
+    context.cycleLength = cycleLength;
+  }
+
+  if (workoutDay !== undefined) {
+    context.workoutDay = workoutDay;
+  }
+
+  return context;
+}
+
 export function normalizeWeightRecord(
   record: WeightRecord,
   label = "Record",
@@ -61,6 +126,7 @@ export function normalizeWeightRecord(
     id: assertString(record.id, `${label} id`),
     weight: assertString(record.weight, `${label} weight`),
     date: normalizeDate(record.date, `${label} date`),
+    ...normalizeOptionalContextFields(record, label),
   };
 }
 
@@ -79,6 +145,11 @@ function normalizeBackupRecord(
       id: value.id,
       weight: value.weight,
       date: value.date,
+      programWeek: value.programWeek,
+      cycle: value.cycle,
+      cycleWeek: value.cycleWeek,
+      cycleLength: value.cycleLength,
+      workoutDay: value.workoutDay,
     } as WeightRecord,
     `Record ${index + 1}`,
   );

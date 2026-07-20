@@ -6,6 +6,7 @@ import {
   getCurrentProgramWeek,
   getProgramCyclePosition,
   getRecentProgramWorkouts,
+  getWeightRecordContext,
 } from "../../src/program-schedule";
 import type { Workout, WorkoutProgram } from "../../src/types";
 
@@ -102,6 +103,56 @@ describe("getProgramCyclePosition", () => {
     expect(formatWorkoutScheduleLabel(47, 5, 96)).toBe(
       "Cycle Week 12/12 • Day 5",
     );
+  });
+});
+
+describe("getWeightRecordContext", () => {
+  it("converts the first week and first day to stored context", () => {
+    expect(
+      getWeightRecordContext({
+        weekIndex: 0,
+        dayIndex: 0,
+        programLength: 96,
+      }),
+    ).toEqual({
+      programWeek: 1,
+      cycle: 1,
+      cycleWeek: 1,
+      cycleLength: 12,
+      workoutDay: 1,
+    });
+  });
+
+  it("converts the second week of cycle 2 and second day to stored context", () => {
+    expect(
+      getWeightRecordContext({
+        weekIndex: 13,
+        dayIndex: 1,
+        programLength: 96,
+      }),
+    ).toEqual({
+      programWeek: 14,
+      cycle: 2,
+      cycleWeek: 2,
+      cycleLength: 12,
+      workoutDay: 2,
+    });
+  });
+
+  it("clamps out-of-range weeks like getProgramCyclePosition", () => {
+    expect(
+      getWeightRecordContext({
+        weekIndex: 120,
+        dayIndex: 4,
+        programLength: 96,
+      }),
+    ).toEqual({
+      programWeek: 96,
+      cycle: 8,
+      cycleWeek: 12,
+      cycleLength: 12,
+      workoutDay: 5,
+    });
   });
 });
 

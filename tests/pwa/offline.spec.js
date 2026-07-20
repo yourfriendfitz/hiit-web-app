@@ -80,6 +80,36 @@ test("loads core routes and saves a weight offline after the first visit", async
   await page.goto("/#/history");
   await expect(page.getByText(/Offline 145; 8 RPE\*/)).toBeVisible();
   await expect(page.getByText(/Offline added 125/)).toBeVisible();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          new Promise((resolve, reject) => {
+            const request = indexedDB.open("hiit-app-db", 2);
+            request.onsuccess = () => {
+              const db = request.result;
+              const transaction = db.transaction("Weights", "readonly");
+              const records = transaction.objectStore("Weights").getAll();
+              records.onsuccess = () => {
+                db.close();
+                resolve(
+                  records.result.some(
+                    (record) =>
+                      typeof record.programWeek === "number" &&
+                      typeof record.cycle === "number" &&
+                      typeof record.cycleWeek === "number" &&
+                      typeof record.cycleLength === "number" &&
+                      typeof record.workoutDay === "number",
+                  ),
+                );
+              };
+              records.onerror = () => reject(records.error);
+            };
+            request.onerror = () => reject(request.error);
+          }),
+      ),
+    )
+    .toBe(true);
 
   await page.getByLabel("Import history backup").setInputFiles({
     name: "offline-history-backup.json",
@@ -132,17 +162,35 @@ test("legacy migration bridge removes stale shell caches without deleting Indexe
       await controlCache.put("/retain.html", new Response("retain"));
 
       await new Promise((resolve, reject) => {
-        const request = indexedDB.open("hiit-app-db", 1);
+        const request = indexedDB.open("hiit-app-db", 2);
 
         request.onupgradeneeded = () => {
           const db = request.result;
+          let store;
+
           if (!db.objectStoreNames.contains("Weights")) {
-            const store = db.createObjectStore("Weights", {
+            store = db.createObjectStore("Weights", {
               autoIncrement: true,
             });
+          } else {
+            store = request.transaction.objectStore("Weights");
+          }
+
+          if (!store.indexNames.contains("id")) {
             store.createIndex("id", "id", { unique: false });
+          }
+          if (!store.indexNames.contains("date")) {
             store.createIndex("date", "date", { unique: false });
+          }
+          if (!store.indexNames.contains("weight")) {
             store.createIndex("weight", "weight", { unique: false });
+          }
+          if (!store.indexNames.contains("exerciseCycleContext")) {
+            store.createIndex(
+              "exerciseCycleContext",
+              ["id", "cycleLength", "cycleWeek", "workoutDay"],
+              { unique: false },
+            );
           }
         };
 
@@ -188,7 +236,7 @@ test("legacy migration bridge removes stale shell caches without deleting Indexe
       page.evaluate(
         () =>
           new Promise((resolve, reject) => {
-            const request = indexedDB.open("hiit-app-db", 1);
+            const request = indexedDB.open("hiit-app-db", 2);
             request.onsuccess = () => {
               const db = request.result;
               const transaction = db.transaction("Weights", "readonly");

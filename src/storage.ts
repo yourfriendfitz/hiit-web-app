@@ -1,6 +1,20 @@
-import { DB_NAME, WEIGHT_STORE, type WeightRecord } from "./types";
+import {
+  DB_NAME,
+  WEIGHT_STORE,
+  type WeightRecord,
+  type WeightRecordContext,
+} from "./types";
 
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
+const EXERCISE_CYCLE_CONTEXT_INDEX = "exerciseCycleContext";
+
+export type WeightLookupSource = "cycle-context" | "exercise-fallback" | "none";
+
+export type WeightLookupResult = {
+  record: WeightRecord | null;
+  source: WeightLookupSource;
+  weight: string;
+};
 
 type StorageAdapterOptions = {
   indexedDB: IDBFactory;
@@ -10,10 +24,18 @@ type StorageAdapterOptions = {
 
 export interface WeightStorage {
   open(): Promise<IDBDatabase>;
+  getBestWeightForContext(
+    id: string,
+    context: WeightRecordContext,
+  ): Promise<WeightLookupResult>;
   getLatestWeight(id: string): Promise<string>;
   importWeights(records: WeightRecord[]): Promise<number>;
   listWeights(): Promise<WeightRecord[]>;
-  saveWeight(id: string, weight: string): Promise<void>;
+  saveWeight(
+    id: string,
+    weight: string,
+    context?: WeightRecordContext,
+  ): Promise<void>;
   close(): void;
 }
 
@@ -44,14 +66,19 @@ export class IndexedDBWeightStorage implements WeightStorage {
 
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
+        let store: IDBObjectStore;
+
         if (!db.objectStoreNames.contains(WEIGHT_STORE)) {
-          const store = db.createObjectStore(WEIGHT_STORE, {
+          store = db.createObjectStore(WEIGHT_STORE, {
             autoIncrement: true,
           });
-          store.createIndex("id", "id", { unique: false });
-          store.createIndex("date", "date", { unique: false });
-          store.createIndex("weight", "weight", { unique: false });
+        } else {
+          store = (event.target as IDBOpenDBRequest).transaction!.objectStore(
+            WEIGHT_STORE,
+          );
         }
+
+        this.ensureIndexes(store);
       };
 
       request.onsuccess = (event) => {
@@ -74,10 +101,41 @@ export class IndexedDBWeightStorage implements WeightStorage {
     return this.pendingOpen;
   }
 
-  async saveWeight(id: string, weight: string): Promise<void> {
+  private ensureIndexes(store: IDBObjectStore) {
+    if (!store.indexNames.contains("id")) {
+      store.createIndex("id", "id", { unique: false });
+    }
+
+    if (!store.indexNames.contains("date")) {
+      store.createIndex("date", "date", { unique: false });
+    }
+
+    if (!store.indexNames.contains("weight")) {
+      store.createIndex("weight", "weight", { unique: false });
+    }
+
+    if (!store.indexNames.contains(EXERCISE_CYCLE_CONTEXT_INDEX)) {
+      store.createIndex(
+        EXERCISE_CYCLE_CONTEXT_INDEX,
+        ["id", "cycleLength", "cycleWeek", "workoutDay"],
+        { unique: false },
+      );
+    }
+  }
+
+  async saveWeight(
+    id: string,
+    weight: string,
+    context?: WeightRecordContext,
+  ): Promise<void> {
     const db = await this.open();
     const tx = db.transaction(WEIGHT_STORE, "readwrite");
-    tx.objectStore(WEIGHT_STORE).put({ id, weight, date: new Date() });
+    tx.objectStore(WEIGHT_STORE).put({
+      id,
+      weight,
+      date: new Date(),
+      ...context,
+    });
 
     return new Promise((resolve, reject) => {
       tx.oncomplete = () => {
@@ -102,11 +160,7 @@ export class IndexedDBWeightStorage implements WeightStorage {
     const store = tx.objectStore(WEIGHT_STORE);
 
     records.forEach((record) => {
-      store.put({
-        id: record.id,
-        weight: record.weight,
-        date: record.date,
-      });
+      store.put(record);
     });
 
     return new Promise((resolve, reject) => {
@@ -123,12 +177,86 @@ export class IndexedDBWeightStorage implements WeightStorage {
   }
 
   async getLatestWeight(id: string): Promise<string> {
+    const record = await this.getLatestWeightRecord(id);
+    return record ? record.weight : "";
+  }
+
+  async getBestWeightForContext(
+    id: string,
+    context: WeightRecordContext,
+  ): Promise<WeightLookupResult> {
+    const contextRecord = await this.getLatestWeightRecordByCycleContext(
+      id,
+      context,
+    );
+
+    if (contextRecord) {
+      return {
+        record: contextRecord,
+        source: "cycle-context",
+        weight: contextRecord.weight,
+      };
+    }
+
+    const fallbackRecord = await this.getLatestWeightRecord(id);
+
+    if (fallbackRecord) {
+      return {
+        record: fallbackRecord,
+        source: "exercise-fallback",
+        weight: fallbackRecord.weight,
+      };
+    }
+
+    return {
+      record: null,
+      source: "none",
+      weight: "",
+    };
+  }
+
+  private async getLatestWeightRecord(
+    id: string,
+  ): Promise<WeightRecord | null> {
     const db = await this.open();
     const tx = db.transaction(WEIGHT_STORE, "readonly");
     const store = tx.objectStore(WEIGHT_STORE);
     const index = store.index("id");
     const request = index.openCursor(this.keyRange.only(id));
 
+    return this.getLatestRecordFromCursor(
+      request,
+      `Request failed for id: ${id}`,
+    );
+  }
+
+  private async getLatestWeightRecordByCycleContext(
+    id: string,
+    context: WeightRecordContext,
+  ): Promise<WeightRecord | null> {
+    const db = await this.open();
+    const tx = db.transaction(WEIGHT_STORE, "readonly");
+    const store = tx.objectStore(WEIGHT_STORE);
+    const index = store.index(EXERCISE_CYCLE_CONTEXT_INDEX);
+    const request = index.openCursor(
+      this.keyRange.only([
+        id,
+        context.cycleLength,
+        context.cycleWeek,
+        context.workoutDay,
+      ]),
+    );
+
+    return this.getLatestRecordFromCursor(
+      request,
+      `Request failed for cycle context: ${id}`,
+    );
+  }
+
+  private getLatestRecordFromCursor(
+    request: IDBRequest<IDBCursorWithValue | null>,
+    errorMessage: string,
+  ): Promise<WeightRecord | null> {
     return new Promise((resolve, reject) => {
       let mostRecentEntry: WeightRecord | null = null;
 
@@ -147,11 +275,10 @@ export class IndexedDBWeightStorage implements WeightStorage {
           return;
         }
 
-        resolve(mostRecentEntry ? mostRecentEntry.weight : "");
+        resolve(mostRecentEntry);
       };
 
-      request.onerror = () =>
-        reject(request.error || new Error(`Request failed for id: ${id}`));
+      request.onerror = () => reject(request.error || new Error(errorMessage));
     });
   }
 
@@ -205,10 +332,15 @@ export function getBrowserWeightStorage(): IndexedDBWeightStorage {
 }
 
 export const initDB = () => getBrowserWeightStorage().open();
-export const storeWeight = (id: string, weight: string) =>
-  getBrowserWeightStorage().saveWeight(id, weight);
+export const storeWeight = (
+  id: string,
+  weight: string,
+  context?: WeightRecordContext,
+) => getBrowserWeightStorage().saveWeight(id, weight, context);
 export const importWeights = (records: WeightRecord[]) =>
   getBrowserWeightStorage().importWeights(records);
 export const getWeight = (id: string) =>
   getBrowserWeightStorage().getLatestWeight(id);
+export const getWeightForContext = (id: string, context: WeightRecordContext) =>
+  getBrowserWeightStorage().getBestWeightForContext(id, context);
 export const getAllWeights = () => getBrowserWeightStorage().listWeights();

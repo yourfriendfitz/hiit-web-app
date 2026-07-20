@@ -1,4 +1,10 @@
-import { PROGRAM_START_DATE, type Workout, type WorkoutProgram } from "./types";
+import {
+  PROGRAM_START_DATE,
+  type WeightRecordContext,
+  type Workout,
+  type WorkoutLogContext,
+  type WorkoutProgram,
+} from "./types";
 
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 export const PROGRAM_CYCLE_LENGTH_WEEKS = 12;
@@ -61,6 +67,22 @@ export function getProgramCyclePosition(
       availableWeeks === 0
         ? 0
         : Math.ceil(availableWeeks / normalizedCycleLength),
+  };
+}
+
+export function getWeightRecordContext({
+  dayIndex,
+  programLength,
+  weekIndex,
+}: WorkoutLogContext): WeightRecordContext {
+  const position = getProgramCyclePosition(weekIndex, programLength);
+
+  return {
+    programWeek: position.programWeek,
+    cycle: position.cycle,
+    cycleWeek: position.cycleWeek,
+    cycleLength: position.cycleLength,
+    workoutDay: dayIndex + 1,
   };
 }
 

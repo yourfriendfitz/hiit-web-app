@@ -1,4 +1,4 @@
-export const APP_VERSION = "4.1.2";
+export const APP_VERSION = "4.1.3";
 export const DB_NAME = "hiit-app-db";
 export const WEIGHT_STORE = "Weights";
 export const PROD_HOSTNAME = "yourfriendfitz.github.io";
@@ -32,10 +32,24 @@ export type ExerciseMetadata = {
   subs?: string;
 };
 
+export type WeightRecordContext = {
+  programWeek: number;
+  cycle: number;
+  cycleWeek: number;
+  cycleLength: number;
+  workoutDay: number;
+};
+
 export type WeightRecord = {
   id: string;
   weight: string;
   date: Date | string;
+} & Partial<WeightRecordContext>;
+
+export type WorkoutLogContext = {
+  dayIndex: number;
+  programLength: number;
+  weekIndex: number;
 };
 
 export type Route =
