@@ -171,6 +171,7 @@ Use the [release checklist](docs/releases/RELEASE-CHECKLIST.md) for the final re
 - Published release notes: [`v4.1.0`](docs/releases/v4.1.0.md) cycle-aware schedule and icon refresh.
 - Published release notes: [`v4.1.1`](docs/releases/v4.1.1.md) History backup and restore.
 - Published release notes: [`v4.1.2`](docs/releases/v4.1.2.md) maintenance fixes and previous-cycle planning.
+- Candidate release notes: [`v4.1.3`](docs/releases/v4.1.3.md) cycle-context weight history.
 - Include user-visible changes, migration notes, and known issues.
 - Keep the legacy PWA migration bridge deployed until a later owner-approved cleanup.
 - Verify install and update behavior manually in iPhone Safari before publishing a release.
